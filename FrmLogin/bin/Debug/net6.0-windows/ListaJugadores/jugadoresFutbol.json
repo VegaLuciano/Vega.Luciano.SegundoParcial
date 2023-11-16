@@ -1,0 +1,136 @@
+[
+    {
+      "nombre": "Laura",
+      "apellido": "Fernández",
+      "genero": "FEMENINO",
+      "dni": 12345679,
+      "edad": 26,
+      "division": "SUB21",
+      "altura": 1.70,
+      "deporte": "FUTBOL",
+      "amonestado": false
+    },
+    {
+      "nombre": "Martín",
+      "apellido": "Gómez",
+      "genero": "MASCULINO",
+      "dni": 98765433,
+      "edad": 27,
+      "division": "SUB21",
+      "altura": 1.75,
+      "deporte": "FUTBOL",
+      "amonestado": true
+    },
+    {
+      "nombre": "Valeria",
+      "apellido": "Sánchez",
+      "genero": "FEMENINO",
+      "dni": 54321988,
+      "edad": 24,
+      "division": "SUB21",
+      "altura": 1.68,
+      "deporte": "FUTBOL",
+      "amonestado": false
+    },
+    {
+      "nombre": "Miguel",
+      "apellido": "Rodríguez",
+      "genero": "MASCULINO",
+      "dni": 87654322,
+      "edad": 28,
+      "division": "SUB21",
+      "altura": 1.80,
+      "deporte": "FUTBOL",
+      "amonestado": true
+    },
+    {
+      "nombre": "Julieta",
+      "apellido": "Martínez",
+      "genero": "FEMENINO",
+      "dni": 34567891,
+      "edad": 29,
+      "division": "SUB21",
+      "altura": 1.72,
+      "deporte": "FUTBOL",
+      "amonestado": false
+    },
+    {
+      "nombre": "Alejandro",
+      "apellido": "Pérez",
+      "genero": "MASCULINO",
+      "dni": 65432124,
+      "edad": 30,
+      "division": "SUB21",
+      "altura": 1.76,
+      "deporte": "FUTBOL",
+      "amonestado": false
+    },
+    {
+      "nombre": "Carmen",
+      "apellido": "González",
+      "genero": "FEMENINO",
+      "dni": 23456790,
+      "edad": 31,
+      "division": "SUB21",
+      "altura": 1.73,
+      "deporte": "FUTBOL",
+      "amonestado": true
+    },
+    {
+      "nombre": "Diego",
+      "apellido": "Hernández",
+      "genero": "MASCULINO",
+      "dni": 43216544,
+      "edad": 32,
+      "division": "SUB21",
+      "altura": 1.78,
+      "deporte": "FUTBOL",
+      "amonestado": false
+    },
+    {
+      "nombre": "Ana",
+      "apellido": "Sánchez",
+      "genero": "FEMENINO",
+      "dni": 65432125,
+      "edad": 27,
+      "division": "SUB21",
+      "altura": 1.70,
+      "deporte": "FUTBOL",
+      "amonestado": true
+    },
+    {
+      "nombre": "Carlos",
+      "apellido": "Martínez",
+      "genero": "MASCULINO",
+      "dni": 87654323,
+      "edad": 29,
+      "division": "SUB21",
+      "altura": 1.75,
+      "deporte": "FUTBOL",
+      "amonestado": false
+    },
+    {
+      "nombre": "Luisa",
+      "apellido": "Gómez",
+      "genero": "FEMENINO",
+      "dni": 23456791,
+      "edad": 28,
+      "division": "SUB21",
+      "altura": 1.69,
+      "deporte": "FUTBOL",
+      "amonestado": true
+    },
+    {
+      "nombre": "Sergio",
+      "apellido": "Hernández",
+      "genero": "MASCULINO",
+      "dni": 43216545,
+      "edad": 30,
+      "division": "SUB21",
+      "altura": 1.77,
+      "deporte": "FUTBOL",
+      "amonestado": false
+    }
+  ]
+  
+  

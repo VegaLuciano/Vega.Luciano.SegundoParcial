@@ -1,0 +1,401 @@
+[
+  {
+    "Jugadores": [
+      {
+        "Nombre": "Juan",
+        "Apellido": "Pérez",
+        "Dni": 12345678,
+        "Edad": 30,
+        "Altura": 1.8,
+        "Division": 3,
+        "Deporte": 0,
+        "Genero": 0,
+        "EsTitular": true
+      },
+      {
+        "Nombre": "María",
+        "Apellido": "López",
+        "Dni": 98765432,
+        "Edad": 25,
+        "Altura": 1.65,
+        "Division": 3,
+        "Deporte": 1,
+        "Genero": 1,
+        "EsTitular": true
+      },
+      {
+        "Nombre": "Carlos",
+        "Apellido": "González",
+        "Dni": 54321987,
+        "Edad": 28,
+        "Altura": 1.75,
+        "Division": 3,
+        "Deporte": 2,
+        "Genero": 0,
+        "EsTitular": true
+      },
+      {
+        "Nombre": "Luisa",
+        "Apellido": "Martínez",
+        "Dni": 87654321,
+        "Edad": 22,
+        "Altura": 1.7,
+        "Division": 3,
+        "Deporte": 2,
+        "Genero": 1,
+        "EsTitular": true
+      },
+      {
+        "Nombre": "Pedro",
+        "Apellido": "Sánchez",
+        "Dni": 34567890,
+        "Edad": 32,
+        "Altura": 1.78,
+        "Division": 3,
+        "Deporte": 0,
+        "Genero": 0,
+        "EsTitular": false
+      },
+      {
+        "Nombre": "Juanci",
+        "Apellido": "Martínez",
+        "Dni": 87654321,
+        "Edad": 22,
+        "Altura": 1.7,
+        "Division": 3,
+        "Deporte": 2,
+        "Genero": 1,
+        "EsTitular": false
+      },
+      {
+        "Nombre": "Ana",
+        "Apellido": "Rodríguez",
+        "Dni": 23456789,
+        "Edad": 27,
+        "Altura": 1.68,
+        "Division": 3,
+        "Deporte": 0,
+        "Genero": 1,
+        "EsTitular": false
+      },
+      {
+        "Nombre": "Javier",
+        "Apellido": "López",
+        "Dni": 65432123,
+        "Edad": 31,
+        "Altura": 1.83,
+        "Division": 3,
+        "Deporte": 1,
+        "Genero": 0,
+        "EsTitular": false
+      },
+      {
+        "Nombre": "Lorena",
+        "Apellido": "Gómez",
+        "Dni": 98761234,
+        "Edad": 23,
+        "Altura": 1.7,
+        "Division": 3,
+        "Deporte": 2,
+        "Genero": 1,
+        "EsTitular": true
+      },
+      {
+        "Nombre": "Sergio",
+        "Apellido": "Hernández",
+        "Dni": 43216543,
+        "Edad": 29,
+        "Altura": 1.76,
+        "Division": 3,
+        "Deporte": 0,
+        "Genero": 0,
+        "EsTitular": false
+      },
+      {
+        "Nombre": "Elena",
+        "Apellido": "Martínez",
+        "Dni": 87651234,
+        "Edad": 24,
+        "Altura": 1.72,
+        "Division": 3,
+        "Deporte": 2,
+        "Genero": 1,
+        "EsTitular": false
+      },
+      {
+        "Nombre": "Ramiro",
+        "Apellido": "Juarez",
+        "Dni": 84651232,
+        "Edad": 19,
+        "Altura": 1.75,
+        "Division": 2,
+        "Deporte": 2,
+        "Genero": 0,
+        "EsTitular": false
+      }
+    ],
+    "EquipoMedico": true,
+    "Sponsor": "Marinaro",
+    "Nombre": "Bulllss",
+    "Deporte": 1,
+    "CantTitulares": 5,
+    "CantSuplentes": 7,
+    "Division": 1,
+    "Entrenador": "Dembeleé"
+  },
+  {
+    "Jugadores": [
+      {
+        "Nombre": "Juan",
+        "Apellido": "Pérez",
+        "Dni": 12345678,
+        "Edad": 30,
+        "Altura": 1.8,
+        "Division": 3,
+        "Deporte": 0,
+        "Genero": 0,
+        "EsTitular": true
+      },
+      {
+        "Nombre": "María",
+        "Apellido": "López",
+        "Dni": 98765432,
+        "Edad": 25,
+        "Altura": 1.65,
+        "Division": 3,
+        "Deporte": 1,
+        "Genero": 1,
+        "EsTitular": false
+      },
+      {
+        "Nombre": "Carlos",
+        "Apellido": "González",
+        "Dni": 54321987,
+        "Edad": 28,
+        "Altura": 1.75,
+        "Division": 3,
+        "Deporte": 2,
+        "Genero": 0,
+        "EsTitular": true
+      },
+      {
+        "Nombre": "Luisa",
+        "Apellido": "Martínez",
+        "Dni": 87654321,
+        "Edad": 22,
+        "Altura": 1.7,
+        "Division": 3,
+        "Deporte": 2,
+        "Genero": 1,
+        "EsTitular": true
+      },
+      {
+        "Nombre": "Pedro",
+        "Apellido": "Sánchez",
+        "Dni": 34567890,
+        "Edad": 32,
+        "Altura": 1.78,
+        "Division": 3,
+        "Deporte": 0,
+        "Genero": 0,
+        "EsTitular": true
+      },
+      {
+        "Nombre": "Juanci",
+        "Apellido": "Martínez",
+        "Dni": 87654321,
+        "Edad": 22,
+        "Altura": 1.7,
+        "Division": 3,
+        "Deporte": 2,
+        "Genero": 1,
+        "EsTitular": true
+      },
+      {
+        "Nombre": "Ana",
+        "Apellido": "Rodríguez",
+        "Dni": 23456789,
+        "Edad": 27,
+        "Altura": 1.68,
+        "Division": 3,
+        "Deporte": 0,
+        "Genero": 1,
+        "EsTitular": false
+      },
+      {
+        "Nombre": "Javier",
+        "Apellido": "López",
+        "Dni": 65432123,
+        "Edad": 31,
+        "Altura": 1.83,
+        "Division": 3,
+        "Deporte": 1,
+        "Genero": 0,
+        "EsTitular": false
+      },
+      {
+        "Nombre": "Lorena",
+        "Apellido": "Gómez",
+        "Dni": 98761234,
+        "Edad": 23,
+        "Altura": 1.7,
+        "Division": 3,
+        "Deporte": 2,
+        "Genero": 1,
+        "EsTitular": false
+      },
+      {
+        "Nombre": "Sergio",
+        "Apellido": "Hernández",
+        "Dni": 43216543,
+        "Edad": 29,
+        "Altura": 1.76,
+        "Division": 3,
+        "Deporte": 0,
+        "Genero": 0,
+        "EsTitular": false
+      },
+      {
+        "Nombre": "Elena",
+        "Apellido": "Martínez",
+        "Dni": 87651234,
+        "Edad": 24,
+        "Altura": 1.72,
+        "Division": 3,
+        "Deporte": 2,
+        "Genero": 1,
+        "EsTitular": false
+      },
+      {
+        "Nombre": "Ramiro",
+        "Apellido": "Juarez",
+        "Dni": 84651232,
+        "Edad": 19,
+        "Altura": 1.75,
+        "Division": 2,
+        "Deporte": 2,
+        "Genero": 0,
+        "EsTitular": false
+      }
+    ],
+    "EquipoMedico": true,
+    "Sponsor": "Mirinda",
+    "Nombre": "Leykers",
+    "Deporte": 1,
+    "CantTitulares": 5,
+    "CantSuplentes": 7,
+    "Division": 1,
+    "Entrenador": "Pedro"
+  },
+  {
+    "Jugadores": [
+      {
+        "Nombre": "Lucía",
+        "Apellido": "Fernández",
+        "Dni": 12345670,
+        "Edad": 15,
+        "Altura": 1.65,
+        "Division": 0,
+        "Deporte": 1,
+        "Genero": 1,
+        "EsTitular": true
+      },
+      {
+        "Nombre": "Daniel",
+        "Apellido": "Gómez",
+        "Dni": 98765434,
+        "Edad": 16,
+        "Altura": 1.78,
+        "Division": 0,
+        "Deporte": 1,
+        "Genero": 0,
+        "EsTitular": true
+      },
+      {
+        "Nombre": "María",
+        "Apellido": "Sánchez",
+        "Dni": 54321989,
+        "Edad": 15,
+        "Altura": 1.68,
+        "Division": 0,
+        "Deporte": 1,
+        "Genero": 1,
+        "EsTitular": true
+      },
+      {
+        "Nombre": "Alejandro",
+        "Apellido": "Rodríguez",
+        "Dni": 87654323,
+        "Edad": 16,
+        "Altura": 1.8,
+        "Division": 0,
+        "Deporte": 1,
+        "Genero": 0,
+        "EsTitular": false
+      },
+      {
+        "Nombre": "Julieta",
+        "Apellido": "Martínez",
+        "Dni": 34567892,
+        "Edad": 15,
+        "Altura": 1.72,
+        "Division": 0,
+        "Deporte": 1,
+        "Genero": 1,
+        "EsTitular": true
+      },
+      {
+        "Nombre": "Matías",
+        "Apellido": "Pérez",
+        "Dni": 65432125,
+        "Edad": 16,
+        "Altura": 1.76,
+        "Division": 0,
+        "Deporte": 1,
+        "Genero": 0,
+        "EsTitular": false
+      },
+      {
+        "Nombre": "Valentina",
+        "Apellido": "González",
+        "Dni": 23456791,
+        "Edad": 15,
+        "Altura": 1.7,
+        "Division": 0,
+        "Deporte": 1,
+        "Genero": 1,
+        "EsTitular": false
+      },
+      {
+        "Nombre": "Sebastián",
+        "Apellido": "Hernández",
+        "Dni": 43216545,
+        "Edad": 16,
+        "Altura": 1.77,
+        "Division": 0,
+        "Deporte": 1,
+        "Genero": 0,
+        "EsTitular": true
+      },
+      {
+        "Nombre": "Luisa",
+        "Apellido": "Gómez",
+        "Dni": 23456793,
+        "Edad": 15,
+        "Altura": 1.69,
+        "Division": 0,
+        "Deporte": 1,
+        "Genero": 1,
+        "EsTitular": false
+      }
+    ],
+    "EquipoMedico": true,
+    "Sponsor": "Gasnor",
+    "Nombre": "SinMiedo",
+    "Deporte": 1,
+    "CantTitulares": 5,
+    "CantSuplentes": 4,
+    "Division": 1,
+    "Entrenador": "Mazzaro"
+  }
+]

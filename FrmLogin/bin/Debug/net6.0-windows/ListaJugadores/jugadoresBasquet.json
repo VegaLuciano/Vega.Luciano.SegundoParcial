@@ -1,0 +1,101 @@
+[
+    {
+      "nombre": "Lucía",
+      "apellido": "Fernández",
+      "genero": "FEMENINO",
+      "dni": 12345670,
+      "edad": 15,
+      "division": "SUB16",
+      "altura": 1.65,
+      "deporte": "BASQUET",
+      "amonestado": false
+    },
+    {
+      "nombre": "Daniel",
+      "apellido": "Gómez",
+      "genero": "MASCULINO",
+      "dni": 98765434,
+      "edad": 16,
+      "division": "SUB16",
+      "altura": 1.78,
+      "deporte": "BASQUET",
+      "amonestado": true
+    },
+    {
+      "nombre": "María",
+      "apellido": "Sánchez",
+      "genero": "FEMENINO",
+      "dni": 54321989,
+      "edad": 15,
+      "division": "SUB16",
+      "altura": 1.68,
+      "deporte": "BASQUET",
+      "amonestado": false
+    },
+    {
+      "nombre": "Alejandro",
+      "apellido": "Rodríguez",
+      "genero": "MASCULINO",
+      "dni": 87654323,
+      "edad": 16,
+      "division": "SUB16",
+      "altura": 1.80,
+      "deporte": "BASQUET",
+      "amonestado": true
+    },
+    {
+      "nombre": "Julieta",
+      "apellido": "Martínez",
+      "genero": "FEMENINO",
+      "dni": 34567892,
+      "edad": 15,
+      "division": "SUB16",
+      "altura": 1.72,
+      "deporte": "BASQUET",
+      "amonestado": false
+    },
+    {
+      "nombre": "Matías",
+      "apellido": "Pérez",
+      "genero": "MASCULINO",
+      "dni": 65432125,
+      "edad": 16,
+      "division": "SUB16",
+      "altura": 1.76,
+      "deporte": "BASQUET",
+      "amonestado": false
+    },
+    {
+      "nombre": "Valentina",
+      "apellido": "González",
+      "genero": "FEMENINO",
+      "dni": 23456791,
+      "edad": 15,
+      "division": "SUB16",
+      "altura": 1.70,
+      "deporte": "BASQUET",
+      "amonestado": true
+    },
+    {
+      "nombre": "Sebastián",
+      "apellido": "Hernández",
+      "genero": "MASCULINO",
+      "dni": 43216545,
+      "edad": 16,
+      "division": "SUB16",
+      "altura": 1.77,
+      "deporte": "BASQUET",
+      "amonestado": false
+    },
+    {
+      "nombre": "Luisa",
+      "apellido": "Gómez",
+      "genero": "FEMENINO",
+      "dni": 23456793,
+      "edad": 15,
+      "division": "SUB16",
+      "altura": 1.69,
+      "deporte": "BASQUET",
+      "amonestado": true
+    }
+  ]

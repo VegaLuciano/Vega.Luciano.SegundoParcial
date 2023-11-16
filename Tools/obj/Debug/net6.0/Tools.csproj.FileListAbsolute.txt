@@ -1,0 +1,15 @@
+D:\PrograLaboII\Soluciones\Luciano.Vega\Luciano.Vega.PrimerParcial\Tools\bin\Debug\net6.0\Tools.deps.json
+D:\PrograLaboII\Soluciones\Luciano.Vega\Luciano.Vega.PrimerParcial\Tools\bin\Debug\net6.0\Tools.dll
+D:\PrograLaboII\Soluciones\Luciano.Vega\Luciano.Vega.PrimerParcial\Tools\bin\Debug\net6.0\Tools.pdb
+D:\PrograLaboII\Soluciones\Luciano.Vega\Luciano.Vega.PrimerParcial\Tools\obj\Debug\net6.0\Tools.csproj.AssemblyReference.cache
+D:\PrograLaboII\Soluciones\Luciano.Vega\Luciano.Vega.PrimerParcial\Tools\obj\Debug\net6.0\Tools.GeneratedMSBuildEditorConfig.editorconfig
+D:\PrograLaboII\Soluciones\Luciano.Vega\Luciano.Vega.PrimerParcial\Tools\obj\Debug\net6.0\Tools.AssemblyInfoInputs.cache
+D:\PrograLaboII\Soluciones\Luciano.Vega\Luciano.Vega.PrimerParcial\Tools\obj\Debug\net6.0\Tools.AssemblyInfo.cs
+D:\PrograLaboII\Soluciones\Luciano.Vega\Luciano.Vega.PrimerParcial\Tools\obj\Debug\net6.0\Tools.csproj.CoreCompileInputs.cache
+D:\PrograLaboII\Soluciones\Luciano.Vega\Luciano.Vega.PrimerParcial\Tools\obj\Debug\net6.0\Tools.dll
+D:\PrograLaboII\Soluciones\Luciano.Vega\Luciano.Vega.PrimerParcial\Tools\obj\Debug\net6.0\refint\Tools.dll
+D:\PrograLaboII\Soluciones\Luciano.Vega\Luciano.Vega.PrimerParcial\Tools\obj\Debug\net6.0\Tools.pdb
+D:\PrograLaboII\Soluciones\Luciano.Vega\Luciano.Vega.PrimerParcial\Tools\obj\Debug\net6.0\ref\Tools.dll
+D:\PrograLaboII\Soluciones\Luciano.Vega\Luciano.Vega.PrimerParcial\Tools\bin\Debug\net6.0\Entidades.dll
+D:\PrograLaboII\Soluciones\Luciano.Vega\Luciano.Vega.PrimerParcial\Tools\bin\Debug\net6.0\Entidades.pdb
+D:\PrograLaboII\Soluciones\Luciano.Vega\Luciano.Vega.PrimerParcial\Tools\obj\Debug\net6.0\Tools.csproj.CopyComplete

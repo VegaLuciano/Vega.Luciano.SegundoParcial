@@ -1,0 +1,79 @@
+[
+  {
+    "nombre": "Laura",
+    "apellido": "Fernández",
+    "genero": "FEMENINO",
+    "dni": 12345679,
+    "edad": 26,
+    "division": "MAYORES",
+    "altura": 1.70,
+    "deporte": "VOLEY",
+    "amonestado": false
+  },
+  {
+    "nombre": "Martín",
+    "apellido": "Gómez",
+    "genero": "MASCULINO",
+    "dni": 98765433,
+    "edad": 27,
+    "division": "MAYORES",
+    "altura": 1.75,
+    "deporte": "VOLEY",
+    "amonestado": true
+  },
+  {
+    "nombre": "Valeria",
+    "apellido": "Sánchez",
+    "genero": "FEMENINO",
+    "dni": 54321988,
+    "edad": 24,
+    "division": "MAYORES",
+    "altura": 1.68,
+    "deporte": "VOLEY",
+    "amonestado": false
+  },
+  {
+    "nombre": "Miguel",
+    "apellido": "Rodríguez",
+    "genero": "MASCULINO",
+    "dni": 87654322,
+    "edad": 28,
+    "division": "MAYORES",
+    "altura": 1.80,
+    "deporte": "VOLEY",
+    "amonestado": true
+  },
+  {
+    "nombre": "Julieta",
+    "apellido": "Martínez",
+    "genero": "FEMENINO",
+    "dni": 34567891,
+    "edad": 29,
+    "division": "MAYORES",
+    "altura": 1.72,
+    "deporte": "VOLEY",
+    "amonestado": false
+  },
+  {
+    "nombre": "Alejandro",
+    "apellido": "Pérez",
+    "genero": "MASCULINO",
+    "dni": 65432124,
+    "edad": 30,
+    "division": "MAYORES",
+    "altura": 1.76,
+    "deporte": "VOLEY",
+    "amonestado": false
+  },
+  {
+    "nombre": "Carmen",
+    "apellido": "González",
+    "genero": "FEMENINO",
+    "dni": 23456790,
+    "edad": 31,
+    "division": "MAYORES",
+    "altura": 1.73,
+    "deporte": "VOLEY",
+    "amonestado": true
+  }
+]
