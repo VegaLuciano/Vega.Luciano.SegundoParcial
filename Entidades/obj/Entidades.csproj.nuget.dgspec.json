@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\PrograLaboII\\Soluciones\\Luciano.Vega\\Luciano.Vega.PrimerParcial\\Entidades\\Entidades.csproj": {}
+    "D:\\PrograLaboII\\Soluciones\\Vega.Luciano.SegundoParcial\\Entidades\\Entidades.csproj": {}
   },
   "projects": {
-    "D:\\PrograLaboII\\Soluciones\\Luciano.Vega\\Luciano.Vega.PrimerParcial\\Entidades\\Entidades.csproj": {
+    "D:\\PrograLaboII\\Soluciones\\Vega.Luciano.SegundoParcial\\Entidades\\Entidades.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\PrograLaboII\\Soluciones\\Luciano.Vega\\Luciano.Vega.PrimerParcial\\Entidades\\Entidades.csproj",
+        "projectUniqueName": "D:\\PrograLaboII\\Soluciones\\Vega.Luciano.SegundoParcial\\Entidades\\Entidades.csproj",
         "projectName": "Entidades",
-        "projectPath": "D:\\PrograLaboII\\Soluciones\\Luciano.Vega\\Luciano.Vega.PrimerParcial\\Entidades\\Entidades.csproj",
+        "projectPath": "D:\\PrograLaboII\\Soluciones\\Vega.Luciano.SegundoParcial\\Entidades\\Entidades.csproj",
         "packagesPath": "C:\\Users\\bubu0\\.nuget\\packages\\",
-        "outputPath": "D:\\PrograLaboII\\Soluciones\\Luciano.Vega\\Luciano.Vega.PrimerParcial\\Entidades\\obj\\",
+        "outputPath": "D:\\PrograLaboII\\Soluciones\\Vega.Luciano.SegundoParcial\\Entidades\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -44,6 +44,12 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.Data.SqlClient": {
+              "target": "Package",
+              "version": "[5.1.2, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

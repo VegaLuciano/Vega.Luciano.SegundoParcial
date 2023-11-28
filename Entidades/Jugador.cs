@@ -10,6 +10,7 @@ namespace Entidades
     {
         private string nombre;
         private string apellido;
+        private int idEquipo;
         private EGenero genero;
         private int dni;
         private int edad;
@@ -20,6 +21,7 @@ namespace Entidades
 
         public Jugador() 
         {
+            this.idEquipo = -1;
             this.nombre = "None";
             this.apellido= "None";
             this.genero = EGenero.Masculino; 
@@ -125,6 +127,7 @@ namespace Entidades
         public EDeporte Deporte { get => deporte; set => deporte = value;  }
         public EGenero Genero { get => genero; set => genero = value; }
         public bool EsTitular { get => esTitular; set => esTitular = value; }
+        public int IdEquipo { get => idEquipo; set => idEquipo = value; }
 
         #endregion
 

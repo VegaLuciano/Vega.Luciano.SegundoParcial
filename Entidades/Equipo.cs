@@ -4,6 +4,8 @@ namespace Entidades
 {
     public abstract class Equipo
     {
+        protected static int contadorId;
+        protected int id;
         protected string nombre;
         protected EDeporte deporte;
         protected int cantTitulares;
@@ -11,15 +13,22 @@ namespace Entidades
         protected EDivisiones division;
         protected string entrenador;
         protected List<Jugador> jugadores;
-        
+  
+
+        static Equipo()
+        {
+            contadorId = 0;
+        }
 
         public Equipo()
         {
+            this.Id = contadorId;
             this.deporte = new EDeporte();
             this.nombre = "None";
             this.division = new EDivisiones();
             this.entrenador = "None";
             this.jugadores = new List<Jugador>();
+            contadorId++;
         }
 
         public Equipo( string nombre, int cantTitulares) :  this()
@@ -41,11 +50,42 @@ namespace Entidades
         }
 
         public abstract List<Jugador> Jugadores { get; set;}
+        public int Id { get => id; set => id = value; }
         public string Nombre { get => nombre; set => nombre = value; }
-        public EDeporte Deporte { get => deporte; }   
+        public EDeporte Deporte
+        {
+            get { return deporte; }
+            set
+            {
+                if (Enum.TryParse(value.ToString(), out EDeporte resultado))
+                {
+                    deporte = resultado;
+                }
+                else
+                {
+                    // Puedes manejar la situación de alguna manera, como lanzar una excepción.
+                    throw new ArgumentException("Valor no válido para la propiedad Deporte");
+                }
+            }
+        }
         public int CantTitulares { get => cantTitulares; set => cantTitulares = value; }
         public int CantSuplentes { get => cantSuplentes; set => cantSuplentes = value; }
-        public EDivisiones Division { get => division; set => division = value; }
+        public EDivisiones Division
+        {
+            get { return division; }
+            set
+            {
+                if (Enum.TryParse(value.ToString(), out EDivisiones resultado))
+                {
+                    division = resultado;
+                }
+                else
+                {
+                    // Puedes manejar la situación de alguna manera, como lanzar una excepción.
+                    throw new ArgumentException("Valor no válido para la propiedad Deporte");
+                }
+            }
+        }
         public string Entrenador { get => entrenador; set => entrenador = value; }
 
         public abstract string PresentarFormacion();
