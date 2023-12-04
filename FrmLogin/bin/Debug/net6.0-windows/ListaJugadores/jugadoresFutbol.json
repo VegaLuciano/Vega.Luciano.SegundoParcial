@@ -1,5 +1,6 @@
 [
     {
+      "id": 9,
       "nombre": "Laura",
       "apellido": "Fernández",
       "genero": "FEMENINO",
@@ -11,6 +12,7 @@
       "amonestado": false
     },
     {
+      "id": 10,
       "nombre": "Martín",
       "apellido": "Gómez",
       "genero": "MASCULINO",
@@ -22,6 +24,7 @@
       "amonestado": true
     },
     {
+      "id": 11,
       "nombre": "Valeria",
       "apellido": "Sánchez",
       "genero": "FEMENINO",
@@ -33,6 +36,7 @@
       "amonestado": false
     },
     {
+      "id": 12,
       "nombre": "Miguel",
       "apellido": "Rodríguez",
       "genero": "MASCULINO",
@@ -44,6 +48,7 @@
       "amonestado": true
     },
     {
+      "id": 13,
       "nombre": "Julieta",
       "apellido": "Martínez",
       "genero": "FEMENINO",
@@ -55,6 +60,7 @@
       "amonestado": false
     },
     {
+      "id": 14,
       "nombre": "Alejandro",
       "apellido": "Pérez",
       "genero": "MASCULINO",
@@ -66,6 +72,7 @@
       "amonestado": false
     },
     {
+      "id": 15,
       "nombre": "Carmen",
       "apellido": "González",
       "genero": "FEMENINO",
@@ -77,6 +84,7 @@
       "amonestado": true
     },
     {
+      "id": 16,
       "nombre": "Diego",
       "apellido": "Hernández",
       "genero": "MASCULINO",
@@ -88,6 +96,7 @@
       "amonestado": false
     },
     {
+      "id": 17,
       "nombre": "Ana",
       "apellido": "Sánchez",
       "genero": "FEMENINO",
@@ -99,6 +108,7 @@
       "amonestado": true
     },
     {
+      "id": 18,
       "nombre": "Carlos",
       "apellido": "Martínez",
       "genero": "MASCULINO",
@@ -110,6 +120,7 @@
       "amonestado": false
     },
     {
+      "id": 19,
       "nombre": "Luisa",
       "apellido": "Gómez",
       "genero": "FEMENINO",
@@ -121,6 +132,7 @@
       "amonestado": true
     },
     {
+      "id": 20,
       "nombre": "Sergio",
       "apellido": "Hernández",
       "genero": "MASCULINO",

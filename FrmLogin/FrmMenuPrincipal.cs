@@ -1,4 +1,5 @@
 ﻿using Entidades;
+using Microsoft.VisualBasic.Devices;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,14 +26,17 @@ namespace Forms
         private string pathUsuariosRegistrados;
         private Form? formularioAcutal = null;
         public Tabla tabla;
+        private Reloj reloj;
 
         public FrmMenuPrincipal(List<Usuario> listaUsuarios, Usuario usuario, string pathUsuariosRegistrados)
         {
             InitializeComponent();
+            this.reloj = new Reloj();
             this.pathUsuariosRegistrados = pathUsuariosRegistrados;
             this.listaUsuarios = listaUsuarios;
             this.usuario = usuario;
             this.fecha = DateTime.Now;
+            reloj.SegundoCambiado += this.Reloj_corriendo;
             this.pathUsuarios = "usuarios.log";
             this.pathEquiposVoley = "voley.json";
             this.pathEquiposFutbol = "futbol.json";
@@ -58,10 +62,16 @@ namespace Forms
         }
 
         private void FrmMenuPrincipal_Load(object sender, EventArgs e)
-        {
-            this.CargarArchivos();
+        {   
+            this.CargarEquipos();
             FrmMenuPrincipal.CambiarColoresControles(this.Controls, this, false);
-            
+            _ = reloj.IniciarRelojAsync(CancellationToken.None);
+
+        }
+
+        private void Reloj_corriendo(object sender, RelojEventArgs e)
+        {
+            this.lblReloj.Text = e.horaActual.ToString("HH:mm:ss");
         }
 
         private void FrmMenuPrincipal_FormClosing(object sender, FormClosingEventArgs e)
@@ -72,6 +82,7 @@ namespace Forms
             {
                 e.Cancel = true;
             }
+            reloj.DetenerReloj();
         }
 
         private void CargarArchivos()
@@ -108,6 +119,26 @@ namespace Forms
             Archivo.GuardarArchivoJson(this.pathEquiposVoley, this.tabla.ListaVoley);
             Archivo.GuardarArchivoJson(this.pathEquiposBasquet, this.tabla.ListaBasquet);
             Archivo.GuardarArchivoJson(this.pathEquiposFutbol, this.tabla.ListaFutbol);
+        }
+
+        private void CargarEquipos()
+        {
+            AccesoDatosEquipo db = new AccesoDatosEquipo();
+            List<Voley> listaAuxVoley = db.TraerEquipos<Voley>();
+            if (listaAuxVoley != null)
+            {
+                this.tabla.ListaVoley = listaAuxVoley;
+            }
+            List<Futbol> listaAuxFutbol = db.TraerEquipos<Futbol>();
+            if (listaAuxFutbol != null)
+            {
+                this.tabla.ListaFutbol = listaAuxFutbol;
+            }
+            List<Basquet> listaAuxBasquet = db.TraerEquipos<Basquet>();
+            if (listaAuxBasquet != null)
+            {
+                this.tabla.ListaBasquet = listaAuxBasquet;
+            }
         }
 
         private void lblUsuario_Click_1(object sender, EventArgs e)
@@ -189,7 +220,7 @@ namespace Forms
                 form.BackColor = Color.DarkGray;
                 colorLabel = Color.DarkGray;
             }
-            else 
+            else
             {
                 form.BackColor = Color.DarkSlateGray;
                 colorLabel = Color.DarkSlateGray;
@@ -199,13 +230,13 @@ namespace Forms
             {
                 if (control is System.Windows.Forms.Button)
                 {
-                    control.BackColor = Color.CornflowerBlue; 
-                    control.ForeColor = Color.Black; 
+                    control.BackColor = Color.CornflowerBlue;
+                    control.ForeColor = Color.Black;
                 }
                 else if (control is Panel)
                 {
-                    control.BackColor = Color.LightSlateGray; 
-                    control.ForeColor = Color.Black; 
+                    control.BackColor = Color.LightSlateGray;
+                    control.ForeColor = Color.Black;
                 }
                 else if (control is System.Windows.Forms.TextBox)
                 {
@@ -215,8 +246,8 @@ namespace Forms
                 }
                 else if (control is Label)
                 {
-                    control.BackColor = colorLabel; 
-                    control.ForeColor = Color.White; 
+                    control.BackColor = colorLabel;
+                    control.ForeColor = Color.White;
                 }
             }
 

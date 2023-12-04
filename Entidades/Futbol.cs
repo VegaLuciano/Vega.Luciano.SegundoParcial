@@ -8,51 +8,43 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
-    public class Futbol : Equipo
-    { 
-        private Color colorCamisetaLocal;
-        private Color colorCamisetaVisitante;
+    public class Futbol : Equipo, IEquipoConFormacion
+    {
+        private string colorCamisetaLocal;
+        private string colorCamisetaVisitante;
 
-        public Futbol() : base() 
+        public Futbol() : base()
         {
             this.deporte = EDeporte.Futbol;
         }
 
-        public Futbol(string nombre, int cantTitulares, EDivisiones division, string entrenador) : base( nombre, cantTitulares, division)
+        public Futbol(string nombre, int cantTitulares, EDivisiones division, string entrenador) : base(nombre, cantTitulares, division)
         {
             this.deporte = EDeporte.Futbol;
             this.entrenador = entrenador;
         }
 
-        public Futbol(string nombre, int cantTitulares, EDivisiones division, string entrenador, Color camisetaLocal, Color camisteVisitante) : this(nombre, cantTitulares, division, entrenador)
+        public Futbol(string nombre, int cantTitulares, EDivisiones division, string entrenador, string camisetaLocal, string camisteVisitante) : this(nombre, cantTitulares, division, entrenador)
         {
             this.colorCamisetaLocal = camisetaLocal;
             this.colorCamisetaVisitante = camisteVisitante;
         }
-        public Futbol(string nombre, int cantTitulares, EDivisiones division, string entrenador, Color camisetaLocal, Color camisteVisitante, EDeporte deporte, int cantSuplentes) : this(nombre, cantTitulares, division, entrenador, camisetaLocal, camisteVisitante)
+        public Futbol(string nombre, int cantTitulares, EDivisiones division, string entrenador, string camisetaLocal, string camisteVisitante, EDeporte deporte, int cantSuplentes) : this(nombre, cantTitulares, division, entrenador, camisetaLocal, camisteVisitante)
         {
             this.deporte = deporte;
             this.cantSuplentes = cantSuplentes;
         }
 
         public override List<Jugador> Jugadores { get => jugadores; set => jugadores = value; }
-        public Color ColorCamiseteLocal { get => colorCamisetaLocal; set => colorCamisetaLocal = value; }
-        public Color ColorCamisetaVisitante { get => colorCamisetaVisitante; set => colorCamisetaVisitante = value; }
-
-
-        private void Formacion(int titulares) 
-        {
-            Random random = new Random();
-            //this.titulares = this.jugadores.OrderBy(x => random.Next()).Take(titulares).ToList();
-            //this.suplentes = this.jugadores.Except(this.titulares).ToList();
-        }
+        public string ColorCamiseteLocal { get => colorCamisetaLocal; set => colorCamisetaLocal = value; }
+        public string ColorCamisetaVisitante { get => colorCamisetaVisitante; set => colorCamisetaVisitante = value; }
 
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
             sb.Append(base.ToString());
-            sb.AppendLine($"Color Local {this.colorCamisetaLocal.Name}");
-            sb.AppendLine($"Color Visitante {this.colorCamisetaVisitante.Name}");
+            sb.AppendLine($"Color Local {this.colorCamisetaLocal}");
+            sb.AppendLine($"Color Visitante {this.colorCamisetaVisitante}");
             return sb.ToString();
         }
 
@@ -68,9 +60,46 @@ namespace Entidades
             }
 
         }
+        public void DeterminarPosiciones()
+        {
+            int defensaCount = 0;
+            int delanteroCount = 0;
+            int MediocampistaCount = 0;
+            int ArqueroCount = 0;
+
+            foreach (Jugador jugador in this.jugadores)
+            {
+                if (jugador.EsTitular)
+                {
+                    if (defensaCount < 3)
+                    {
+                        jugador.Posicion = "defensa";
+                        defensaCount++;
+                    }
+                    else if (delanteroCount < 3)
+                    {
+                        jugador.Posicion = "delantero";
+                        delanteroCount++;
+                    }
+                    else if (MediocampistaCount < 3)
+                    {
+                        jugador.Posicion = "Mediocampista";
+                        MediocampistaCount++;
+                    }
+                    else if (ArqueroCount < 1)
+                    {
+                        jugador.Posicion = "Arquero";
+                        ArqueroCount++;
+                    }
+                    else
+                    {
+                        jugador.Posicion = "No tiene";
+                    }
+                }
+            }
+        }
         public override string PresentarFormacion()
         {
-            this.Formacion(this.cantTitulares);
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("Titulares:");
             foreach (Jugador jugador in this.Jugadores)

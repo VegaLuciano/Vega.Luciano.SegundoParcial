@@ -37,6 +37,7 @@
             btnMostrarVoley = new Button();
             btnMostrarFutbol = new Button();
             btnMostrarBasquet = new Button();
+            lblReloj = new Label();
             SuspendLayout();
             // 
             // btnAgregar
@@ -58,7 +59,7 @@
             lblUsuario.AutoSize = true;
             lblUsuario.BackColor = Color.DarkSlateBlue;
             lblUsuario.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblUsuario.Location = new Point(55, 39);
+            lblUsuario.Location = new Point(52, 33);
             lblUsuario.Name = "lblUsuario";
             lblUsuario.Size = new Size(59, 20);
             lblUsuario.TabIndex = 1;
@@ -161,12 +162,24 @@
             btnMostrarBasquet.UseVisualStyleBackColor = false;
             btnMostrarBasquet.Click += btnMostrarBasquet_Click;
             // 
+            // lblReloj
+            // 
+            lblReloj.AutoSize = true;
+            lblReloj.BackColor = Color.DarkSlateBlue;
+            lblReloj.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            lblReloj.Location = new Point(52, 437);
+            lblReloj.Name = "lblReloj";
+            lblReloj.Size = new Size(43, 20);
+            lblReloj.TabIndex = 6;
+            lblReloj.Text = "Reloj";
+            // 
             // FrmMenuPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DarkSlateBlue;
             ClientSize = new Size(1080, 513);
+            Controls.Add(lblReloj);
             Controls.Add(btnVoley);
             Controls.Add(btnBasquet);
             Controls.Add(btnMostrarBasquet);
@@ -195,5 +208,6 @@
         private Button btnMostrarVoley;
         private Button btnMostrarFutbol;
         private Button btnMostrarBasquet;
+        private Label lblReloj;
     }
 }

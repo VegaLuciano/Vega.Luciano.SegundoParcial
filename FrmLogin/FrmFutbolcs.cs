@@ -1,12 +1,6 @@
 ﻿using Entidades;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Forms
@@ -37,8 +31,6 @@ namespace Forms
             this.npdCantJugadores.Value = this.equipoModificar.Jugadores.Count;
             this.npdCantSuplentes.Value = this.equipoModificar.CantSuplentes;
             this.npdCantTitulares.Value = this.equipoModificar.CantTitulares;
-            this.btnCamisetaLocal.BackColor = this.equipoModificar.ColorCamiseteLocal;
-            this.btnVisitante.BackColor = this.equipoModificar.ColorCamisetaVisitante;
             this.listJugadores = equipoModificar.Jugadores;
         }
 
@@ -53,29 +45,51 @@ namespace Forms
 
                     if (this.colorVisitante.Color != defaultBackColor)
                     {
-
-                        Futbol EquipoFutbol = new Futbol(this.txtNombre.Text, (int)this.npdCantTitulares.Value, base.SetearCampoDivision(), this.txtNombreEntrenador.Text,
-                            this.colorCamisetaLocal, this.colorCamisetaVisitante, EDeporte.Futbol, (int)this.npdCantSuplentes.Value);
-                        EquipoFutbol.Jugadores = this.listJugadores;
-                        MessageBox.Show(EquipoFutbol.ToString());
-                        MessageBox.Show("Se cargó todo exitosamente!");
                         this.lblErrorLocal.Text = string.Empty;
                         this.lblErrorVisitante.Text = string.Empty;
+
+                        Futbol EquipoFutbol = new Futbol(this.txtNombre.Text, (int)this.npdCantTitulares.Value, base.SetearCampoDivision(), this.txtNombreEntrenador.Text,
+                            this.colorCamisetaLocal.Name, this.colorCamisetaVisitante.Name, EDeporte.Futbol, (int)this.npdCantSuplentes.Value);
+
+                        EquipoFutbol.Jugadores = this.listJugadores;
+
+                        MessageBox.Show(EquipoFutbol.ToString());
+                        AccesoDatosEquipo db = new AccesoDatosEquipo();
+
                         if (seModifica == true)
                         {
                             int indice = this.tabla.ListaFutbol.IndexOf(this.equipoModificar);
 
-                            if (indice >= 0)
+                            // Reemplaza el objeto en la misma posición.                                                         
+                            if (db.ModificarDato(EquipoFutbol))
                             {
-                                // Reemplaza el objeto en la misma posición.
                                 this.tabla.ListaFutbol[indice] = EquipoFutbol;
+                                MessageBox.Show("Se cargó todo exitosamente!");
+                            }
+                            else
+                            {
+                                MessageBox.Show("Algo Salio Mal");
                             }
                             this.Close();
                         }
                         else
                         {
-                            this.tabla.ListaFutbol.Add(EquipoFutbol);
+
+                            int filas = db.AgregarDato(EquipoFutbol);
+
+                            if (filas == 1)
+                            {
+                                MessageBox.Show("Se cargó todo exitosamente!");
+                                this.tabla.ListaFutbol.Add(EquipoFutbol);
+                            }
+                            else
+                            {
+                                MessageBox.Show("Todo mal");
+                            }
+
+                            MessageBox.Show(filas.ToString());
                         }
+
                     }
                     else
                     {
@@ -118,5 +132,6 @@ namespace Forms
             if (seModifica)
                 this.SetearFormModificar();
         }
+        
     }
 }

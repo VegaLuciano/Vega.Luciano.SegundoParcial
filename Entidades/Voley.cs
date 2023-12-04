@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
-    public class Voley : Equipo
+    public class Voley : Equipo, IEquipoConFormacion
     {
         private ECancha cancha;
         private string? sedeDelEquipo;
@@ -39,12 +39,6 @@ namespace Entidades
         public ECancha Cancha { get => cancha; set => cancha = value; }
         public string? SedeDelEquipo { get => sedeDelEquipo; set => sedeDelEquipo = value; }
 
-        private void Formacion(int titulares)
-        {
-            Random random = new Random();
-            //this.titulares = this.jugadores.OrderBy(x => random.Next()).Take(titulares).ToList();
-           // this.suplentes = this.jugadores.Except(this.titulares).ToList();
-        }
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
@@ -66,9 +60,48 @@ namespace Entidades
             }
        
         }
+
+        public void DeterminarPosiciones()
+        {
+            int puntaCount = 0;
+            int liberoCount = 0;
+            int armadorCount = 0;
+            int zagueroCount = 0;
+
+            foreach (Jugador jugador in this.jugadores)
+            {
+                if (jugador.EsTitular)
+                {
+                    if (puntaCount < 2)
+                    {
+                        jugador.Posicion = "Punta";
+                        puntaCount++;
+                    }
+                    else if (liberoCount < 1)
+                    {
+                        jugador.Posicion = "Libero";
+                        liberoCount++;
+                    }
+                    else if (armadorCount < 1)
+                    {
+                        jugador.Posicion = "Armador";
+                        armadorCount++;
+                    }
+                    else if (zagueroCount < 1)
+                    {
+                        jugador.Posicion = "Zaguero";
+                        zagueroCount++;
+                    }
+                    else
+                    {
+                        jugador.Posicion = "No tiene";
+                    }
+                }
+            }
+        }
+
         public override string PresentarFormacion()
         {
-            this.Formacion(this.cantTitulares);
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("Titulares:");
             foreach (Jugador jugador in this.Jugadores)

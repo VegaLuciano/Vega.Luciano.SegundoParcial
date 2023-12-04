@@ -1,14 +1,4 @@
 ﻿using Entidades;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using Tools;
 
 namespace Forms
@@ -77,23 +67,47 @@ namespace Forms
 
                         EquipoVoley.Jugadores = this.listJugadores;
                         MessageBox.Show(EquipoVoley.ToString());
-                        MessageBox.Show("Se cargó todo exitosamente!");
                         this.lblErrorSede.Text = string.Empty;
                         this.lblErrorCancha.Text = string.Empty;
+
+                        AccesoDatosEquipo db = new AccesoDatosEquipo();
+
                         if (seModifica == true)
                         {
                             int indice = this.tabla.ListaVoley.IndexOf(this.equipoModificar);
 
                             if (indice >= 0)
                             {
-                                // Reemplaza el objeto en la misma posición.
-                                this.tabla.ListaVoley[indice] = EquipoVoley;
+                                // Reemplaza el objeto en la misma posición.                                                         
+                                if (db.ModificarDato(EquipoVoley)) 
+                                {
+                                    this.tabla.ListaVoley[indice] = EquipoVoley;
+                                    MessageBox.Show("Se cargó todo exitosamente!");
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Algo Salio Mal");
+                                }
                             }
                             this.Close();
                         }
                         else
                         {
-                            this.tabla.ListaVoley.Add(EquipoVoley);
+                            
+                            int filas = db.AgregarDato(EquipoVoley);
+
+                            if (filas==1)
+                            {
+                                MessageBox.Show("Se cargó todo exitosamente!");
+                                this.tabla.ListaVoley.Add(EquipoVoley);
+                            }
+                            else 
+                            {
+                                MessageBox.Show("Todo mal");
+                            }
+
+                            MessageBox.Show(filas.ToString());
+                           
                         }
                     }
                     else
@@ -103,7 +117,7 @@ namespace Forms
                 }
                 else
                 {
-                    this.lblErrorCancha.Text = "Error, seleccione un color";
+                    this.lblErrorCancha.Text = "Error, seleccione una cancha";
                 }
 
             }

@@ -74,18 +74,25 @@ namespace Forms
 
                 if (index >= 0)
                 {
-                    switch (this.deporteSeleccionado)
+                    try
                     {
-                        case EDeporte.Futbol:
-                            this.equipoSeleccionado = this.tabla.ListaFutbol[index];
-                            break;
-                        case EDeporte.Voley:
-                            this.equipoSeleccionado = this.tabla.ListaVoley[index];
-                            break;
-                        case EDeporte.Basquet:
-                            this.equipoSeleccionado = this.tabla.ListaBasquet[index];
-                            break;
-                    };
+                        switch (this.deporteSeleccionado)
+                        {
+                            case EDeporte.Futbol:
+                                this.equipoSeleccionado = this.tabla.ListaFutbol[index];
+                                break;
+                            case EDeporte.Voley:
+                                this.equipoSeleccionado = this.tabla.ListaVoley[index];
+                                break;
+                            case EDeporte.Basquet:
+                                this.equipoSeleccionado = this.tabla.ListaBasquet[index];
+                                break;
+                        };
+                    }
+                    catch(Exception ex) 
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
                 }
             }
         }
@@ -182,8 +189,14 @@ namespace Forms
 
         private void btnPresentacion_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(this.equipoSeleccionado.PresentarFormacion());
-
+            try
+            {
+                MessageBox.Show(this.equipoSeleccionado.PresentarFormacion());
+            }
+            catch(Exception ex) 
+            {
+                MessageBox.Show(ex.Message);
+            }
             this.ActualizarDataGridView();
         }
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
-    public class Jugador
+    public class Jugador : IJugadorConCategoria
     {
         private string nombre;
         private string apellido;
@@ -18,12 +18,14 @@ namespace Entidades
         private double altura;
         private bool esTitular;
         private EDeporte deporte;
+        private string posicion;
 
         public Jugador() 
         {
             this.idEquipo = -1;
-            this.nombre = "None";
-            this.apellido= "None";
+            this.nombre = "Nadie";
+            this.apellido = "Nadie";
+            this.posicion = "No tiene";
             this.genero = EGenero.Masculino; 
             this.dni = 0;
             this.division= EDivisiones.Mayores;
@@ -56,8 +58,18 @@ namespace Entidades
         {
             this.deporte = deporte;
         }
+        public Jugador(string nombre, string apellido, int edad, double altura, int dni, EDivisiones division, EGenero genero, bool esTitular, EDeporte deporte, string posicion) : this(nombre, apellido, edad, altura, dni, division, genero, esTitular, deporte)
+        {
+            this.posicion = posicion;
+        }
 
-        #region Propiedades
+        #region Propiedades}
+
+        public string Posicion
+        {
+            get => posicion;
+            set { posicion = value; }
+        }
         public string Nombre
         {
             get => nombre;
@@ -79,7 +91,7 @@ namespace Entidades
                 {
                     apellido = value;
                 }
-            }
+            }   
         }
         public int Dni
         {

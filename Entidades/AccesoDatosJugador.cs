@@ -148,7 +148,7 @@ namespace Entidades
                 this.comando = new SqlCommand();
                 this.comando.CommandType = CommandType.Text;
                 this.PrepararComandoJugador(jugador);
-                this.comando.CommandText = "INSERT INTO Jugadores (nombre, apellido, idEquipo, genero, dni, edad, division, altura, esTitular, deporte) " +
+                this.comando.CommandText = "INSERT INTO Jugador (nombre, apellido, idEquipo, genero, dni, edad, division, altura, esTitular, deporte) " +
                     "VALUES (@nombre, @apellido, @idEquipo, @genero, @dni, @edad, @division, @altura, @esTitular, @deporte)";
                 this.comando.Connection = this.coneccion;
 
@@ -184,9 +184,9 @@ namespace Entidades
                 this.comando = new SqlCommand();
                 this.comando.CommandType = CommandType.Text;
                 this.PrepararComandoJugador(jugador);
-                this.comando.CommandText = "UPDATE Jugadores SET nombre = @nombre, apellido = @apellido, idEquipo = @idEquipo, genero = @genero, " +
+                this.comando.CommandText = "UPDATE Jugador SET nombre = @nombre, apellido = @apellido, idEquipo = @idEquipo, genero = @genero, " +
                     "dni = @dni, edad = @edad, division = @division, altura = @altura, esTitular = @esTitular, deporte = @deporte " +
-                    "WHERE id = @id";
+                    "WHERE dni = @dni";
                 this.comando.Connection = this.coneccion;
                 this.coneccion.Open();
 
@@ -223,7 +223,7 @@ namespace Entidades
                 this.comando.CommandType = CommandType.Text;
                 this.comando.Parameters.AddWithValue("@dni", jugador.Dni);
 
-                this.comando.CommandText = "DELETE FROM Jugadores WHERE id = @id";
+                this.comando.CommandText = "DELETE FROM Jugadores WHERE dni = @dni";
                 this.comando.Connection = this.coneccion;
 
                 int filasAfectadas = this.comando.ExecuteNonQuery();

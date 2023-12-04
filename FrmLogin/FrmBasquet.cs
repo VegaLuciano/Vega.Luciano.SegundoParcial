@@ -56,28 +56,51 @@ namespace Forms
                 {
                     if (!this.rdbNo.Checked == this.RdbSi.Checked)
                     {
-                        Basquet EquipoBasquet = new Basquet(this.txtNombre.Text, (int)this.npdCantTitulares.Value, base.SetearCampoDivision(), this.txtNombreEntrenador.Text,
-                            this.RdbSi.Checked, this.txtSponsor.Text, EDeporte.Basquet, (int)this.npdCantSuplentes.Value);
-                        EquipoBasquet.Jugadores = this.listJugadores;
-                        MessageBox.Show(EquipoBasquet.ToString());
-                        MessageBox.Show("Se cargó todo exitosamente!");
+
                         this.lblErrorSponsor.Text = string.Empty;
                         this.lblErrorCmb.Text = string.Empty;
+
+
+                        Basquet EquipoBasquet = new Basquet(this.txtNombre.Text, (int)this.npdCantTitulares.Value, base.SetearCampoDivision(), this.txtNombreEntrenador.Text,
+                            this.RdbSi.Checked, this.txtSponsor.Text, EDeporte.Basquet, (int)this.npdCantSuplentes.Value);
+                        
+                        EquipoBasquet.Jugadores = this.listJugadores;
+
+                        MessageBox.Show(EquipoBasquet.ToString());                    
+                        AccesoDatosEquipo db = new AccesoDatosEquipo();
 
                         if (seModifica == true)
                         {
                             int indice = this.tabla.ListaBasquet.IndexOf(this.equipoModificar);
 
-                            if (indice >= 0)
+                            // Reemplaza el objeto en la misma posición.                                                         
+                            if (db.ModificarDato(EquipoBasquet))
                             {
-                                // Reemplaza el objeto en la misma posición.
                                 this.tabla.ListaBasquet[indice] = EquipoBasquet;
+                                MessageBox.Show("Se cargó todo exitosamente!");
+                            }
+                            else
+                            {
+                                MessageBox.Show("Algo Salio Mal");
                             }
                             this.Close();
                         }
                         else
                         {
-                            this.tabla.ListaBasquet.Add(EquipoBasquet);
+
+                            int filas = db.AgregarDato(EquipoBasquet);
+
+                            if (filas == 1)
+                            {
+                                MessageBox.Show("Se cargó todo exitosamente!");
+                                this.tabla.ListaBasquet.Add(EquipoBasquet);
+                            }
+                            else
+                            {
+                                MessageBox.Show("Todo mal");
+                            }
+
+                            MessageBox.Show(filas.ToString());
                         }
                     }
                     else

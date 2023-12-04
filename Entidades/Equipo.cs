@@ -2,7 +2,7 @@
 
 namespace Entidades
 {
-    public abstract class Equipo
+    public abstract class Equipo 
     {
         protected static int contadorId;
         protected int id;
@@ -24,9 +24,9 @@ namespace Entidades
         {
             this.Id = contadorId;
             this.deporte = new EDeporte();
-            this.nombre = "None";
+            this.nombre = "Vacio";
             this.division = new EDivisiones();
-            this.entrenador = "None";
+            this.entrenador = "Vacio";
             this.jugadores = new List<Jugador>();
             contadorId++;
         }
@@ -93,8 +93,9 @@ namespace Entidades
         protected virtual string Mostrar() 
         {
             StringBuilder sb = new StringBuilder();
+            sb.AppendLine($"Id:{this.id}");
             sb.AppendLine($"Nombre: {this.nombre} ");
-            sb.AppendLine($"Deporte: {this.deporte}");
+            sb.AppendLine($"Deporte: {this.deporte.ToString()}");
             sb.AppendLine($"Entrenador: {this.entrenador}");
             sb.AppendLine($"Division: {this.division.ToString()}");
             sb.AppendLine($"Jugadores: {this.jugadores.Count}");

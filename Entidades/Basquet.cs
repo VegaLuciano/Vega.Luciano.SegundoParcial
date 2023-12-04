@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
-    public class Basquet : Equipo
+    public class Basquet : Equipo, IEquipoConFormacion
     {
         private bool equipoMedico;
         private string? sponsor;
@@ -68,6 +68,52 @@ namespace Entidades
             }
 
         }
+
+        public void DeterminarPosiciones()
+        {
+            int aleroCount = 0;
+            int escoltaCount = 0;
+            int pivotCount = 0;
+            int alaPivotCout = 0;
+            int baseCount = 0;
+
+            foreach (Jugador jugador in this.jugadores)
+            {
+                if (jugador.EsTitular)
+                {
+                    if (baseCount < 1)
+                    {
+                        jugador.Posicion = "Base";
+                        baseCount++;
+                    }
+                    else if (aleroCount < 1)
+                    {
+                        jugador.Posicion = "Alero";
+                        aleroCount++;
+                    }
+                    else if (escoltaCount < 1)
+                    {
+                        jugador.Posicion = "Escolta";
+                        escoltaCount++;
+                    }
+                    else if (alaPivotCout < 1)
+                    {
+                        jugador.Posicion = "Ala-Pivot";
+                        alaPivotCout++;
+                    }
+                    else if (pivotCount < 1)
+                    {
+                        jugador.Posicion = "Pivot";
+                        pivotCount++;
+                    }
+                    else
+                    {
+                        jugador.Posicion = "No tiene";
+                    }
+                }
+            }
+        }
+
         public override string PresentarFormacion()
         {
             this.Formacion(this.cantTitulares);

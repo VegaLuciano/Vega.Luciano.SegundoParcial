@@ -20,7 +20,7 @@ namespace Entidades
         public List<Basquet> listaBasquet;
 
 
-        static AccesoDatosEquipo() 
+        static AccesoDatosEquipo()
         {
             AccesoDatosEquipo.connectionString = Properties.Resources.miConeccion;
         }
@@ -36,11 +36,11 @@ namespace Entidades
 
         public void ActualizarListas()
         {
-            this.listaFutbol = this.TraerEquipo<Futbol>();
-            this.listaVoley = this.TraerEquipo<Voley>();
-            this.listaBasquet = this.TraerEquipo<Basquet>();
+            this.listaFutbol = this.TraerEquipos<Futbol>();
+            this.listaVoley = this.TraerEquipos<Voley>();
+            this.listaBasquet = this.TraerEquipos<Basquet>();
         }
-        public bool ProbarConneccion() 
+        public bool ProbarConneccion()
         {
             bool retorno = false;
 
@@ -49,7 +49,7 @@ namespace Entidades
                 this.coneccion.Open();
                 retorno = true;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
 
             }
@@ -64,53 +64,42 @@ namespace Entidades
             return retorno;
         }
 
-        public List<T> TraerEquipo<T>() where T : Equipo, new()
+        public List<T> TraerEquipos<T>() where T : Equipo, new()
         {
             List<T> lista = new List<T>();
 
             this.comando = new SqlCommand();
-            this.comando.CommandType = System.Data.CommandType.Text; 
+            this.comando.CommandType = System.Data.CommandType.Text;
 
-            object tipoDeDato = typeof(T);
-            switch (tipoDeDato)
-            {
-                case Futbol:
-                    Futbol futbol = new Futbol();
-                    this.comando.CommandText = "SELECT * from Futbol";
-                    break;
-                case Voley:
-                    Voley voley = new Voley();
-                    this.comando.CommandText = "SELECT * from Voley";
-                    break;
-                case Basquet:
-                    Basquet basquet = new Basquet();
-                    this.comando.CommandText = "SELECT * from Basquet";
-                    break;
-            }
+            string tabla = typeof(T).Name;
+
+            this.comando.CommandText = $"SELECT * FROM {tabla}";
+
             try
-            { 
+            {
                 this.comando.Connection = this.coneccion;
 
                 this.coneccion.Open();
-               
+
                 this.lector = this.comando.ExecuteReader();
 
-                while (lector.Read()) 
+                while (lector.Read())
                 {
                     T equipo = new T();
 
-                    if (tipoDeDato is Futbol)
+                    if (tabla == "Voley" )
                     {
-                        this.PrepararComandoEquipo(equipo as Futbol);
+                        AsignarAtributosLectorVoley(equipo as Voley);
                     }
-                    else if (tipoDeDato is Voley)
+                    if (tabla == "Futbol")
                     {
-                        this.PrepararComandoEquipo(equipo as Voley);
+                        AsignarAtributosLectorFutbol(equipo as Futbol);
                     }
-                    else if (tipoDeDato is Basquet)
+                    if (tabla == "Basquet")
                     {
-                        this.PrepararComandoEquipo(equipo as Basquet);
+                        AsignarAtributosLectorBasquet(equipo as Basquet);
                     }
+
                     lista.Add(equipo);
                 }
 
@@ -131,49 +120,48 @@ namespace Entidades
             return lista;
         }
 
-        public void AsignarAtributosLector(Equipo equipo)
+        public void AsignarAtributosLectorBase(Equipo equipo)
         {
-            equipo.Id = (int)this.lector["id"];
-            equipo.Nombre = (string)this.lector["nombre"];
+            equipo.Id = (int)this.lector.GetInt32(0);
+            equipo.Nombre = this.lector["nombre"] != DBNull.Value ? (string)this.lector["nombre"] : null;
             string deporteString = (string)this.lector["deporte"];
             equipo.Deporte = ConvertirStringAEnum<EDeporte>(deporteString);
             equipo.CantTitulares = (int)this.lector["cantTitulares"];
             equipo.CantSuplentes = (int)this.lector["cantSuplentes"];
             string divisionString = (string)this.lector["division"];
             equipo.Division = ConvertirStringAEnum<EDivisiones>(divisionString);
-            equipo.Entrenador = (string)this.lector["entrenador"];
+            equipo.Entrenador = this.lector["entrenador"] != DBNull.Value ? (string)this.lector["entrenador"] : null;
         }
-        public void AsignarAtributosLector(Futbol equipo)
+        public void AsignarAtributosLectorFutbol(Futbol equipo)
         {
-            AsignarAtributosLector(equipo);
-            Color colorVisitante = ConvertirStringAColor((string)this.lector["colorCamisetaVisitante"]);
-            equipo.ColorCamisetaVisitante = colorVisitante;
-            Color colorLocal = ConvertirStringAColor((string)this.lector["colorCamisetLocal"]);
-            equipo.ColorCamiseteLocal = colorVisitante;
+            AsignarAtributosLectorBase(equipo);
+            equipo.ColorCamisetaVisitante = (string)this.lector["colorCamisetaVisitante"];
+            equipo.ColorCamiseteLocal = (string)this.lector["colorCamisetLocal"];
         }
-        public void AsignarAtributosLector(Basquet equipo)
+        public void AsignarAtributosLectorBasquet(Basquet equipo)
         {
-            AsignarAtributosLector(equipo);
+            AsignarAtributosLectorBase(equipo);
             equipo.EquipoMedico = (bool)this.lector["equipoMedico"];
             equipo.Sponsor = (string)this.lector["sponsor"];
 
         }
-        public void AsignarAtributosLector(Voley equipo)
+        public void AsignarAtributosLectorVoley(Voley equipo)
         {
-            AsignarAtributosLector(equipo);
-            equipo.SedeDelEquipo = (string)this.lector["posicion"];
+            AsignarAtributosLectorBase(equipo);
+            equipo.SedeDelEquipo = (string)this.lector["sedeDelEquipo"];
             string cancha = (string)this.lector["cancha"];
             equipo.Cancha = ConvertirStringAEnum<ECancha>(cancha);
         }
       
-        public void PrepararComandoEquipo(Equipo equipo)
+        public void PrepararComandoEquipoBase(Equipo equipo)
         {
             this.comando.Parameters.Clear();
             this.comando.Parameters.AddWithValue("@id", equipo.Id);
             this.comando.Parameters.AddWithValue("@nombre", equipo.Nombre);
+            this.comando.Parameters.AddWithValue("@deporte", equipo.Deporte.ToString()); ;
             this.comando.Parameters.AddWithValue("@cantTitulares", equipo.CantTitulares);
             this.comando.Parameters.AddWithValue("@cantSuplentes", equipo.CantSuplentes);
-            this.comando.Parameters.AddWithValue("@division", equipo.Division);
+            this.comando.Parameters.AddWithValue("@division", equipo.Division.ToString()); ;
             this.comando.Parameters.AddWithValue("@entrenador", equipo.Entrenador);
         }
 
@@ -181,8 +169,8 @@ namespace Entidades
         {
             if (voley != null)
             {
-                PrepararComandoEquipo((Equipo)voley);
-                this.comando.Parameters.AddWithValue("@cancha", voley.Cancha);
+                PrepararComandoEquipoBase(voley);
+                this.comando.Parameters.AddWithValue("@cancha", voley.Cancha.ToString());
                 this.comando.Parameters.AddWithValue("@sedeDelEquipo", voley.SedeDelEquipo);
             }
         }
@@ -190,17 +178,16 @@ namespace Entidades
         {
             if (futbol != null)
             {
-                PrepararComandoEquipo((Equipo)futbol);
+                PrepararComandoEquipoBase(futbol);
                 this.comando.Parameters.AddWithValue("@colorCamiseteLocal", futbol.ColorCamiseteLocal);
                 this.comando.Parameters.AddWithValue("@colorCamisetaVisitante", futbol.ColorCamisetaVisitante);
-
             }
         }
         public void PrepararComandoEquipo(Basquet basquet)
         {
             if (basquet != null)
             {
-                PrepararComandoEquipo((Equipo)basquet);
+                PrepararComandoEquipoBase(basquet);
                 this.comando.Parameters.AddWithValue("@equipoMedico", basquet.EquipoMedico);
                 this.comando.Parameters.AddWithValue("@sponsor", basquet.Sponsor);
             }
@@ -286,9 +273,9 @@ namespace Entidades
                 throw new ArgumentException($"Valor no válido para el tipo Color");
             }
         }
-         public bool AgregarEquipo(Equipo equipo)
-        {
-            bool retorno = false;
+         public int AgregarDato(Equipo equipo)
+         {
+            int retorno =0;
             try
             {
                 this.coneccion.Open();
@@ -299,33 +286,33 @@ namespace Entidades
                 {
                     this.PrepararComandoEquipo((Futbol)equipo);
                     this.listaFutbol.Add((Futbol)equipo);
-                    this.comando.CommandText = "INSERT into Futbol (nombre, cantTitulares, cantSuplentes, division, entrenador, colorCamisetaLocal, colorCamisetaVisitante) " +
-                        "VALUES (@nombre, @cantTitulares, @cantSuplentes, @division, @entrenador, @colorCamisetaLocal, @colorCamisetaVisitante)"; ;
+                    this.comando.CommandText = "INSERT into Futbol (id, nombre, deporte, cantTitulares, cantSuplentes, division, entrenador, colorCamisetaLocal, colorCamisetaVisitante) " +
+                        "VALUES (@id, @nombre, @deporte, @cantTitulares, @cantSuplentes, @division, @entrenador, @colorCamisetaLocal, @colorCamisetaVisitante)"; ;
                 }
                 else if (equipo is Voley) 
                 {
                     this.PrepararComandoEquipo((Voley)equipo);
                     this.listaVoley.Add((Voley)equipo);
-                    this.comando.CommandText = "INSERT into Futbol (nombre, cantTitulares, cantSuplentes, division, entrenador, cancha, sedeDelEquipo) " +
-                        "VALUES (@nombre, @cantTitulares, @cantSuplentes, @division, @entrenador, @cancha, @sedeDelEquipo)"; 
+                    this.comando.CommandText = "INSERT into Voley (id, nombre, deporte, cantTitulares, cantSuplentes, division, entrenador, cancha, sedeDelEquipo) " +
+                        "VALUES (@id, @nombre, @deporte, @cantTitulares, @cantSuplentes, @division, @entrenador, @cancha, @sedeDelEquipo)"; 
                 }
                 else if (equipo is Basquet)
                 {
                     this.PrepararComandoEquipo((Basquet)equipo);
                     this.listaBasquet.Add((Basquet)equipo);
-                    this.comando.CommandText = "INSERT into Futbol (nombre, cantTitulares, cantSuplentes, division, entrenador, equipoMedico, sponsor) " +
-                         "VALUES (@nombre, @cantTitulares, @cantSuplentes, @division, @entrenador, @equipoMedico, @sponsor)"; 
+                    this.comando.CommandText = "INSERT into Basquet (id, nombre, deporte, cantTitulares, cantSuplentes, division, entrenador, equipoMedico, sponsor) " +
+                         "VALUES (@id, @nombre, @deporte, @cantTitulares, @cantSuplentes, @division, @entrenador, @equipoMedico, @sponsor)"; 
                 }
 
                 this.comando.Connection = this.coneccion;
                 
                 int filasAfectadas = this.comando.ExecuteNonQuery();
-                if(filasAfectadas == 1 ) 
+                retorno = filasAfectadas;
+                if (filasAfectadas != 1 ) 
                 {
                     //una vez que se realizo la carga de mis datos actualizo par tener en mis listas locales el id
                     this.ActualizarListas();
-
-                    retorno = true;
+                   
                 }
             }
             catch   ( Exception e )
@@ -352,20 +339,21 @@ namespace Entidades
 
                 if (equipo is Futbol)
                 {
-                    this.PrepararComandoEquipo(equipo);
-                    this.comando.CommandText = "INSERT into Futbol (nombre, cantTitulares, cantSuplentes, division, entrenador, colorCamisetaLocal, colorCamisetaVisitante) " +
-                        "VALUES (@nombre, @cantTitulares, @cantSuplentes, @division, @entrenador, @colorCamisetaLocal, @colorCamisetaVisitante)";
+                    this.PrepararComandoEquipo((Futbol)equipo);
+                    this.comando.CommandText = "UPDATE Voley SET nombre = @nombre, deporte = @deporte, cantTitulares = @cantTitulares, cantSuplentes = @cantSuplentes, division = @division,  entrenador = @entrenador," +
+                        "colorCamisetaLocal = @colorCamisetaLocal, colorCamisetaVisitante = @colorCamisetaVisitante WHERE id = @id";
                 }
                 else if (equipo is Voley)
                 {
-                    this.PrepararComandoEquipo(equipo);
-                    this.comando.CommandText = "UPDATE Voley SET nombre = @nombre, apellido = @apellido, edad = @edad, dni = @dni, aptoMedico = @aptoMedico, federado = @federado, genero = @genero, posicion = @posicion, altura = @altura, partidosJugados = @partidosJugados, categoria = @categoria WHERE id = @id";
+                    this.PrepararComandoEquipo((Voley)equipo);
+                    this.comando.CommandText = "UPDATE Voley SET nombre = @nombre, deporte = @deporte, cantTitulares = @cantTitulares, cantSuplentes = @cantSuplentes, division = @division,  entrenador = @entrenador," +
+                        "cancha = @cancha, sedeDelEquipo = @sedeDelEquipo WHERE id = @id";
                 }
                 else if (equipo is Basquet)
                 {
-                    this.PrepararComandoEquipo(equipo);
-                    this.comando.CommandText = "INSERT into Basquet (nombre, cantTitulares, cantSuplentes, division, entrenador, equipoMedico, sponsor) " +
-                        "VALUES (@nombre, @cantTitulares, @cantSuplentes, @division, @entrenador, @equipoMedico, @sponsor)";
+                    this.PrepararComandoEquipo((Basquet)equipo);
+                    this.comando.CommandText = "UPDATE Voley SET nombre = @nombre, deporte = @deporte, cantTitulares = @cantTitulares, cantSuplentes = @cantSuplentes, division = @division,  entrenador = @entrenador," +
+                        "sponsoDelEquipo = @sponsorDelEquipo, equipoMedico = @equipoMedico WHERE id = @id";
                 }
 
                 this.comando.Connection = this.coneccion;
