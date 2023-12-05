@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace Entidades
 {
@@ -89,6 +90,30 @@ namespace Entidades
         public string Entrenador { get => entrenador; set => entrenador = value; }
 
         public abstract string PresentarFormacion();
+
+        public bool SetearIdEquipoJugadores() 
+        {
+            bool retorno = false;
+            if (!this.Jugadores.IsNullOrEmpty())
+            {
+                foreach (Jugador jugador in this.Jugadores)
+                {
+                    if (jugador.Nombre != "Nadie")
+                    {
+                        jugador.IdEquipo = this.id;
+                    }
+                    else 
+                    {
+                        retorno = false; break;
+                    }
+
+                    retorno = true;
+                }
+
+            }
+
+            return retorno;
+        }
 
         protected virtual string Mostrar() 
         {

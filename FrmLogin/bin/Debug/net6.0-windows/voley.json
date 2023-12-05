@@ -22,5 +22,109 @@
     "CantSuplentes": 1,
     "Division": 1,
     "Entrenador": "Jose                     "
+  },
+  {
+    "Jugadores": [
+      {
+        "Posicion": "No tiene",
+        "Nombre": "Laura",
+        "Apellido": "Fernández",
+        "Dni": 12345679,
+        "Edad": 26,
+        "Altura": 1.7,
+        "Division": 3,
+        "Deporte": 2,
+        "Genero": 1,
+        "EsTitular": true,
+        "IdEquipo": -1
+      },
+      {
+        "Posicion": "No tiene",
+        "Nombre": "Martín",
+        "Apellido": "Gómez",
+        "Dni": 98765433,
+        "Edad": 27,
+        "Altura": 1.75,
+        "Division": 3,
+        "Deporte": 2,
+        "Genero": 0,
+        "EsTitular": true,
+        "IdEquipo": -1
+      },
+      {
+        "Posicion": "No tiene",
+        "Nombre": "Valeria",
+        "Apellido": "Sánchez",
+        "Dni": 54321988,
+        "Edad": 24,
+        "Altura": 1.68,
+        "Division": 3,
+        "Deporte": 2,
+        "Genero": 1,
+        "EsTitular": true,
+        "IdEquipo": -1
+      },
+      {
+        "Posicion": "No tiene",
+        "Nombre": "Miguel",
+        "Apellido": "Rodríguez",
+        "Dni": 87654322,
+        "Edad": 28,
+        "Altura": 1.8,
+        "Division": 3,
+        "Deporte": 2,
+        "Genero": 0,
+        "EsTitular": true,
+        "IdEquipo": -1
+      },
+      {
+        "Posicion": "No tiene",
+        "Nombre": "Julieta",
+        "Apellido": "Martínez",
+        "Dni": 34567891,
+        "Edad": 29,
+        "Altura": 1.72,
+        "Division": 3,
+        "Deporte": 2,
+        "Genero": 1,
+        "EsTitular": false,
+        "IdEquipo": -1
+      },
+      {
+        "Posicion": "No tiene",
+        "Nombre": "Alejandro",
+        "Apellido": "Pérez",
+        "Dni": 65432124,
+        "Edad": 30,
+        "Altura": 1.76,
+        "Division": 3,
+        "Deporte": 2,
+        "Genero": 0,
+        "EsTitular": true,
+        "IdEquipo": -1
+      },
+      {
+        "Posicion": "No tiene",
+        "Nombre": "Carmen",
+        "Apellido": "González",
+        "Dni": 23456790,
+        "Edad": 31,
+        "Altura": 1.73,
+        "Division": 3,
+        "Deporte": 2,
+        "Genero": 1,
+        "EsTitular": true,
+        "IdEquipo": -1
+      }
+    ],
+    "Cancha": 1,
+    "SedeDelEquipo": "Wilde",
+    "Id": 7,
+    "Nombre": "Rosas",
+    "Deporte": 2,
+    "CantTitulares": 6,
+    "CantSuplentes": 1,
+    "Division": 1,
+    "Entrenador": "Mariano"
   }
 ]

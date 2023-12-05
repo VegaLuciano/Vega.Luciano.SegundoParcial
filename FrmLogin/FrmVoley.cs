@@ -100,6 +100,7 @@ namespace Forms
                             {
                                 MessageBox.Show("Se cargó todo exitosamente!");
                                 this.tabla.ListaVoley.Add(EquipoVoley);
+                                EquipoVoley.SetearIdEquipoJugadores();
                             }
                             else 
                             {

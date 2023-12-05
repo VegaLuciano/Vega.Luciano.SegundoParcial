@@ -81,6 +81,7 @@ namespace Forms
                             {
                                 MessageBox.Show("Se cargó todo exitosamente!");
                                 this.tabla.ListaFutbol.Add(EquipoFutbol);
+                                EquipoFutbol.SetearIdEquipoJugadores();
                             }
                             else
                             {
