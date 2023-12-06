@@ -13,7 +13,21 @@ namespace Entidades
 
         public ExcepcionUsuarioInexistente(string detalles) : base(detalles)
         {
-            this.mensaje = "Ha Ocurrido Un error con la Base de Datos";
+            this.mensaje = "Error, contraseña o mail incorrectos";
+
+            this.detalles = detalles;
+
+        }
+    }
+
+    public class ExcepcionesBD : Exception
+    {
+        public string mensaje { get; }
+        public string detalles { get; }
+
+        public ExcepcionesBD(string detalles) : base(detalles)
+        {
+            this.mensaje = "Ocurrio un error con la base de datos";
 
             this.detalles = detalles;
 

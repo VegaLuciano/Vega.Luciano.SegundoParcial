@@ -113,6 +113,11 @@ namespace Entidades
                 }
             }
 
+            if (index == -1)
+            {
+                throw new ExcepcionUsuarioInexistente($"El usuario {usuario} no existe en la lista.");
+            }
+
             return index;
         }
 

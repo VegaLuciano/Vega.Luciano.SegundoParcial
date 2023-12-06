@@ -45,11 +45,9 @@ namespace FrmLogin
         {
             Usuario usuarioAux = new Usuario(this.txtMail.Text, this.txtContraseña.Text);
 
-    
-            int indexUser = Usuario.FindUser(usuarioAux, this.usuariosRegistrados);
-
-            if (indexUser != -1)
+            try
             {
+                int indexUser = Usuario.FindUser(usuarioAux, this.usuariosRegistrados);             
                 this.usuario = this.usuariosRegistrados[indexUser];
                 FrmMenuPrincipal frmMenuPrincipal = new FrmMenuPrincipal(this.usuariosRegistrados, this.usuario, this.pathUsuariosRegistrados);
                 frmMenuPrincipal.ShowDialog();
@@ -58,12 +56,17 @@ namespace FrmLogin
                 if (frmMenuPrincipal.DialogResult == DialogResult.OK)
                 {
                     this.Close();
-                }
+                }                   
             }
-            else
+            catch (ExcepcionUsuarioInexistente ex)
             {
-                this.lblError.Text = "Error, contraseña o mail incorrectos";
+                this.lblError.Text = $"Error: {ex.mensaje}";
             }
+            catch (Exception ex)
+            {
+                this.lblError.Text = $"Otro error inesperado: {ex.Message}";
+            }
+            
         }
 
         private void btnRegistrarse_Click(object sender, EventArgs e)
