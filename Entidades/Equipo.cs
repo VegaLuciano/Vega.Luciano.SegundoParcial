@@ -108,9 +108,9 @@ namespace Entidades
                         break;
                     }
 
-                    retorno = true;
+                    
                 }
-
+                retorno = true;
             }
 
             return retorno;

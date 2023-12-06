@@ -125,8 +125,8 @@ namespace Entidades
             if (futbol != null)
             {
                 PrepararComandoEquipoBase(futbol);
-                this.comando.Parameters.AddWithValue("@colorCamiseteLocal", futbol.ColorCamiseteLocal);
-                this.comando.Parameters.AddWithValue("@colorCamisetaVisitante", futbol.ColorCamisetaVisitante);
+                this.comando.Parameters.AddWithValue("@colorCamiseteLocal", futbol.ColorCamiseteLocal.ToString());
+                this.comando.Parameters.AddWithValue("@colorCamisetaVisitante", futbol.ColorCamisetaVisitante.ToString());
             }
         }
         public void PrepararComandoEquipo(Basquet basquet)
@@ -294,8 +294,9 @@ namespace Entidades
                 {
                     this.PrepararComandoEquipo((Futbol)equipo);
                     this.listaFutbol.Add((Futbol)equipo);
-                    this.comando.CommandText = "INSERT into Futbol (id, nombre, deporte, cantTitulares, cantSuplentes, division, entrenador, colorCamisetaLocal, colorCamisetaVisitante) " +
-                        "VALUES (@id, @nombre, @deporte, @cantTitulares, @cantSuplentes, @division, @entrenador, @colorCamisetaLocal, @colorCamisetaVisitante)"; 
+                    this.comando.CommandText = "INSERT INTO Futbol(id, nombre, deporte, cantTitulares, cantSuplentes, division, entrenador, colorCamisetaLocal, colorCamisetaVisitante)" +
+                                        "VALUES(123, 'Juancito', 'Futbol', 11, 7, 'MAYORES', 'Marcos', 'Rojo', 'Azul')";
+                        //"VALUES (@id, @nombre, @deporte, @cantTitulares, @cantSuplentes, @division, @entrenador, @colorCamisetaLocal, @colorCamisetaVisitante)"; 
                 }
                 else if (equipo is Voley)
                 {
