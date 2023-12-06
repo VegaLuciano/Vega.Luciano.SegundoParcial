@@ -60,7 +60,7 @@ namespace Entidades
 
             this.comando = new SqlCommand();
             this.comando.CommandType = CommandType.Text;
-            this.comando.CommandText = "SELECT * FROM Jugador";
+            this.comando.CommandText = "SELECT * FROM Jugadore";
 
             try
             {
@@ -129,13 +129,14 @@ namespace Entidades
             this.comando.Parameters.AddWithValue("@nombre", jugador.Nombre);
             this.comando.Parameters.AddWithValue("@apellido", jugador.Apellido);
             this.comando.Parameters.AddWithValue("@idEquipo", jugador.IdEquipo);
-            this.comando.Parameters.AddWithValue("@genero", jugador.Genero);
+            this.comando.Parameters.AddWithValue("@genero", jugador.Genero.ToString());
             this.comando.Parameters.AddWithValue("@dni", jugador.Dni);
             this.comando.Parameters.AddWithValue("@edad", jugador.Edad);
-            this.comando.Parameters.AddWithValue("@division", jugador.Division);
+            this.comando.Parameters.AddWithValue("@division", jugador.Division.ToString());
             this.comando.Parameters.AddWithValue("@altura", jugador.Altura);
             this.comando.Parameters.AddWithValue("@esTitular", jugador.EsTitular);
-            this.comando.Parameters.AddWithValue("@deporte", jugador.Deporte);
+            this.comando.Parameters.AddWithValue("@deporte", jugador.Deporte.ToString());
+            this.comando.Parameters.AddWithValue("@posicion", jugador.Posicion);
         }
 
         public bool agregarJugadores(List<Jugador> lista)
@@ -147,8 +148,9 @@ namespace Entidades
                 if (!this.AgregarJugador(jugador)) 
                 {
                     retorno = false;
-                    break;                   
+                    break;
                 }
+                
             }
 
             return retorno;
@@ -163,22 +165,23 @@ namespace Entidades
             {
                 this.coneccion.Open();
                 this.comando = new SqlCommand();
-                this.comando.CommandType = CommandType.Text;
+                this.comando.CommandType = System.Data.CommandType.Text;
                 this.PrepararComandoJugador(jugador);
-                this.comando.CommandText = "INSERT INTO Jugador (nombre, apellido, idEquipo, genero, dni, edad, division, altura, esTitular, deporte) " +
-                    "VALUES (@nombre, @apellido, @idEquipo, @genero, @dni, @edad, @division, @altura, @esTitular, @deporte)";
+                this.comando.CommandText = "INSERT INTO Jugador (nombre, apellido, idEquipo, genero, dni, edad, division, altura, esTitular, deporte, posicion)   " +
+                    "VALUES (@nombre, @apellido, @edad, @genero, @dni, @edad, @division, @altura, @esTitular, @deporte, @posicion);";
                 this.comando.Connection = this.coneccion;
 
                 int filasAfectadas = this.comando.ExecuteNonQuery();
-                if (filasAfectadas == 1)
+                if (filasAfectadas != 0)
                 {
                     // Una vez que se realizó la carga de los datos, actualizo para tener en la lista local el id
-                    this.ActualizarListaJugadores();
+                     this.ActualizarListaJugadores();
                     retorno = true;
                 }
             }
             catch (Exception ex)
             {
+                retorno = true;
                 // Manejar la excepción si es necesario
             }
             finally

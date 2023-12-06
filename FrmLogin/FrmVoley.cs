@@ -95,13 +95,14 @@ namespace Forms
                         {
                             
                             int filas = db.AgregarDato(EquipoVoley);
-
                             if (filas==1)
                             {                             
                                 this.tabla.ListaVoley.Add(EquipoVoley);
                                 EquipoVoley.SetearIdEquipoJugadores();
                                 AccesoDatosJugador dbJugador = new AccesoDatosJugador();
-                                if (dbJugador.agregarJugadores(EquipoVoley.Jugadores))
+                                bool retorno = dbJugador.agregarJugadores(EquipoVoley.Jugadores);
+                                MessageBox.Show(retorno.ToString());
+                                if (retorno)
                                 {
                                     MessageBox.Show("Se cargó todo exitosamente!");
                                 }

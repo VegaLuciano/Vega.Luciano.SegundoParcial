@@ -38,6 +38,9 @@
             btnMostrarFutbol = new Button();
             btnMostrarBasquet = new Button();
             lblReloj = new Label();
+            button1 = new Button();
+            lblErrorPath = new Label();
+            btnVerLog = new Button();
             SuspendLayout();
             // 
             // btnAgregar
@@ -167,11 +170,49 @@
             lblReloj.AutoSize = true;
             lblReloj.BackColor = Color.DarkSlateBlue;
             lblReloj.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblReloj.Location = new Point(52, 437);
+            lblReloj.Location = new Point(43, 464);
             lblReloj.Name = "lblReloj";
             lblReloj.Size = new Size(43, 20);
             lblReloj.TabIndex = 6;
             lblReloj.Text = "Reloj";
+            // 
+            // button1
+            // 
+            button1.BackColor = Color.DarkSlateBlue;
+            button1.FlatAppearance.BorderColor = SystemColors.ButtonFace;
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.ForeColor = SystemColors.ActiveCaptionText;
+            button1.Location = new Point(12, 387);
+            button1.Name = "button1";
+            button1.Size = new Size(140, 32);
+            button1.TabIndex = 7;
+            button1.Text = "Guardar usuarios.log";
+            button1.UseVisualStyleBackColor = false;
+            button1.Click += btnUsuarioPath_Click;
+            // 
+            // lblErrorPath
+            // 
+            lblErrorPath.AutoSize = true;
+            lblErrorPath.ForeColor = Color.Red;
+            lblErrorPath.Location = new Point(12, 422);
+            lblErrorPath.Name = "lblErrorPath";
+            lblErrorPath.Size = new Size(56, 15);
+            lblErrorPath.TabIndex = 8;
+            lblErrorPath.Text = "ErrorPath";
+            // 
+            // btnVerLog
+            // 
+            btnVerLog.BackColor = Color.DarkSlateBlue;
+            btnVerLog.FlatAppearance.BorderColor = SystemColors.ButtonFace;
+            btnVerLog.FlatStyle = FlatStyle.Flat;
+            btnVerLog.ForeColor = SystemColors.ActiveCaptionText;
+            btnVerLog.Location = new Point(12, 349);
+            btnVerLog.Name = "btnVerLog";
+            btnVerLog.Size = new Size(140, 32);
+            btnVerLog.TabIndex = 9;
+            btnVerLog.Text = "Ver Log";
+            btnVerLog.UseVisualStyleBackColor = false;
+            btnVerLog.Click += btnVerLog_Click;
             // 
             // FrmMenuPrincipal
             // 
@@ -179,6 +220,9 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DarkSlateBlue;
             ClientSize = new Size(1080, 513);
+            Controls.Add(btnVerLog);
+            Controls.Add(lblErrorPath);
+            Controls.Add(button1);
             Controls.Add(lblReloj);
             Controls.Add(btnVoley);
             Controls.Add(btnBasquet);
@@ -209,5 +253,8 @@
         private Button btnMostrarFutbol;
         private Button btnMostrarBasquet;
         private Label lblReloj;
+        private Button button1;
+        private Label lblErrorPath;
+        private Button btnVerLog;
     }
 }

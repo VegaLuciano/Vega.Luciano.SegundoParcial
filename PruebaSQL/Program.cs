@@ -7,9 +7,9 @@ namespace PruebaSQL
     {
         static void Main(string[] args)
         {
-            AccesoDatosEquipo accesoDatos = new AccesoDatosEquipo();
+            AccesoDatosJugador accesoDatos = new AccesoDatosJugador();
 
-            if (accesoDatos.ProbarConneccion()) 
+            if (accesoDatos.ProbarConexion()) 
             {
                 Console.WriteLine("Se conectó");
             }

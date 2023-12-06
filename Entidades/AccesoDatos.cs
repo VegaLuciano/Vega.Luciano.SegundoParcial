@@ -21,7 +21,7 @@ namespace Entidades
         public List<Jugador> listaJugadores;
 
         static AccesoDatosEquipo()
-        {
+        { 
             AccesoDatosEquipo.connectionString = Properties.Resources.miConeccion;
         }
 
@@ -285,7 +285,7 @@ namespace Entidades
         {
             int retorno = 0;
             try
-            {
+            { 
                 this.coneccion.Open();
 
                 this.comando = new SqlCommand();
@@ -295,10 +295,11 @@ namespace Entidades
                     this.PrepararComandoEquipo((Futbol)equipo);
                     this.listaFutbol.Add((Futbol)equipo);
                     this.comando.CommandText = "INSERT into Futbol (id, nombre, deporte, cantTitulares, cantSuplentes, division, entrenador, colorCamisetaLocal, colorCamisetaVisitante) " +
-                        "VALUES (@id, @nombre, @deporte, @cantTitulares, @cantSuplentes, @division, @entrenador, @colorCamisetaLocal, @colorCamisetaVisitante)"; ;
+                        "VALUES (@id, @nombre, @deporte, @cantTitulares, @cantSuplentes, @division, @entrenador, @colorCamisetaLocal, @colorCamisetaVisitante)"; 
                 }
                 else if (equipo is Voley)
                 {
+             
                     this.PrepararComandoEquipo((Voley)equipo);
                     this.listaVoley.Add((Voley)equipo);
                     this.comando.CommandText = "INSERT into Voley (id, nombre, deporte, cantTitulares, cantSuplentes, division, entrenador, cancha, sedeDelEquipo) " +
@@ -316,7 +317,7 @@ namespace Entidades
 
                 int filasAfectadas = this.comando.ExecuteNonQuery();
                 retorno = filasAfectadas;
-                if (filasAfectadas != 1)
+                if (filasAfectadas == 1)
                 {
                     //una vez que se realizo la carga de mis datos actualizo par tener en mis listas locales el id
                     this.ActualizarListas();

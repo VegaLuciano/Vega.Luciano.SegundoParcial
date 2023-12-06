@@ -33,7 +33,7 @@ namespace Forms
             this.listaUsuarios = listaUsuarios;
             this.usuario = usuario;
             this.usuario.usuarioAnotado += Usuario_usuarioAnotado;
-            this.fecha = DateTime.Now;        
+            this.fecha = DateTime.Now;
             this.pathUsuarios = "usuarios.log";
             this.lblUsuario.Text = this.usuario.Nombre;
             this.btnFutbol.Enabled = false;
@@ -61,13 +61,14 @@ namespace Forms
         }
 
         private void FrmMenuPrincipal_Load(object sender, EventArgs e)
-        {   
+        {
             this.CargarEquipos();
+            FrmCRUD1.ClearErrorLabels(this.Controls);
             usuario.guardarUsuario(this.usuario, this.pathUsuarios, this.fecha);
             reloj.SegundoCambiado += this.Reloj_corriendo;
             FrmMenuPrincipal.CambiarColoresControles(this.Controls, this, false);
             _ = reloj.IniciarRelojAsync(CancellationToken.None);
-                
+
         }
 
         private void Reloj_corriendo(object sender, RelojEventArgs e)
@@ -222,5 +223,19 @@ namespace Forms
 
         }
 
+        private void btnUsuarioPath_Click(object sender, EventArgs e)
+        {
+            List<string> extensiones = new List<string> { "log" };
+            string pathUsuarioslog = FrmCRUD1.LeerPath(this.lblErrorPath, extensiones);
+            if (pathUsuarioslog != null)
+            {
+                this.pathUsuarios = pathUsuarioslog;
+            }
+        }
+
+        private void btnVerLog_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(pathUsuarios);
+        }
     }
 }

@@ -45,7 +45,7 @@ namespace Forms
         {
             List<string> extensiones = new List<string> { "json", "xml" };
 
-            string path = FrmCRUD1.CargarPlanilla(this.lblErrorCargarPlanilla, extensiones);
+            string path = FrmCRUD1.LeerPath(this.lblErrorCargarPlanilla, extensiones);
 
             if (path != string.Empty)
             {
@@ -72,7 +72,7 @@ namespace Forms
             }
         }
 
-        protected static string CargarPlanilla(Label labelError, List<string> extensionesPermitidas)
+        public static string LeerPath(Label labelError, List<string> extensionesPermitidas)
         {
             string path = string.Empty;
             labelError.Text = string.Empty;
