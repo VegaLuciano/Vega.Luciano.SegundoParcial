@@ -60,7 +60,7 @@ namespace Entidades
 
             this.comando = new SqlCommand();
             this.comando.CommandType = CommandType.Text;
-            this.comando.CommandText = "SELECT * FROM Jugadores";
+            this.comando.CommandText = "SELECT * FROM Jugador";
 
             try
             {
@@ -73,7 +73,7 @@ namespace Entidades
                     Jugador jugador = new Jugador();
 
                     // Asignar atributos del lector al jugador
-                    this.AsignarAtributosLector(jugador);
+                    this.AsignarAtributosLectorJugador(jugador);
 
                     // Agregar jugador a la lista
                     lista.Add(jugador);
@@ -96,7 +96,7 @@ namespace Entidades
             return lista;
         }
 
-        public void AsignarAtributosLector(Jugador jugador)
+        public void AsignarAtributosLectorJugador(Jugador jugador)
         {
             jugador.Nombre = (string)this.lector["nombre"];
             jugador.Apellido = (string)this.lector["apellido"];
@@ -137,6 +137,23 @@ namespace Entidades
             this.comando.Parameters.AddWithValue("@esTitular", jugador.EsTitular);
             this.comando.Parameters.AddWithValue("@deporte", jugador.Deporte);
         }
+
+        public bool agregarJugadores(List<Jugador> lista)
+        {
+            bool retorno = true;
+
+            foreach (Jugador jugador in lista) 
+            {
+                if (!this.AgregarJugador(jugador)) 
+                {
+                    retorno = false;
+                    break;                   
+                }
+            }
+
+            return retorno;
+        }
+
 
         public bool AgregarJugador(Jugador jugador)
         {
@@ -252,7 +269,47 @@ namespace Entidades
             return retorno;
         }
 
-        // ...
+        public List<Jugador> TraerJugadores(Equipo equipo)
+        {
+            List<Jugador> lista = new List<Jugador>();
+
+            this.comando = new SqlCommand();
+            this.comando.CommandType = CommandType.Text;
+            this.comando.CommandText = $"SELECT * FROM Jugadores Where idEquipo = {equipo.Id}";
+
+            try
+            {
+                this.comando.Connection = this.coneccion;
+                this.coneccion.Open();
+                this.lector = this.comando.ExecuteReader();
+
+                while (lector.Read())
+                {
+                    Jugador jugador = new Jugador();
+
+                    // Asignar atributos del lector al jugador
+                    this.AsignarAtributosLectorJugador(jugador);
+
+                    // Agregar jugador a la lista
+                    lista.Add(jugador);
+                }
+
+                this.lector.Close();
+            }
+            catch (Exception ex)
+            {
+                // Manejar la excepción si es necesario
+            }
+            finally
+            {
+                if (this.coneccion.State == ConnectionState.Open)
+                {
+                    this.coneccion.Close();
+                }
+            }
+
+            return lista;
+        }
 
     }
 

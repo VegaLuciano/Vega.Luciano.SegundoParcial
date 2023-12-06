@@ -95,6 +95,8 @@ namespace Forms
                                 MessageBox.Show("Se cargó todo exitosamente!");
                                 this.tabla.ListaBasquet.Add(EquipoBasquet);
                                 EquipoBasquet.SetearIdEquipoJugadores();
+                                AccesoDatosJugador dbJugador = new AccesoDatosJugador();
+                                dbJugador.agregarJugadores(EquipoBasquet.Jugadores);
                             }
                             else
                             {

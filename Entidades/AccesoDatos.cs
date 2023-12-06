@@ -18,7 +18,7 @@ namespace Entidades
         public List<Futbol> listaFutbol;
         public List<Voley> listaVoley;
         public List<Basquet> listaBasquet;
-
+        public List<Jugador> listaJugadores;
 
         static AccesoDatosEquipo()
         {
@@ -64,61 +64,7 @@ namespace Entidades
             return retorno;
         }
 
-        public List<T> TraerEquipos<T>() where T : Equipo, new()
-        {
-            List<T> lista = new List<T>();
-
-            this.comando = new SqlCommand();
-            this.comando.CommandType = System.Data.CommandType.Text;
-
-            string tabla = typeof(T).Name;
-
-            this.comando.CommandText = $"SELECT * FROM {tabla}";
-
-            try
-            {
-                this.comando.Connection = this.coneccion;
-
-                this.coneccion.Open();
-
-                this.lector = this.comando.ExecuteReader();
-
-                while (lector.Read())
-                {
-                    T equipo = new T();
-
-                    if (tabla == "Voley" )
-                    {
-                        AsignarAtributosLectorVoley(equipo as Voley);
-                    }
-                    if (tabla == "Futbol")
-                    {
-                        AsignarAtributosLectorFutbol(equipo as Futbol);
-                    }
-                    if (tabla == "Basquet")
-                    {
-                        AsignarAtributosLectorBasquet(equipo as Basquet);
-                    }
-
-                    lista.Add(equipo);
-                }
-
-                this.lector.Close();
-            }
-            catch (Exception ex)
-            {
-
-            }
-            finally
-            {
-                if (this.coneccion.State == System.Data.ConnectionState.Open)
-                {
-                    this.coneccion.Close();
-                }
-            }
-
-            return lista;
-        }
+        #region asignaciones 
 
         public void AsignarAtributosLectorBase(Equipo equipo)
         {
@@ -152,7 +98,7 @@ namespace Entidades
             string cancha = (string)this.lector["cancha"];
             equipo.Cancha = ConvertirStringAEnum<ECancha>(cancha);
         }
-      
+
         public void PrepararComandoEquipoBase(Equipo equipo)
         {
             this.comando.Parameters.Clear();
@@ -192,6 +138,68 @@ namespace Entidades
                 this.comando.Parameters.AddWithValue("@sponsor", basquet.Sponsor);
             }
         }
+        #endregion 
+
+
+        #region equipos
+        public List<T> TraerEquipos<T>() where T : Equipo, new()
+        {
+            List<T> lista = new List<T>();
+
+            this.comando = new SqlCommand();
+            this.comando.CommandType = System.Data.CommandType.Text;
+
+            string tabla = typeof(T).Name;
+
+            this.comando.CommandText = $"SELECT * FROM {tabla}";
+
+            try
+            {
+                this.comando.Connection = this.coneccion;
+
+                this.coneccion.Open();
+
+                this.lector = this.comando.ExecuteReader();
+
+                while (lector.Read())
+                {
+                    T equipo = new T();
+
+                    if (tabla == "Voley")
+                    {
+                        AsignarAtributosLectorVoley(equipo as Voley);
+                    }
+                    if (tabla == "Futbol")
+                    {
+                        AsignarAtributosLectorFutbol(equipo as Futbol);
+                    }
+                    if (tabla == "Basquet")
+                    {
+                        AsignarAtributosLectorBasquet(equipo as Basquet);
+                    }
+
+
+
+                    lista.Add(equipo);
+                }
+
+                this.lector.Close();
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                if (this.coneccion.State == System.Data.ConnectionState.Open)
+                {
+                    this.coneccion.Close();
+                }
+            }
+
+            return lista;
+        }
+
         public bool EliminarEquipo(Equipo equipo)
         {
             bool retorno = false;
@@ -273,9 +281,9 @@ namespace Entidades
                 throw new ArgumentException($"Valor no válido para el tipo Color");
             }
         }
-         public int AgregarDato(Equipo equipo)
-         {
-            int retorno =0;
+        public int AgregarDato(Equipo equipo)
+        {
+            int retorno = 0;
             try
             {
                 this.coneccion.Open();
@@ -289,33 +297,33 @@ namespace Entidades
                     this.comando.CommandText = "INSERT into Futbol (id, nombre, deporte, cantTitulares, cantSuplentes, division, entrenador, colorCamisetaLocal, colorCamisetaVisitante) " +
                         "VALUES (@id, @nombre, @deporte, @cantTitulares, @cantSuplentes, @division, @entrenador, @colorCamisetaLocal, @colorCamisetaVisitante)"; ;
                 }
-                else if (equipo is Voley) 
+                else if (equipo is Voley)
                 {
                     this.PrepararComandoEquipo((Voley)equipo);
                     this.listaVoley.Add((Voley)equipo);
                     this.comando.CommandText = "INSERT into Voley (id, nombre, deporte, cantTitulares, cantSuplentes, division, entrenador, cancha, sedeDelEquipo) " +
-                        "VALUES (@id, @nombre, @deporte, @cantTitulares, @cantSuplentes, @division, @entrenador, @cancha, @sedeDelEquipo)"; 
+                        "VALUES (@id, @nombre, @deporte, @cantTitulares, @cantSuplentes, @division, @entrenador, @cancha, @sedeDelEquipo)";
                 }
                 else if (equipo is Basquet)
                 {
                     this.PrepararComandoEquipo((Basquet)equipo);
                     this.listaBasquet.Add((Basquet)equipo);
                     this.comando.CommandText = "INSERT into Basquet (id, nombre, deporte, cantTitulares, cantSuplentes, division, entrenador, equipoMedico, sponsor) " +
-                         "VALUES (@id, @nombre, @deporte, @cantTitulares, @cantSuplentes, @division, @entrenador, @equipoMedico, @sponsor)"; 
+                         "VALUES (@id, @nombre, @deporte, @cantTitulares, @cantSuplentes, @division, @entrenador, @equipoMedico, @sponsor)";
                 }
 
                 this.comando.Connection = this.coneccion;
-                
+
                 int filasAfectadas = this.comando.ExecuteNonQuery();
                 retorno = filasAfectadas;
-                if (filasAfectadas != 1 ) 
+                if (filasAfectadas != 1)
                 {
                     //una vez que se realizo la carga de mis datos actualizo par tener en mis listas locales el id
                     this.ActualizarListas();
-                   
+
                 }
             }
-            catch   ( Exception e )
+            catch (Exception e)
             {
                 // Handle exceptions if needed
             }
@@ -382,6 +390,10 @@ namespace Entidades
             }
             return retorno;
         }
+
+        #endregion
+
+
 
     }
 }

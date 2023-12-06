@@ -20,9 +20,6 @@ namespace Forms
         public Usuario usuario;
         private DateTime fecha;
         private string pathUsuarios;
-        private string pathEquiposVoley;
-        private string pathEquiposFutbol;
-        private string pathEquiposBasquet;
         private string pathUsuariosRegistrados;
         private Form? formularioAcutal = null;
         public Tabla tabla;
@@ -35,12 +32,9 @@ namespace Forms
             this.pathUsuariosRegistrados = pathUsuariosRegistrados;
             this.listaUsuarios = listaUsuarios;
             this.usuario = usuario;
-            this.fecha = DateTime.Now;
-            reloj.SegundoCambiado += this.Reloj_corriendo;
+            this.usuario.usuarioAnotado += Usuario_usuarioAnotado;
+            this.fecha = DateTime.Now;        
             this.pathUsuarios = "usuarios.log";
-            this.pathEquiposVoley = "voley.json";
-            this.pathEquiposFutbol = "futbol.json";
-            this.pathEquiposBasquet = "basquet.json";
             this.lblUsuario.Text = this.usuario.Nombre;
             this.btnFutbol.Enabled = false;
             this.btnFutbol.Visible = false;
@@ -49,6 +43,11 @@ namespace Forms
             this.btnBasquet.Visible = false;
             this.btnBasquet.Visible = false;
             this.tabla = new Tabla();
+        }
+
+        private void Usuario_usuarioAnotado(Usuario sender, InfoUsuariosEventArgs info)
+        {
+            MessageBox.Show($"Usuario {sender.ToString()} anotado \n {info.fecha}");
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
@@ -64,9 +63,11 @@ namespace Forms
         private void FrmMenuPrincipal_Load(object sender, EventArgs e)
         {   
             this.CargarEquipos();
+            usuario.guardarUsuario(this.usuario, this.pathUsuarios, this.fecha);
+            reloj.SegundoCambiado += this.Reloj_corriendo;
             FrmMenuPrincipal.CambiarColoresControles(this.Controls, this, false);
             _ = reloj.IniciarRelojAsync(CancellationToken.None);
-
+                
         }
 
         private void Reloj_corriendo(object sender, RelojEventArgs e)
@@ -85,40 +86,9 @@ namespace Forms
             reloj.DetenerReloj();
         }
 
-        private void CargarArchivos()
-        {
-            List<Voley>? listVoley = Archivo.LeerArchivoJson<Voley>(this.pathEquiposVoley);
-
-            if (listVoley != null)
-            {
-                this.tabla.ListaVoley = listVoley;
-            }
-            List<Futbol>? listFutbol = Archivo.LeerArchivoJson<Futbol>(this.pathEquiposFutbol);
-
-            if (listFutbol != null)
-            {
-                this.tabla.ListaFutbol = listFutbol;
-            }
-            List<Basquet>? listBasquet = Archivo.LeerArchivoJson<Basquet>(this.pathEquiposBasquet);
-
-            if (listBasquet != null)
-            {
-                this.tabla.ListaBasquet = listBasquet;
-            }
-        }
-
         private void GuardarArhivos()
         {
-            using (StreamWriter sw = new StreamWriter(this.pathUsuarios, true, Encoding.UTF8))
-            {
-                sw.WriteLine(this.usuario.ToString());
-                sw.WriteLine("  " + fecha.ToString("yyyy-MM-dd HH:mm:ss"));
-            }
-
             Archivo.GuardarArchivoJson(this.pathUsuariosRegistrados, this.listaUsuarios);
-            Archivo.GuardarArchivoJson(this.pathEquiposVoley, this.tabla.ListaVoley);
-            Archivo.GuardarArchivoJson(this.pathEquiposBasquet, this.tabla.ListaBasquet);
-            Archivo.GuardarArchivoJson(this.pathEquiposFutbol, this.tabla.ListaFutbol);
         }
 
         private void CargarEquipos()
@@ -151,7 +121,6 @@ namespace Forms
         {
             FrmVoley frmVoley = new FrmVoley(this.tabla);
             AbrirFormularioHijo(frmVoley);
-
         }
 
         private void btnFutbol_Click(object sender, EventArgs e)

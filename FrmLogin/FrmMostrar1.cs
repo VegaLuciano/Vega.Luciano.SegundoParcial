@@ -119,23 +119,46 @@ namespace Forms
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            switch (this.deporteSeleccionado)
+            AccesoDatosEquipo db = new AccesoDatosEquipo();
+            bool confirmacion = false;
+            if (PreguntarEliminar())
             {
-                case EDeporte.Futbol:
-                    this.tabla.ListaFutbol.Remove((Futbol)this.equipoSeleccionado);
-                    break;
-                case EDeporte.Voley:
-                    this.tabla.ListaVoley.Remove((Voley)this.equipoSeleccionado);
-                    break;
-                case EDeporte.Basquet:
-                    this.tabla.ListaBasquet.Remove((Basquet)this.equipoSeleccionado);
-                    break;
+                switch (this.deporteSeleccionado)
+                {
+                    case EDeporte.Futbol:
+                        this.tabla.ListaFutbol.Remove((Futbol)this.equipoSeleccionado);
+                        confirmacion = db.EliminarEquipo((Futbol)this.equipoSeleccionado);
+                        break;
+                    case EDeporte.Voley:
+                        this.tabla.ListaVoley.Remove((Voley)this.equipoSeleccionado);
+                        confirmacion = db.EliminarEquipo((Voley)this.equipoSeleccionado);
+                        break;
+                    case EDeporte.Basquet:
+                        this.tabla.ListaBasquet.Remove((Basquet)this.equipoSeleccionado);
+                        confirmacion = db.EliminarEquipo((Basquet)this.equipoSeleccionado);
+                        break;
+                }
 
-            };
+                if (confirmacion)
+                {
+                    MessageBox.Show("Equipo eliminado exitosamente.", "Eliminación Exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
 
             this.ActualizarDataGridView();
         }
 
+        private bool PreguntarEliminar() 
+        {
+            bool retorno = false;
+            DialogResult resultado = MessageBox.Show("¿Está seguro de que desea eliminar este equipo?", "Eliminar Equipo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (resultado == DialogResult.Yes)
+            {
+                retorno = true;             
+            }
+            return retorno;
+        }
         private void btnModificar_Click(object sender, EventArgs e)
         {
             switch (this.deporteSeleccionado)

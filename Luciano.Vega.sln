@@ -9,10 +9,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tools", "Tools\Tools.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Forms", "FrmLogin\Forms.csproj", "{CF713E0C-8588-4C6E-8859-9F18D8F14F1D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PruebaSQL", "PruebaSQL\PruebaSQL.csproj", "{D5F928B5-12FF-4D76-821A-E032D136ABE6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PruebaSQL", "PruebaSQL\PruebaSQL.csproj", "{D5F928B5-12FF-4D76-821A-E032D136ABE6}"
 	ProjectSection(ProjectDependencies) = postProject
 		{6458EF47-06BA-4C4C-9FDB-F3752B9A8462} = {6458EF47-06BA-4C4C-9FDB-F3752B9A8462}
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyUnitTest", "MyUnitTest\MyUnitTest.csproj", "{D85D98DF-5109-444F-91CE-3753E1AFF6D1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,6 +38,10 @@ Global
 		{D5F928B5-12FF-4D76-821A-E032D136ABE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5F928B5-12FF-4D76-821A-E032D136ABE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D5F928B5-12FF-4D76-821A-E032D136ABE6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D85D98DF-5109-444F-91CE-3753E1AFF6D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D85D98DF-5109-444F-91CE-3753E1AFF6D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D85D98DF-5109-444F-91CE-3753E1AFF6D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D85D98DF-5109-444F-91CE-3753E1AFF6D1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

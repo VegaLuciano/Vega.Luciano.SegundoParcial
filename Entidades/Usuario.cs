@@ -14,6 +14,11 @@ namespace Entidades
         private string mail;
         private string contraseña;
         private static int countId;
+
+        public delegate void UsuarioDelegate(Usuario sender, InfoUsuariosEventArgs info);
+
+        public event UsuarioDelegate usuarioAnotado;
+
         public Usuario()
         {
             this.nombre = "None";
@@ -89,6 +94,7 @@ namespace Entidades
 
             return retorno;
         }
+
         /// <summary>
         /// Busca al usuario en la lista 
         /// </summary>
@@ -109,6 +115,27 @@ namespace Entidades
 
             return index;
         }
+
+        public void guardarUsuario(Usuario usuario, string path, DateTime fecha) 
+        {
+            try
+            {
+                using (StreamWriter sw = new StreamWriter(path, true, Encoding.UTF8))
+                {
+                    sw.WriteLine(usuario.ToString());
+                    sw.WriteLine("  " + fecha.ToString("yyyy-MM-dd HH:mm:ss"));
+                }
+
+                usuarioAnotado?.Invoke(this, new InfoUsuariosEventArgs(fecha));
+
+            }
+            catch (Exception ex)
+            { 
+                
+            }
+            
+        }
+
         public static bool CampoRepetido(string usuario, List<Usuario> lista)
         {
             bool retorno = false;

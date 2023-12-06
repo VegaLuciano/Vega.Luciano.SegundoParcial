@@ -47,7 +47,7 @@ namespace Forms
                 allOk = false;
             }
             else
-            {
+            { 
                 if (Usuario.CampoRepetido(this.txtMail.Text, this.listaUsuarios))
                 {
                     this.lblErrorEmail.Text = "Error, el mail ya esta registrado";

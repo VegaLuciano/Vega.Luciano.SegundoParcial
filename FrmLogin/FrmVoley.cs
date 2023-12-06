@@ -97,10 +97,15 @@ namespace Forms
                             int filas = db.AgregarDato(EquipoVoley);
 
                             if (filas==1)
-                            {
-                                MessageBox.Show("Se cargó todo exitosamente!");
+                            {                             
                                 this.tabla.ListaVoley.Add(EquipoVoley);
                                 EquipoVoley.SetearIdEquipoJugadores();
+                                AccesoDatosJugador dbJugador = new AccesoDatosJugador();
+                                if (dbJugador.agregarJugadores(EquipoVoley.Jugadores))
+                                {
+                                    MessageBox.Show("Se cargó todo exitosamente!");
+                                }
+
                             }
                             else 
                             {

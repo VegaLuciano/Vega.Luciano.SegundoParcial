@@ -45,7 +45,9 @@ namespace FrmLogin
         {
             Usuario usuarioAux = new Usuario(this.txtMail.Text, this.txtContraseña.Text);
 
+    
             int indexUser = Usuario.FindUser(usuarioAux, this.usuariosRegistrados);
+
             if (indexUser != -1)
             {
                 this.usuario = this.usuariosRegistrados[indexUser];
