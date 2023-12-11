@@ -99,8 +99,7 @@ namespace Forms
                             {                             
                                 this.tabla.ListaVoley.Add(EquipoVoley);
                                 EquipoVoley.SetearIdEquipoJugadores();
-                                AccesoDatosJugador dbJugador = new AccesoDatosJugador();
-                                bool retorno = dbJugador.agregarJugadores(EquipoVoley.Jugadores);
+                                bool retorno = db.agregarJugadores(EquipoVoley.Jugadores);
                                 MessageBox.Show(retorno.ToString());
                                 if (retorno)
                                 {

@@ -81,8 +81,7 @@ namespace Forms
                                 MessageBox.Show("Se cargó todo exitosamente!");
                                 this.tabla.ListaFutbol.Add(EquipoFutbol);
                                 EquipoFutbol.SetearIdEquipoJugadores();
-                                AccesoDatosJugador dbJugador = new AccesoDatosJugador();
-                                bool retorno = dbJugador.agregarJugadores(EquipoFutbol.Jugadores);
+                                bool retorno = db.agregarJugadores(EquipoFutbol.Jugadores);
                                 MessageBox.Show(retorno.ToString());
                                 if (retorno)
                                 {

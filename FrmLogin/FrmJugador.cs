@@ -109,7 +109,7 @@ namespace Forms
 
             if (allOk)
             {
-                this.Jugador = new Jugador(this.txtNombre.Text, this.txtApellido.Text, (int)this.npdEdad.Value, int.Parse(this.txtAltura.Text), (int)this.npdDni.Value,
+                this.Jugador = new Jugador(this.txtNombre.Text, this.txtApellido.Text, (int)this.npdEdad.Value, int.Parse(this.txtAltura.Text), (long)this.npdDni.Value,
                     (EDivisiones)this.cmbDivision.SelectedItem, (EGenero)this.cmbGenero.SelectedItem, false, (EDeporte)this.cmbDeporte.SelectedItem);
 
                 this.equipo.Jugadores.Add(this.Jugador);

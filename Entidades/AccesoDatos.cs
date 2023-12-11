@@ -110,7 +110,7 @@ namespace Entidades
             jugador.Apellido = (string)this.lector["apellido"];
             jugador.IdEquipo = (int)this.lector["idEquipo"];
             jugador.Genero = ConvertirStringAEnum<EGenero>((string)this.lector["genero"]);
-            jugador.Dni = (int)this.lector["dni"];
+            jugador.Dni = (long)this.lector["dni"];
             jugador.Edad = (int)this.lector["edad"];
             jugador.Division = ConvertirStringAEnum<EDivisiones>((string)this.lector["division"]);
             jugador.Altura = (double)this.lector["altura"];

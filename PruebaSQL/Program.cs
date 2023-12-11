@@ -8,9 +8,9 @@ namespace PruebaSQL
     {
         static void Main(string[] args)
         {
-            AccesoDatosJugador accesoDatos = new AccesoDatosJugador();
+            AccesoDatosEquipo accesoDatos = new AccesoDatosEquipo();
 
-            if (accesoDatos.ProbarConexion())
+            if (accesoDatos.ProbarConneccion())
             {
                 Console.WriteLine("Se conectó");
             }
@@ -19,16 +19,13 @@ namespace PruebaSQL
                 Console.WriteLine("No se conectó");
             }
 
+            List<Jugador> jugadores = accesoDatos.TraerJugadores();
 
+            foreach (Jugador jugador in jugadores)
+            {
+                Console.WriteLine(jugador.ToString()); 
+            }
 
-            // Crear un objeto Color con el color Rojo
-            Color colorRojo = Color.Red;
-
-            // Obtener el nombre del color Rojo
-            string nombreColorRojo = colorRojo.Name;
-
-            // Mostrar el resultado
-            Console.WriteLine($"Nombre del color Rojo: {nombreColorRojo}");
             Console.ReadKey();
         }
     }

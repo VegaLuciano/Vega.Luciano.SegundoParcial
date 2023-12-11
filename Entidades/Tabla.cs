@@ -35,39 +35,13 @@ namespace Entidades
             this.listaJugadores = listaJugadores;
         }
 
-        public bool DesignarJugadores() 
+        public void DesignarJugadores()
         {
-            bool retorno = true;
-            if (!this.ListaBasquet.IsNullOrEmpty())
-            {
-                retorno = false;
-            }
-            if (!this.ListaVoley.IsNullOrEmpty())
-            {
-                retorno = false;
-            }
-            if (!this.ListaFutbol.IsNullOrEmpty())
-            {
-                retorno = false;
-            }
             if (!this.listaJugadores.IsNullOrEmpty())
-            {
-                retorno = false;
-            }
-            if (retorno)
-            {
-                this.AgregarJugadores(this.listaJugadores);
-            }
-            return retorno;
-        }
-
-        public void AgregarJugadores(List<Jugador> jugadores)
-        {
-            if (!jugadores.IsNullOrEmpty())
             {
                 foreach (Equipo equipo in this.ListaFutbol)
                 {
-                    foreach (Jugador jugador in jugadores)
+                    foreach (Jugador jugador in this.listaJugadores)
                     {
                         if (equipo.Id == jugador.IdEquipo)
                         {
@@ -77,7 +51,7 @@ namespace Entidades
                 }
                 foreach (Equipo equipo in this.ListaBasquet)
                 {
-                    foreach (Jugador jugador in jugadores)
+                    foreach (Jugador jugador in this.listaJugadores)
                     {
                         if (equipo.Id == jugador.IdEquipo)
                         {
@@ -87,7 +61,7 @@ namespace Entidades
                 }
                 foreach (Equipo equipo in this.ListaVoley)
                 {
-                    foreach (Jugador jugador in jugadores)
+                    foreach (Jugador jugador in this.listaJugadores)
                     {
                         if (equipo.Id == jugador.IdEquipo)
                         {

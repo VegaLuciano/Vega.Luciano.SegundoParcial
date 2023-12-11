@@ -68,7 +68,6 @@ namespace Forms
             reloj.SegundoCambiado += this.Reloj_corriendo;
             FrmMenuPrincipal.CambiarColoresControles(this.Controls, this, false);
             _ = reloj.IniciarRelojAsync(CancellationToken.None);
-
         }
 
         private void Reloj_corriendo(object sender, RelojEventArgs e)
@@ -99,7 +98,6 @@ namespace Forms
             this.tabla.ListaVoley = db.listaVoley;
             this.tabla.ListaFutbol = db.listaFutbol;
             this.tabla.ListaJugadores = db.listaJugadores;
-            MessageBox.Show(this.tabla.ListaJugadores.Count.ToString()) ;
             this.tabla.DesignarJugadores();
         }
 

@@ -12,7 +12,7 @@ namespace Entidades
         private string apellido;
         private int idEquipo;
         private EGenero genero;
-        private int dni;
+        private long dni;
         private int edad;
         private EDivisiones division;
         private double altura;
@@ -43,7 +43,7 @@ namespace Entidades
             this.deporte = deporte;
         }
 
-        public Jugador(string nombre, string apellido,int edad, double altura, int dni, EDivisiones division, EGenero genero, bool esTitular)  : this()  
+        public Jugador(string nombre, string apellido,int edad, double altura, long dni, EDivisiones division, EGenero genero, bool esTitular)  : this()  
         {
             this.nombre = nombre;
             this.edad = edad;
@@ -55,11 +55,11 @@ namespace Entidades
             this.esTitular = esTitular;
         }
 
-        public Jugador(string nombre, string apellido, int edad, double altura, int dni, EDivisiones division, EGenero genero, bool esTitular, EDeporte deporte) : this( nombre, apellido, edad, altura, dni, division, genero, esTitular)
+        public Jugador(string nombre, string apellido, int edad, double altura, long dni, EDivisiones division, EGenero genero, bool esTitular, EDeporte deporte) : this( nombre, apellido, edad, altura, dni, division, genero, esTitular)
         {
             this.deporte = deporte;
         }
-        public Jugador(int idEquipo, string nombre, string apellido, int edad, double altura, int dni, EDivisiones division, EGenero genero, bool esTitular, EDeporte deporte, string posicion) : this( nombre, apellido, edad, altura, dni, division, genero, esTitular, deporte)
+        public Jugador(int idEquipo, string nombre, string apellido, int edad, double altura, long dni, EDivisiones division, EGenero genero, bool esTitular, EDeporte deporte, string posicion) : this( nombre, apellido, edad, altura, dni, division, genero, esTitular, deporte)
         {
             this.idEquipo = idEquipo;
             this.posicion = posicion;
@@ -95,7 +95,7 @@ namespace Entidades
                 }
             }   
         }
-        public int Dni
+        public long Dni
         {
             get => dni;
             set
