@@ -95,7 +95,6 @@ namespace Entidades
 
             return lista;
         }
-
         public void AsignarAtributosLectorJugador(Jugador jugador)
         {
             jugador.Nombre = (string)this.lector["nombre"];
@@ -109,7 +108,6 @@ namespace Entidades
             jugador.EsTitular = (bool)this.lector["esTitular"];
             jugador.Deporte = ConvertirStringAEnum<EDeporte>((string)this.lector["deporte"]);
         }
-
         private TEnum ConvertirStringAEnum<TEnum>(string valorDesdeBD) where TEnum : struct
         {
             if (Enum.TryParse(valorDesdeBD, true, out TEnum resultado))
@@ -122,7 +120,6 @@ namespace Entidades
                 throw new ArgumentException($"Valor no válido para el enumerado {typeof(TEnum).Name}");
             }
         }
-
         public void PrepararComandoJugador(Jugador jugador)
         {
             this.comando.Parameters.Clear();
@@ -138,7 +135,6 @@ namespace Entidades
             this.comando.Parameters.AddWithValue("@deporte", jugador.Deporte.ToString());
             this.comando.Parameters.AddWithValue("@posicion", jugador.Posicion);
         }
-
         public bool agregarJugadores(List<Jugador> lista)
         {
             bool retorno = true;
@@ -155,8 +151,6 @@ namespace Entidades
 
             return retorno;
         }
-
-
         public bool AgregarJugador(Jugador jugador)
         {
             bool retorno = false;
@@ -168,7 +162,7 @@ namespace Entidades
                 this.comando.CommandType = System.Data.CommandType.Text;
                 this.PrepararComandoJugador(jugador);
                 this.comando.CommandText = "INSERT INTO Jugador (nombre, apellido, idEquipo, genero, dni, edad, division, altura, esTitular, deporte, posicion)   " +
-                    "VALUES (@nombre, @apellido, @edad, @genero, @dni, @edad, @division, @altura, @esTitular, @deporte, @posicion);";
+                    "VALUES (@nombre, @apellido, @idEquipo, @genero, @dni, @edad, @division, @altura, @esTitular, @deporte, @posicion);";
                 this.comando.Connection = this.coneccion;
 
                 int filasAfectadas = this.comando.ExecuteNonQuery();
@@ -194,7 +188,6 @@ namespace Entidades
 
             return retorno;
         }
-
         public bool ModificarJugador(Jugador jugador)
         {
             bool retorno = false;
@@ -231,7 +224,6 @@ namespace Entidades
 
             return retorno;
         }// ...
-
         public bool EliminarJugador(Jugador jugador)
         {
             bool retorno = false;
@@ -271,7 +263,6 @@ namespace Entidades
 
             return retorno;
         }
-
         public List<Jugador> TraerJugadores(Equipo equipo)
         {
             List<Jugador> lista = new List<Jugador>();

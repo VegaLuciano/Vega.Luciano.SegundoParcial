@@ -49,6 +49,10 @@ namespace Entidades
             this.deporte = deporte;
             this.cantSuplentes = cantSuplentes;
         }
+        public Equipo(int id, string nombre, int cantTitulares, EDivisiones division, EDeporte deporte, string entrenador, int cantSuplentes) : this(nombre, cantTitulares, division)
+        {
+            this.id = id;
+        }
 
         public abstract List<Jugador> Jugadores { get; set;}
         public int Id { get => id; set => id = value; }
@@ -91,30 +95,35 @@ namespace Entidades
 
         public abstract string PresentarFormacion();
 
-        public bool SetearIdEquipoJugadores() 
+        public bool SetearIdEquipoJugadores()
         {
-            bool retorno = false;
+            bool retorno = true;
+            int idEquipo = this.id;
+
             if (!this.Jugadores.IsNullOrEmpty())
             {
                 foreach (Jugador jugador in this.Jugadores)
                 {
                     if (jugador.Nombre != "Nadie")
                     {
-                        jugador.IdEquipo = this.id;
+                        jugador.IdEquipo = idEquipo;
                     }
-                    else 
+                    else
                     {
-                        retorno = false;
+                        retorno = false; 
                         break;
                     }
-
-                    
                 }
-                retorno = true;
+            }
+            else
+            {
+                retorno = false; 
             }
 
             return retorno;
         }
+
+        
 
         protected virtual string Mostrar() 
         {

@@ -34,15 +34,16 @@ namespace Entidades
             this.altura = 0;
         }
 
-        public Jugador(string nombre, string apellido, int edad, EDeporte deporte)
+        public Jugador(int idEquipo, string nombre, string apellido, int edad, EDeporte deporte) : this() 
         {
+            this.idEquipo= idEquipo;
             this.nombre = nombre;
             this.apellido = apellido;
             this.edad = edad;
             this.deporte = deporte;
         }
 
-        public Jugador(string nombre, string apellido,int edad, double altura, int dni, EDivisiones division, EGenero genero, bool esTitular) 
+        public Jugador(string nombre, string apellido,int edad, double altura, int dni, EDivisiones division, EGenero genero, bool esTitular)  : this()  
         {
             this.nombre = nombre;
             this.edad = edad;
@@ -54,16 +55,17 @@ namespace Entidades
             this.esTitular = esTitular;
         }
 
-        public Jugador(string nombre, string apellido, int edad, double altura, int dni, EDivisiones division, EGenero genero, bool esTitular, EDeporte deporte) : this(nombre, apellido, edad, altura, dni, division, genero, esTitular)
+        public Jugador(string nombre, string apellido, int edad, double altura, int dni, EDivisiones division, EGenero genero, bool esTitular, EDeporte deporte) : this( nombre, apellido, edad, altura, dni, division, genero, esTitular)
         {
             this.deporte = deporte;
         }
-        public Jugador(string nombre, string apellido, int edad, double altura, int dni, EDivisiones division, EGenero genero, bool esTitular, EDeporte deporte, string posicion) : this(nombre, apellido, edad, altura, dni, division, genero, esTitular, deporte)
+        public Jugador(int idEquipo, string nombre, string apellido, int edad, double altura, int dni, EDivisiones division, EGenero genero, bool esTitular, EDeporte deporte, string posicion) : this( nombre, apellido, edad, altura, dni, division, genero, esTitular, deporte)
         {
+            this.idEquipo = idEquipo;
             this.posicion = posicion;
         }
 
-        #region Propiedades}
+        #region Propiedades
 
         public string Posicion
         {

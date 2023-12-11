@@ -95,21 +95,12 @@ namespace Forms
         private void CargarEquipos()
         {
             AccesoDatosEquipo db = new AccesoDatosEquipo();
-            List<Voley> listaAuxVoley = db.TraerEquipos<Voley>();
-            if (listaAuxVoley != null)
-            {
-                this.tabla.ListaVoley = listaAuxVoley;
-            }
-            List<Futbol> listaAuxFutbol = db.TraerEquipos<Futbol>();
-            if (listaAuxFutbol != null)
-            {
-                this.tabla.ListaFutbol = listaAuxFutbol;
-            }
-            List<Basquet> listaAuxBasquet = db.TraerEquipos<Basquet>();
-            if (listaAuxBasquet != null)
-            {
-                this.tabla.ListaBasquet = listaAuxBasquet;
-            }
+            this.tabla.ListaBasquet = db.listaBasquet;
+            this.tabla.ListaVoley = db.listaVoley;
+            this.tabla.ListaFutbol = db.listaFutbol;
+            this.tabla.ListaJugadores = db.listaJugadores;
+            MessageBox.Show(this.tabla.ListaJugadores.Count.ToString()) ;
+            this.tabla.DesignarJugadores();
         }
 
         private void lblUsuario_Click_1(object sender, EventArgs e)

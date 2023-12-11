@@ -27,11 +27,17 @@ namespace Entidades
 
         public AccesoDatosEquipo()
         {
-            coneccion = new SqlConnection(AccesoDatosEquipo.connectionString);
+            this.coneccion = new SqlConnection(AccesoDatosEquipo.connectionString);
             this.listaFutbol = new List<Futbol>();
             this.listaBasquet = new List<Basquet>();
             this.listaVoley = new List<Voley>();
+            this.listaJugadores = new List<Jugador>();
             this.ActualizarListas();
+        }
+
+        public void ActualizarListaJugadores()
+        {
+            this.listaJugadores = this.TraerJugadores();
         }
 
         public void ActualizarListas()
@@ -39,6 +45,7 @@ namespace Entidades
             this.listaFutbol = this.TraerEquipos<Futbol>();
             this.listaVoley = this.TraerEquipos<Voley>();
             this.listaBasquet = this.TraerEquipos<Basquet>();
+            this.ActualizarListaJugadores();
         }
         public bool ProbarConneccion()
         {
@@ -65,7 +72,6 @@ namespace Entidades
         }
 
         #region asignaciones 
-
         public void AsignarAtributosLectorBase(Equipo equipo)
         {
             equipo.Id = (int)this.lector.GetInt32(0);
@@ -82,7 +88,7 @@ namespace Entidades
         {
             AsignarAtributosLectorBase(equipo);
             equipo.ColorCamisetaVisitante = (string)this.lector["colorCamisetaVisitante"];
-            equipo.ColorCamiseteLocal = (string)this.lector["colorCamisetLocal"];
+            equipo.ColorCamiseteLocal = (string)this.lector["colorCamisetaLocal"];
         }
         public void AsignarAtributosLectorBasquet(Basquet equipo)
         {
@@ -98,7 +104,20 @@ namespace Entidades
             string cancha = (string)this.lector["cancha"];
             equipo.Cancha = ConvertirStringAEnum<ECancha>(cancha);
         }
-
+        public void AsignarAtributosLectorJugador(Jugador jugador)
+        {
+            jugador.Nombre = (string)this.lector["nombre"];
+            jugador.Apellido = (string)this.lector["apellido"];
+            jugador.IdEquipo = (int)this.lector["idEquipo"];
+            jugador.Genero = ConvertirStringAEnum<EGenero>((string)this.lector["genero"]);
+            jugador.Dni = (int)this.lector["dni"];
+            jugador.Edad = (int)this.lector["edad"];
+            jugador.Division = ConvertirStringAEnum<EDivisiones>((string)this.lector["division"]);
+            jugador.Altura = (double)this.lector["altura"];
+            jugador.EsTitular = (bool)this.lector["esTitular"];
+            jugador.Deporte = ConvertirStringAEnum<EDeporte>((string)this.lector["deporte"]);
+        }
+ 
         public void PrepararComandoEquipoBase(Equipo equipo)
         {
             this.comando.Parameters.Clear();
@@ -110,7 +129,6 @@ namespace Entidades
             this.comando.Parameters.AddWithValue("@division", equipo.Division.ToString()); ;
             this.comando.Parameters.AddWithValue("@entrenador", equipo.Entrenador);
         }
-
         public void PrepararComandoEquipo(Voley voley)
         {
             if (voley != null)
@@ -125,7 +143,7 @@ namespace Entidades
             if (futbol != null)
             {
                 PrepararComandoEquipoBase(futbol);
-                this.comando.Parameters.AddWithValue("@colorCamiseteLocal", futbol.ColorCamiseteLocal.ToString());
+                this.comando.Parameters.AddWithValue("@colorCamisetaLocal", futbol.ColorCamiseteLocal.ToString());
                 this.comando.Parameters.AddWithValue("@colorCamisetaVisitante", futbol.ColorCamisetaVisitante.ToString());
             }
         }
@@ -138,8 +156,23 @@ namespace Entidades
                 this.comando.Parameters.AddWithValue("@sponsor", basquet.Sponsor);
             }
         }
+        public void PrepararComandoJugador(Jugador jugador)
+        {
+            this.comando.Parameters.Clear();
+            this.comando.Parameters.AddWithValue("@nombre", jugador.Nombre);
+            this.comando.Parameters.AddWithValue("@apellido", jugador.Apellido);
+            this.comando.Parameters.AddWithValue("@idEquipo", jugador.IdEquipo);
+            this.comando.Parameters.AddWithValue("@genero", jugador.Genero.ToString());
+            this.comando.Parameters.AddWithValue("@dni", jugador.Dni);
+            this.comando.Parameters.AddWithValue("@edad", jugador.Edad);
+            this.comando.Parameters.AddWithValue("@division", jugador.Division.ToString());
+            this.comando.Parameters.AddWithValue("@altura", jugador.Altura);
+            this.comando.Parameters.AddWithValue("@esTitular", jugador.EsTitular);
+            this.comando.Parameters.AddWithValue("@deporte", jugador.Deporte.ToString());
+            this.comando.Parameters.AddWithValue("@posicion", jugador.Posicion);
+        }
+       
         #endregion 
-
 
         #region equipos
         public List<T> TraerEquipos<T>() where T : Equipo, new()
@@ -178,8 +211,6 @@ namespace Entidades
                         AsignarAtributosLectorBasquet(equipo as Basquet);
                     }
 
-
-
                     lista.Add(equipo);
                 }
 
@@ -199,7 +230,6 @@ namespace Entidades
 
             return lista;
         }
-
         public bool EliminarEquipo(Equipo equipo)
         {
             bool retorno = false;
@@ -256,31 +286,7 @@ namespace Entidades
             }
 
             return retorno;
-        }
-        private TEnum ConvertirStringAEnum<TEnum>(string valorDesdeBD) where TEnum : struct
-        {
-            if (Enum.TryParse(valorDesdeBD, true, out TEnum resultado))
-            {
-                return resultado;
-            }
-            else
-            {
-                // Manejar la situación si la conversión no tiene éxito
-                throw new ArgumentException($"Valor no válido para el enumerado {typeof(TEnum).Name}");
-            }
-        }
-        private System.Drawing.Color ConvertirStringAColor(string valorDesdeBD)
-        {
-            if (System.Drawing.Color.FromName(valorDesdeBD).IsKnownColor)
-            {
-                return System.Drawing.Color.FromName(valorDesdeBD);
-            }
-            else
-            {
-                // Manejar la situación si la conversión no tiene éxito
-                throw new ArgumentException($"Valor no válido para el tipo Color");
-            }
-        }
+        }   
         public int AgregarDato(Equipo equipo)
         {
             int retorno = 0;
@@ -294,9 +300,8 @@ namespace Entidades
                 {
                     this.PrepararComandoEquipo((Futbol)equipo);
                     this.listaFutbol.Add((Futbol)equipo);
-                    this.comando.CommandText = "INSERT INTO Futbol(id, nombre, deporte, cantTitulares, cantSuplentes, division, entrenador, colorCamisetaLocal, colorCamisetaVisitante)" +
-                                        "VALUES(123, 'Juancito', 'Futbol', 11, 7, 'MAYORES', 'Marcos', 'Rojo', 'Azul')";
-                        //"VALUES (@id, @nombre, @deporte, @cantTitulares, @cantSuplentes, @division, @entrenador, @colorCamisetaLocal, @colorCamisetaVisitante)"; 
+                    this.comando.CommandText = "INSERT into Futbol(id, nombre, deporte, cantTitulares, cantSuplentes, division, entrenador, colorCamisetaLocal, colorCamisetaVisitante)" +
+                        "VALUES (@id, @nombre, @deporte, @cantTitulares, @cantSuplentes, @division, @entrenador, @colorCamisetaLocal, @colorCamisetaVisitante)"; 
                 }
                 else if (equipo is Voley)
                 {
@@ -395,7 +400,245 @@ namespace Entidades
 
         #endregion
 
+        #region Jugador
+        public List<Jugador> TraerJugadores()
+        {
+            List<Jugador> lista = new List<Jugador>();
 
+            this.comando = new SqlCommand();
+            this.comando.CommandType = CommandType.Text;
+            this.comando.CommandText = "SELECT * FROM Jugador";
 
+            try
+            {
+                this.comando.Connection = this.coneccion;
+
+                this.coneccion.Open();
+
+                this.lector = this.comando.ExecuteReader();
+
+                while (lector.Read())
+                {
+                    Jugador jugador = new Jugador();
+
+                    // Asignar atributos del lector al jugador
+                    this.AsignarAtributosLectorJugador(jugador);
+
+                    // Agregar jugador a la lista
+                    lista.Add(jugador);
+                }
+
+                this.lector.Close();
+            }
+            catch (Exception ex)
+            {
+                // Manejar la excepción si es necesario
+            }
+            finally 
+            {
+                if (this.coneccion.State == ConnectionState.Open)
+                {
+                    this.coneccion.Close();
+                }
+            }
+
+            return lista;
+        }
+        public bool agregarJugadores(List<Jugador> lista)
+        {
+            bool retorno = true;
+
+            foreach (Jugador jugador in lista)
+            {
+                if (!this.AgregarJugador(jugador))
+                {
+                    retorno = false;
+                    break;
+                }
+
+            }
+
+            return retorno;
+        }
+        public bool AgregarJugador(Jugador jugador)
+        {
+            bool retorno = false;
+
+            try
+            {
+                this.coneccion.Open();
+                this.comando = new SqlCommand();
+                this.comando.CommandType = System.Data.CommandType.Text;
+                this.PrepararComandoJugador(jugador);
+                this.comando.CommandText = "INSERT INTO Jugador (nombre, apellido, idEquipo, genero, dni, edad, division, altura, esTitular, deporte, posicion)   " +
+                    "VALUES (@nombre, @apellido, @idEquipo, @genero, @dni, @edad, @division, @altura, @esTitular, @deporte, @posicion);";
+                this.comando.Connection = this.coneccion;
+
+                int filasAfectadas = this.comando.ExecuteNonQuery();
+                if (filasAfectadas != 0)
+                {
+                    // Una vez que se realizó la carga de los datos, actualizo para tener en la lista local el id
+                    this.ActualizarListaJugadores();
+                    retorno = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                retorno = true;
+                // Manejar la excepción si es necesario
+            }
+            finally
+            {
+                if (this.coneccion.State == ConnectionState.Open)
+                {
+                    this.coneccion.Close();
+                }
+            }
+
+            return retorno;
+        }
+        public bool ModificarJugador(Jugador jugador)
+        {
+            bool retorno = false;
+
+            try
+            {
+                this.comando = new SqlCommand();
+                this.comando.CommandType = CommandType.Text;
+                this.PrepararComandoJugador(jugador);
+                this.comando.CommandText = "UPDATE Jugador SET nombre = @nombre, apellido = @apellido, idEquipo = @idEquipo, genero = @genero, " +
+                    "dni = @dni, edad = @edad, division = @division, altura = @altura, esTitular = @esTitular, deporte = @deporte " +
+                    "WHERE dni = @dni";
+                this.comando.Connection = this.coneccion;
+                this.coneccion.Open();
+
+                int filasAfectadas = this.comando.ExecuteNonQuery();
+                if (filasAfectadas == 1)
+                {
+                    this.ActualizarListaJugadores();
+                    retorno = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejar la excepción si es necesario
+            }
+            finally
+            {
+                if (this.coneccion.State == ConnectionState.Open)
+                {
+                    this.coneccion.Close();
+                }
+            }
+
+            return retorno;
+        }// ...
+        public bool EliminarJugador(Jugador jugador)
+        {
+            bool retorno = false;
+
+            try
+            {
+                this.coneccion.Open();
+                this.comando = new SqlCommand();
+                this.comando.CommandType = CommandType.Text;
+                this.comando.Parameters.AddWithValue("@dni", jugador.Dni);
+
+                this.comando.CommandText = "DELETE FROM Jugadores WHERE dni = @dni";
+                this.comando.Connection = this.coneccion;
+
+                int filasAfectadas = this.comando.ExecuteNonQuery();
+                if (filasAfectadas == 1)
+                {
+                    this.ActualizarListaJugadores();
+                    retorno = true;
+                }
+                else if (filasAfectadas == 0)
+                {
+                    // No se encontró ninguna fila para eliminar
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejar la excepción si es necesario
+            }
+            finally
+            {
+                if (this.coneccion.State == ConnectionState.Open)
+                {
+                    this.coneccion.Close();
+                }
+            }
+
+            return retorno;
+        }
+        public List<Jugador> TraerJugadores(Equipo equipo)
+        {
+            List<Jugador> lista = new List<Jugador>();
+
+            this.comando = new SqlCommand();
+            this.comando.CommandType = CommandType.Text;
+            this.comando.CommandText = $"SELECT * FROM Jugadores Where idEquipo = {equipo.Id}";
+
+            try
+            {
+                this.comando.Connection = this.coneccion;
+                this.coneccion.Open();
+                this.lector = this.comando.ExecuteReader();
+
+                while (lector.Read())
+                {
+                    Jugador jugador = new Jugador();
+
+                    // Asignar atributos del lector al jugador
+                    this.AsignarAtributosLectorJugador(jugador);
+
+                    // Agregar jugador a la lista
+                    lista.Add(jugador);
+                }
+
+                this.lector.Close();
+            }
+            catch (Exception ex)
+            {
+                // Manejar la excepción si es necesario
+            }
+            finally
+            {
+                if (this.coneccion.State == ConnectionState.Open)
+                {
+                    this.coneccion.Close();
+                }
+            }
+
+            return lista;
+        }
+
+        #endregion
+
+        private TEnum ConvertirStringAEnum<TEnum>(string valorDesdeBD) where TEnum : struct
+        {
+            if (Enum.TryParse(valorDesdeBD, true, out TEnum resultado))
+            {
+                return resultado;
+            }
+            else
+            {
+                // Manejar la situación si la conversión no tiene éxito
+                throw new ArgumentException($"Valor no válido para el enumerado {typeof(TEnum).Name}");
+            }
+        }
+        private System.Drawing.Color ConvertirStringAColor(string valorDesdeBD)
+        {
+            if (System.Drawing.Color.FromName(valorDesdeBD).IsKnownColor)
+            {
+                return System.Drawing.Color.FromName(valorDesdeBD);
+            }
+            else
+            {
+                // Manejar la situación si la conversión no tiene éxito
+                throw new ArgumentException($"Valor no válido para el tipo Color");
+            }
+        }
     }
 }
