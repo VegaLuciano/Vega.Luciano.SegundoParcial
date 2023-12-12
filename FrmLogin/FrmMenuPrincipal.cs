@@ -1,5 +1,7 @@
 ﻿using Entidades;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.VisualBasic.Devices;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -224,7 +226,44 @@ namespace Forms
 
         private void btnVerLog_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(pathUsuarios);
+            this.verLog();
         }
+
+        private void verLog() 
+        {           
+            try
+            {
+                if (File.Exists(this.pathUsuarios))
+                {
+                    string[] contenido = File.ReadAllLines(pathUsuarios);
+
+                    if (!contenido.IsNullOrEmpty())
+                    {
+                        List<string> listaLogs = new List<string>();
+
+                        StringBuilder sb = new StringBuilder();
+
+                        for (int i = 0; i < contenido.Length; i++)
+                        {
+                            if (i % 2 == 0) 
+                            {
+                                sb.AppendLine(contenido[i] + ", Fecha: " + contenido[i + 1]);
+                                listaLogs.Add(sb.ToString());
+                                sb.Clear(); 
+                            }
+                        }
+                        //MessageBox.Show(listaLogs.Count.ToString());
+                        FrmLog frmLog = new FrmLog(listaLogs);
+                        frmLog.ShowDialog();
+                    }
+                }
+      
+            }
+            catch (Exception ex)
+            {
+               MessageBox.Show($"Error: {ex.Message}");
+            }
+        }
+        
     }
 }

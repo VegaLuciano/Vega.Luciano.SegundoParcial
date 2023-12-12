@@ -13,6 +13,9 @@
     <Compile Update="FrmJugador.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="FrmLog.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="FrmLogin1.cs">
       <SubType>Form</SubType>
     </Compile>
