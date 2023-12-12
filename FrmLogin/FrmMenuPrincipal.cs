@@ -216,7 +216,7 @@ namespace Forms
 
         private void btnUsuarioPath_Click(object sender, EventArgs e)
         {
-            List<string> extensiones = new List<string> { "folder" };
+            List<string> extensiones = new List<string> { "Folder|*.folder" };
             string pathUsuarioslog = FrmCRUD1.LeerPath(this.lblErrorPath, extensiones);
             if (pathUsuarioslog != null)
             {
