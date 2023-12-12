@@ -79,7 +79,7 @@ namespace Forms
                             if (indice >= 0)
                             {
                                 // Reemplaza el objeto en la misma posición.                                                         
-                                if (db.ModificarDato(EquipoVoley)) 
+                                if (db.ModificarEquipo(EquipoVoley)) 
                                 {
                                     this.tabla.ListaVoley[indice] = EquipoVoley;
                                     MessageBox.Show("Se cargó todo exitosamente!");

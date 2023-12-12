@@ -343,11 +343,12 @@ namespace Entidades
             }
             return retorno;
         }
-        public bool ModificarDato(Equipo equipo)
+        public bool ModificarEquipo(Equipo equipo)
         {
             bool retorno = false;
             try
             {
+                this.coneccion.Open();
                 this.comando = new SqlCommand();
                 this.comando.CommandType = System.Data.CommandType.Text;
 
@@ -355,7 +356,7 @@ namespace Entidades
                 if (equipo is Futbol)
                 {
                     this.PrepararComandoEquipo((Futbol)equipo);
-                    this.comando.CommandText = "UPDATE Voley SET nombre = @nombre, deporte = @deporte, cantTitulares = @cantTitulares, cantSuplentes = @cantSuplentes, division = @division,  entrenador = @entrenador," +
+                    this.comando.CommandText = "UPDATE Futbol SET nombre = @nombre, deporte = @deporte, cantTitulares = @cantTitulares, cantSuplentes = @cantSuplentes, division = @division,  entrenador = @entrenador," +
                         "colorCamisetaLocal = @colorCamisetaLocal, colorCamisetaVisitante = @colorCamisetaVisitante WHERE id = @id";
                 }
                 else if (equipo is Voley)
@@ -367,21 +368,17 @@ namespace Entidades
                 else if (equipo is Basquet)
                 {
                     this.PrepararComandoEquipo((Basquet)equipo);
-                    this.comando.CommandText = "UPDATE Voley SET nombre = @nombre, deporte = @deporte, cantTitulares = @cantTitulares, cantSuplentes = @cantSuplentes, division = @division,  entrenador = @entrenador," +
+                    this.comando.CommandText = "UPDATE Basquet SET nombre = @nombre, deporte = @deporte, cantTitulares = @cantTitulares, cantSuplentes = @cantSuplentes, division = @division,  entrenador = @entrenador," +
                         "sponsoDelEquipo = @sponsorDelEquipo, equipoMedico = @equipoMedico WHERE id = @id";
                 }
 
                 this.comando.Connection = this.coneccion;
-                this.coneccion.Open();
+              
                 int filasAfectadas = this.comando.ExecuteNonQuery();
                 if (filasAfectadas == 1)
                 {
                     this.ActualizarListas();
                     retorno = true;
-                }
-                else if (filasAfectadas == 0)
-                {
-
                 }
             }
             catch (Exception ex)

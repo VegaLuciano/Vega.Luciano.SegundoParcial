@@ -61,7 +61,7 @@ namespace Forms
                             int indice = this.tabla.ListaFutbol.IndexOf(this.equipoModificar);
 
                             // Reemplaza el objeto en la misma posición.                                                         
-                            if (db.ModificarDato(EquipoFutbol))
+                            if (db.ModificarEquipo(EquipoFutbol))
                             {
                                 this.tabla.ListaFutbol[indice] = EquipoFutbol;
                                 MessageBox.Show("Se cargó todo exitosamente!");
