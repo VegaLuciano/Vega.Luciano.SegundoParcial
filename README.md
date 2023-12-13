@@ -32,6 +32,6 @@ El diagrama de clases se ha generado utilizando la herramienta de Visual Studio 
 
 ## Diagrama de Clases
 
-![Alt text](ClassDiagram1-1.png)
+[!\[Alt text\](ClassDiagram1-1.png)](FrmLogin/ClassDiagram1.cd)
 
 A continuación, se muestra el diagrama de clases correspondiente a la lógica de negocio de la aplicación:

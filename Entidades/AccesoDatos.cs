@@ -497,17 +497,17 @@ namespace Entidades
         public bool ModificarJugador(Jugador jugador)
         {
             bool retorno = false;
-
+           
             try
             {
+                this.coneccion.Open();
                 this.comando = new SqlCommand();
                 this.comando.CommandType = CommandType.Text;
                 this.PrepararComandoJugador(jugador);
                 this.comando.CommandText = "UPDATE Jugador SET nombre = @nombre, apellido = @apellido, idEquipo = @idEquipo, genero = @genero, " +
-                    "dni = @dni, edad = @edad, division = @division, altura = @altura, esTitular = @esTitular, deporte = @deporte " +
+                    "dni = @dni, edad = @edad, division = @division, altura = @altura, esTitular = @esTitular, deporte = @deporte, posicion = @posicion " +
                     "WHERE dni = @dni";
                 this.comando.Connection = this.coneccion;
-                this.coneccion.Open();
 
                 int filasAfectadas = this.comando.ExecuteNonQuery();
                 if (filasAfectadas == 1)
@@ -530,6 +530,21 @@ namespace Entidades
 
             return retorno;
         }// ...
+        public bool ModificarJugadores(Equipo equipo)
+        {
+            bool retorno = true;
+
+            foreach (Jugador jugador in equipo.Jugadores) 
+            {
+                if(!ModificarJugador(jugador))
+                {
+                    retorno = false;
+                }
+            }
+
+            return retorno;
+        }
+        
         public bool EliminarJugador(Jugador jugador)
         {
             bool retorno = false;

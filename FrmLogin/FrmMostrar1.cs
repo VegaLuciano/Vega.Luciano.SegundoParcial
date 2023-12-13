@@ -263,8 +263,14 @@ namespace Forms
                         this.equipoSeleccionado = BasquetAux;
                         break;
                 };
+                MessageBox.Show(this.equipoSeleccionado.Jugadores[0].Posicion);
+                AccesoDatosEquipo db = new AccesoDatosEquipo();
 
-                MessageBox.Show("Posiciones establecidas");
+                if (db.ModificarJugadores(this.equipoSeleccionado))
+                {
+                    MessageBox.Show("Posiciones establecidas");
+                }
+                
             }
             catch (Exception ex)
             {

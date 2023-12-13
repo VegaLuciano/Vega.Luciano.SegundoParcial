@@ -67,11 +67,6 @@ namespace Entidades
 
         #region Propiedades
 
-        public string Posicion
-        {
-            get => posicion;
-            set { posicion = value; }
-        }
         public string Nombre
         {
             get => nombre;
@@ -141,6 +136,7 @@ namespace Entidades
         public EDeporte Deporte { get => deporte; set => deporte = value;  }
         public EGenero Genero { get => genero; set => genero = value; }
         public bool EsTitular { get => esTitular; set => esTitular = value; }
+        public string Posicion { get => posicion; set => posicion = value; }
         public int IdEquipo { get => idEquipo; set => idEquipo = value; }
 
         #endregion
