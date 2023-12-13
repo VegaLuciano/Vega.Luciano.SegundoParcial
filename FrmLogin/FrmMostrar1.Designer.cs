@@ -166,10 +166,9 @@
             btnAgregarJugador.Name = "btnAgregarJugador";
             btnAgregarJugador.Size = new Size(140, 27);
             btnAgregarJugador.TabIndex = 13;
-            btnAgregarJugador.Text = "AgregarJugador";
+            btnAgregarJugador.Text = "Designar Pocisiones";
             btnAgregarJugador.TextAlign = ContentAlignment.BottomCenter;
             btnAgregarJugador.UseVisualStyleBackColor = false;
-            btnAgregarJugador.Visible = false;
             btnAgregarJugador.Click += btnAgregarJugador_Click;
             // 
             // FrmMostrar1

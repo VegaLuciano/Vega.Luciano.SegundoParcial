@@ -81,7 +81,7 @@ namespace Forms
         {
             this.GuardarArhivos();
             this.DialogResult = DialogResult.OK;
-            if (MessageBox.Show("¿Estás seguro de que deseas cerrar el formulario?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+            if (MessageBox.Show("¿Estás seguro de que deseas cerrar la aplicación?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
             {
                 e.Cancel = true;
             }
@@ -216,26 +216,53 @@ namespace Forms
 
         private void btnUsuarioPath_Click(object sender, EventArgs e)
         {
-            List<string> extensiones = new List<string> { "Folder|*.folder" };
-            string pathUsuarioslog = FrmCRUD1.LeerPath(this.lblErrorPath, extensiones);
+            string pathUsuarioslog = FrmMenuPrincipal.SeleccionarPathGuardar(this.lblErrorPath);
             if (pathUsuarioslog != null)
             {
-                this.pathUsuarios = pathUsuarioslog;
+                try
+                {
+                    File.Copy(this.pathUsuarios, pathUsuarioslog + @"\usuario.log", true);
+                    this.pathUsuarios = pathUsuarioslog + @"\usuarios.log";
+                    Console.WriteLine("Archivo copiado con éxito.");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error al copiar el archivo: {ex.Message}");
+                }
             }
+        }
+
+        public static string SeleccionarPathGuardar(Label labelError)
+        {
+            string path = string.Empty;
+
+            using (FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog())
+            {
+                folderBrowserDialog.Description = "Seleccione una carpeta para guardar el archivo";
+
+                DialogResult result = folderBrowserDialog.ShowDialog();
+
+                if (result == DialogResult.OK)
+                {
+                    path = folderBrowserDialog.SelectedPath;
+                }
+                else
+                {
+                    labelError.Text = "No se seleccionó ninguna ubicación para guardar el archivo";
+                }
+            }
+
+            return path;
+        
         }
 
         private void btnVerLog_Click(object sender, EventArgs e)
         {
-            this.verLog();
-        }
-
-        private void verLog() 
-        {           
             try
             {
                 if (File.Exists(this.pathUsuarios))
                 {
-                    string[] contenido = File.ReadAllLines(pathUsuarios);
+                    string[] contenido = File.ReadAllLines(this.pathUsuarios);
 
                     if (!contenido.IsNullOrEmpty())
                     {
@@ -245,23 +272,23 @@ namespace Forms
 
                         for (int i = 0; i < contenido.Length; i++)
                         {
-                            if (i % 2 == 0) 
+                            if (i % 2 == 0)
                             {
                                 sb.AppendLine(contenido[i] + ", Fecha: " + contenido[i + 1]);
                                 listaLogs.Add(sb.ToString());
-                                sb.Clear(); 
+                                sb.Clear();
                             }
                         }
-                        //MessageBox.Show(listaLogs.Count.ToString());
+
                         FrmLog frmLog = new FrmLog(listaLogs);
                         frmLog.ShowDialog();
                     }
                 }
-      
+
             }
             catch (Exception ex)
             {
-               MessageBox.Show($"Error: {ex.Message}");
+                MessageBox.Show($"Error: {ex.Message}");
             }
         }
         

@@ -1,0 +1,42 @@
+[
+  {
+    "Legajo": "1",
+    "Nombre": "Corey",
+    "Apellido": "Gorgen",
+    "Mail": "cgorgen@vendedor.com",
+    "Clave": "123abc45",
+    "Perfil": "vendedor"
+  },
+  {
+    "Legajo": "2",
+    "Nombre": "Ingrid",
+    "Apellido": "Harroll",
+    "Mail": "iharroll@vendedor.com",
+    "Clave": "qweasdzx",
+    "Perfil": "vendedor"
+  },
+  {
+    "Legajo": "3",
+    "Nombre": "Steve",
+    "Apellido": "Harris",
+    "Mail": "sharris@maiden.com.uk",
+    "Clave": "eddie666",
+    "Perfil": "vendedor"
+  },
+  {
+    "Legajo": "4",
+    "Nombre": "Tilda",
+    "Apellido": "Robinson",
+    "Mail": "trobinson@super.com",
+    "Clave": "12345678",
+    "Perfil": "supervisor"
+  },
+  {
+    "Legajo": "5",
+    "Nombre": "Michael",
+    "Apellido": "Jordan",
+    "Mail": "admin@admin.com",
+    "Clave": "12345678",
+    "Perfil": "administrador"
+  }
+]

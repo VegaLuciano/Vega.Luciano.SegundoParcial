@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
+    /// <summary>
+    /// Clase que representa una tabla que contiene listas de equipos y jugadores de diferentes deportes.
+    /// </summary>
     public class Tabla
     {
         private List<Voley> listaVoley;
@@ -35,6 +38,9 @@ namespace Entidades
             this.listaJugadores = listaJugadores;
         }
 
+        /// <summary>
+        /// Asigna jugadores a los equipos según su ID de equipo.
+        /// </summary>
         public void DesignarJugadores()
         {
             if (!this.listaJugadores.IsNullOrEmpty())

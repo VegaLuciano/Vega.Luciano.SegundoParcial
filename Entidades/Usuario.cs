@@ -8,11 +8,12 @@ namespace Entidades
 {
     public sealed class Usuario
     {
-        private string id;
+        private string legajo;
         private string nombre;
         private string apellido;
         private string mail;
-        private string contraseña;
+        private string clave;
+        private string perfil;
         private static int countId;
 
         public delegate void UsuarioDelegate(Usuario sender, InfoUsuariosEventArgs info);
@@ -22,33 +23,36 @@ namespace Entidades
         public Usuario()
         {
             this.nombre = "None";
-            this.id += countId;
+            this.legajo += countId;
             Usuario.countId++;
-            this.contraseña = "None";
+            this.clave = "None";
             this.apellido = "None";
             this.mail = "None";
+            this.perfil = "None";
         }
         public Usuario(string mail, string contraseña) : this()
         {
             this.mail = mail;
-            this.contraseña = contraseña;   
+            this.clave = contraseña;   
         }
 
-        public Usuario(string mail, string contraseña, string nombre, string apellido) : this(mail, contraseña)
+        public Usuario(string mail, string contraseña, string nombre, string apellido, string perfil) : this(mail, contraseña)
         {
             this.nombre = nombre;
             this.apellido = apellido;
+            this.perfil = perfil;
         }
 
-        public string Id { get => id; set => id = value; }
+        public string Legajo { get => legajo; set => legajo = value; }
         public string Nombre { get => nombre; set => nombre = value; }
         public string Apellido { get => apellido; set => apellido = value; }
         public string Mail { get => mail; set => mail = value; }
-        public string Contraseña { get => contraseña; set => contraseña = value; }
+        public string Clave { get => clave; set => clave = value; }
+        public string Perfil { get => perfil; set => perfil = value; }
 
         public static bool operator ==(Usuario usuario1, Usuario usuario2)
         {
-            return usuario1.mail == usuario2.mail && usuario1.contraseña == usuario2.contraseña;
+            return usuario1.mail == usuario2.mail && usuario1.clave == usuario2.clave;
         }
         public static bool operator !=(Usuario usuario1, Usuario usuario2)
         {
@@ -63,6 +67,7 @@ namespace Entidades
 
             return retorno;
         }
+
         /// <summary>
         /// Valida que la contraseña sea lo suficientemente segura
         /// </summary>
@@ -96,17 +101,17 @@ namespace Entidades
         }
 
         /// <summary>
-        /// Busca al usuario en la lista 
+        /// Método estático que busca a un usuario en la lista.
         /// </summary>
-        /// <param name="usuario"></param>
-        /// <param name="lista"></param>
-        /// <returns>Si el usuario esta retorna su pocision, de caso contrario 0</returns>
+        /// <param name="usuario">Usuario a buscar.</param>
+        /// <param name="lista">Lista de usuarios.</param>
+        /// <returns>Posición del usuario en la lista o -1 si no se encuentra.</returns>
         public static int FindUser(Usuario usuario, List<Usuario> lista)
         {
             int index = -1;
             foreach (Usuario user in lista)
             {
-                if (user == usuario) 
+                if (user == usuario)
                 {
                     index = lista.IndexOf(user);
                     break;
@@ -121,7 +126,13 @@ namespace Entidades
             return index;
         }
 
-        public void guardarUsuario(Usuario usuario, string path, DateTime fecha) 
+        /// <summary>
+        /// Método que guarda un usuario en un archivo.
+        /// </summary>
+        /// <param name="usuario">Usuario a guardar.</param>
+        /// <param name="path">Ruta del archivo.</param>
+        /// <param name="fecha">Fecha de guardado.</param>
+        public void guardarUsuario(Usuario usuario, string path, DateTime fecha)
         {
             try
             {
@@ -135,12 +146,18 @@ namespace Entidades
 
             }
             catch (Exception ex)
-            { 
-                
+            {
+
             }
-            
+
         }
 
+        /// <summary>
+        /// Método estático que verifica si un campo de usuario está repetido en la lista.
+        /// </summary>
+        /// <param name="usuario">Campo de usuario a verificar.</param>
+        /// <param name="lista">Lista de usuarios.</param>
+        /// <returns>True si el campo está repetido, false en caso contrario.</returns>
         public static bool CampoRepetido(string usuario, List<Usuario> lista)
         {
             bool retorno = false;
@@ -156,13 +173,17 @@ namespace Entidades
             return retorno;
         }
 
-        private string MostrarDatos() 
+        private string MostrarDatos()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append($"{this.id} - {this.nombre} - {this.mail}");
+            sb.Append($"{this.legajo} - {this.nombre} - {this.mail}");
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Método que retorna una representación en cadena del objeto.
+        /// </summary>
+        /// <returns>Cadena que representa al objeto.</returns>
         public override string ToString()
         {
             return this.MostrarDatos();

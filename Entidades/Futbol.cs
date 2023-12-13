@@ -39,6 +39,10 @@ namespace Entidades
         public string ColorCamiseteLocal { get => colorCamisetaLocal; set => colorCamisetaLocal = value; }
         public string ColorCamisetaVisitante { get => colorCamisetaVisitante; set => colorCamisetaVisitante = value; }
 
+        /// <summary>
+        /// Representación textual del equipo de fútbol.
+        /// </summary>
+        /// <returns>Cadena que representa la información del equipo.</returns>
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
@@ -48,6 +52,12 @@ namespace Entidades
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Ordena la lista de equipos de fútbol por nombre de forma ascendente o descendente.
+        /// </summary>
+        /// <param name="lista">Lista de equipos de fútbol a ordenar.</param>
+        /// <param name="ascendente">Indica si la ordenación es ascendente (true) o descendente (false).</param>
+        /// <returns>Lista de equipos de fútbol ordenada por nombre.</returns>
         public static List<Futbol> OrdenarPorNombre(List<Futbol> lista, bool ascendente)
         {
             if (ascendente)
@@ -60,6 +70,9 @@ namespace Entidades
             }
 
         }
+        /// <summary>
+        /// Determina las posiciones de los jugadores titulares del equipo de fútbol.
+        /// </summary>
         public void DeterminarPosiciones()
         {
             int defensaCount = 0;
@@ -98,6 +111,11 @@ namespace Entidades
                 }
             }
         }
+
+        /// <summary>
+        /// Presenta la formación del equipo de fútbol, mostrando titulares y suplentes.
+        /// </summary>
+        /// <returns>Cadena que representa la formación del equipo.</returns>
         public override string PresentarFormacion()
         {
             StringBuilder sb = new StringBuilder();

@@ -19,7 +19,7 @@ namespace Forms
         {
             InitializeComponent();
             this.usuario = usuario;
-            this.contraseñaOculta = new string('*', this.usuario.Contraseña.Length);
+            this.contraseñaOculta = new string('*', this.usuario.Clave.Length);
         }
 
         private void FrmUsuario_Load(object sender, EventArgs e)
@@ -41,7 +41,7 @@ namespace Forms
         {
             if (this.chbVer.Checked)
             {
-                this.lblUsContraseña.Text = this.usuario.Contraseña;
+                this.lblUsContraseña.Text = this.usuario.Clave;
             }
             else
             {

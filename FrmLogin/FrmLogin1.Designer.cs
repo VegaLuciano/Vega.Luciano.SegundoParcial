@@ -44,7 +44,6 @@
             txtMail.Name = "txtMail";
             txtMail.Size = new Size(186, 27);
             txtMail.TabIndex = 0;
-            txtMail.Text = "lucianovega@parcial.com";
             // 
             // txtContraseña
             // 
@@ -53,7 +52,6 @@
             txtContraseña.Name = "txtContraseña";
             txtContraseña.Size = new Size(186, 27);
             txtContraseña.TabIndex = 1;
-            txtContraseña.Text = "Password_1";
             // 
             // lblUsername
             // 

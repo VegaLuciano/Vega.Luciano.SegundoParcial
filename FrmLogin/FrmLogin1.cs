@@ -8,7 +8,7 @@ namespace FrmLogin
     {
         private Usuario usuario;
         private List<Usuario> usuariosRegistrados;
-        private string pathUsuariosRegistrados = "usuarios.json";
+        private string pathUsuariosRegistrados = "MOCK_DATA.json";
         public FrmLogin1()
         {
             InitializeComponent();
@@ -33,6 +33,7 @@ namespace FrmLogin
             if (listAux != null)
             {
                 this.usuariosRegistrados = listAux;
+                MessageBox.Show(usuariosRegistrados.Count.ToString());
             }
             else
             {
@@ -47,7 +48,8 @@ namespace FrmLogin
 
             try
             {
-                int indexUser = Usuario.FindUser(usuarioAux, this.usuariosRegistrados);             
+                int indexUser = Usuario.FindUser(usuarioAux, this.usuariosRegistrados);
+                MessageBox.Show(usuarioAux.ToString());
                 this.usuario = this.usuariosRegistrados[indexUser];
                 FrmMenuPrincipal frmMenuPrincipal = new FrmMenuPrincipal(this.usuariosRegistrados, this.usuario, this.pathUsuariosRegistrados);
                 frmMenuPrincipal.ShowDialog();
@@ -56,17 +58,18 @@ namespace FrmLogin
                 if (frmMenuPrincipal.DialogResult == DialogResult.OK)
                 {
                     this.Close();
-                }                   
+                }
             }
             catch (ExcepcionUsuarioInexistente ex)
             {
-                this.lblError.Text = $"Error: {ex.mensaje}";
+                this.lblError.Text = $"{ex.mensaje}";
+                MessageBox.Show(usuarioAux.ToString());
             }
             catch (Exception ex)
             {
                 this.lblError.Text = $"Otro error inesperado: {ex.Message}";
             }
-            
+
         }
 
         private void btnRegistrarse_Click(object sender, EventArgs e)

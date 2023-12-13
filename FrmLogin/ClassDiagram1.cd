@@ -1,23 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ClassDiagram MajorVersion="1" MinorVersion="1">
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
   <Class Name="Entidades.Equipo">
-    <Position X="3" Y="0.5" Width="2.75" />
+    <Position X="4" Y="0.5" Width="3" />
     <TypeIdentifier />
   </Class>
   <Class Name="Entidades.Voley">
-    <Position X="6" Y="0.5" Width="2" />
+    <Position X="7.25" Y="0.5" Width="3" />
     <TypeIdentifier />
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="Entidades.Futbol">
-    <Position X="6" Y="3.5" Width="2" />
+    <Position X="7.25" Y="4.25" Width="3" />
     <TypeIdentifier />
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="Entidades.Basquet">
-    <Position X="0.5" Y="0.75" Width="2" />
+    <Position X="0.75" Y="1.75" Width="2.5" />
     <TypeIdentifier />
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="Entidades.Usuario">
-    <Position X="8.5" Y="0.75" Width="2" />
+    <Position X="10.5" Y="0.5" Width="2.75" />
+    <NestedTypes>
+      <Class Name="Entidades.Usuario.UsuarioDelegate" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+    </NestedTypes>
     <TypeIdentifier />
   </Class>
   <Font Name="Segoe UI" Size="9" />

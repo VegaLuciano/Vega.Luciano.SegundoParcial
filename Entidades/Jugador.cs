@@ -145,15 +145,33 @@ namespace Entidades
 
         #endregion
 
+        /// <summary>
+        /// Sobrecarga del operador de igualdad que compara jugadores por su DNI.
+        /// </summary>
+        /// <param name="jugador1">Primer jugador a comparar.</param>
+        /// <param name="jugador2">Segundo jugador a comparar.</param>
+        /// <returns>True si los jugadores tienen el mismo DNI, false en caso contrario.</returns>
         public static bool operator ==(Jugador jugador1, Jugador jugador2) 
         {
             return jugador1.dni == jugador2.dni;
         }
+
+        /// <summary>
+        /// Sobrecarga del operador de desigualdad que compara jugadores por su DNI.
+        /// </summary>
+        /// <param name="jugador1">Primer jugador a comparar.</param>
+        /// <param name="jugador2">Segundo jugador a comparar.</param>
+        /// <returns>True si los jugadores tienen diferentes DNIs, false en caso contrario.</returns>
         public static bool operator !=(Jugador jugador1, Jugador jugador2)
         {
             return !(jugador1.dni == jugador2.dni);
         }
 
+        /// <summary>
+        /// Compara el objeto actual con otro objeto.
+        /// </summary>
+        /// <param name="obj">Objeto a comparar.</param>
+        /// <returns>True si el objeto actual es igual al objeto especificado, false en caso contrario.</returns>
         public override bool Equals(object? obj)
         {
             bool retorno = false;

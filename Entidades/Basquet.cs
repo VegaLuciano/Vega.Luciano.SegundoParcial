@@ -38,12 +38,10 @@ namespace Entidades
         public bool EquipoMedico { get => equipoMedico; set => equipoMedico = value; }
         public string? Sponsor { get => sponsor; set => sponsor = value; }
 
-        private void Formacion(int titulares)
-        {
-            Random random = new Random();
-            //this.titulares = this.jugadores.OrderBy(x => random.Next()).Take(titulares).ToList();
-            // this.suplentes = this.jugadores.Except(this.titulares).ToList();
-        }
+        /// <summary>
+        /// Convierte la información del equipo de básquetbol a una cadena de texto.
+        /// </summary>
+        /// <returns>Cadena que representa la información del equipo de básquetbol.</returns>
         public override string ToString()
         {
             string respuesta = "no";
@@ -56,6 +54,12 @@ namespace Entidades
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Ordena la lista de equipos de básquetbol por nombre de forma ascendente o descendente.
+        /// </summary>
+        /// <param name="lista">Lista de equipos de básquetbol a ordenar.</param>
+        /// <param name="ascendente">Indica si la ordenación es ascendente (true) o descendente (false).</param>
+        /// <returns>Lista de equipos de básquetbol ordenada por nombre.</returns>
         public static List<Basquet> OrdenarPorNombre(List<Basquet> lista, bool ascendente)
         {
             if (ascendente)
@@ -69,6 +73,9 @@ namespace Entidades
 
         }
 
+        /// <summary>
+        /// Determina las posiciones de los jugadores titulares del equipo de básquetbol.
+        /// </summary>
         public void DeterminarPosiciones()
         {
             int aleroCount = 0;
@@ -114,9 +121,12 @@ namespace Entidades
             }
         }
 
+        /// <summary>
+        /// Presenta la formación del equipo de básquetbol, mostrando titulares y suplentes.
+        /// </summary>
+        /// <returns>Cadena que representa la formación del equipo.</returns>
         public override string PresentarFormacion()
         {
-            this.Formacion(this.cantTitulares);
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("Titulares:");
             foreach (Jugador jugador in this.Jugadores)

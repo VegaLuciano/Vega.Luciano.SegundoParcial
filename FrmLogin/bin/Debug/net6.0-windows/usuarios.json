@@ -33,5 +33,12 @@
     "Apellido": "Prueba",
     "Mail": "prueba@parcial.com",
     "Contraseña": "1234567A."
+  },
+  {
+    "Id": "6",
+    "Nombre": "Rafael",
+    "Apellido": "Luna",
+    "Mail": "rafaelluna@parcial.com",
+    "Contraseña": "Parcial_123"
   }
 ]

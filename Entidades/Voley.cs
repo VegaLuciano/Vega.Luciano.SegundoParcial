@@ -39,6 +39,10 @@ namespace Entidades
         public ECancha Cancha { get => cancha; set => cancha = value; }
         public string? SedeDelEquipo { get => sedeDelEquipo; set => sedeDelEquipo = value; }
 
+        /// <summary>
+        /// Representación textual del equipo de vóley.
+        /// </summary>
+        /// <returns>Cadena que representa la información del equipo.</returns>
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
@@ -48,6 +52,12 @@ namespace Entidades
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Ordena la lista de equipos de vóley por nombre de forma ascendente o descendente.
+        /// </summary>
+        /// <param name="lista">Lista de equipos de vóley a ordenar.</param>
+        /// <param name="ascendente">Indica si la ordenación es ascendente (true) o descendente (false).</param>
+        /// <returns>Lista de equipos de vóley ordenada por nombre.</returns>
         public static List<Voley> OrdenarPorNombre(List<Voley> lista, bool ascendente)
         {
             if (ascendente)
@@ -61,6 +71,9 @@ namespace Entidades
        
         }
 
+        /// <summary>
+        /// Determina las posiciones de los jugadores titulares del equipo de vóley.
+        /// </summary>
         public void DeterminarPosiciones()
         {
             int puntaCount = 0;
@@ -100,6 +113,10 @@ namespace Entidades
             }
         }
 
+        /// <summary>
+        /// Presenta la formación del equipo de vóley, mostrando titulares y suplentes.
+        /// </summary>
+        /// <returns>Cadena que representa la formación del equipo.</returns>
         public override string PresentarFormacion()
         {
             StringBuilder sb = new StringBuilder();

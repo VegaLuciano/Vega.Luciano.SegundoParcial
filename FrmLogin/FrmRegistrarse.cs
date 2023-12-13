@@ -92,7 +92,7 @@ namespace Forms
 
             if (allOk)
             {
-                this.listaUsuarios.Add(new Usuario(this.txtMail.Text, this.txtContraseña.Text, this.txtNombre.Text, this.txtApellido.Text));
+                this.listaUsuarios.Add(new Usuario(this.txtMail.Text, this.txtContraseña.Text, this.txtNombre.Text, this.txtApellido.Text, "vendedor"));
                 this.DialogResult = DialogResult.OK;
             }
 

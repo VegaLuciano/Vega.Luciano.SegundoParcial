@@ -54,6 +54,9 @@ namespace Entidades
             this.id = id;
         }
 
+        /// <summary>
+        /// Propiedad abstracta que obtiene o establece la lista de jugadores del equipo.
+        /// </summary>
         public abstract List<Jugador> Jugadores { get; set;}
         public int Id { get => id; set => id = value; }
         public string Nombre { get => nombre; set => nombre = value; }
@@ -93,8 +96,15 @@ namespace Entidades
         }
         public string Entrenador { get => entrenador; set => entrenador = value; }
 
+        /// <summary>
+        /// Método abstracto que presenta la formación del equipo.
+        /// </summary>
         public abstract string PresentarFormacion();
 
+        /// <summary>
+        /// Método que establece el ID del equipo para los jugadores y los asigna como titulares.
+        /// </summary>
+        /// <returns>True si la operación fue exitosa, false en caso contrario.</returns>
         public bool SetearIdEquipoJugadores()
         {
             bool retorno = true;
@@ -139,6 +149,11 @@ namespace Entidades
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Método estático que elige aleatoriamente a los titulares del equipo.
+        /// </summary>
+        /// <param name="lista">Lista de jugadores.</param>
+        /// <param name="cantidadTitulares">Cantidad de titulares a elegir.</param>
         public static void ElegirTitulares(List<Jugador> lista, int cantidadTitulares)
         {
             Random random = new Random();
@@ -155,6 +170,11 @@ namespace Entidades
             }
 
         }
+        /// <summary>
+        /// Método estático que cuenta la cantidad de titulares en la lista de jugadores.
+        /// </summary>
+        /// <param name="lista">Lista de jugadores.</param>
+        /// <returns>Cantidad de titulares.</returns>
         public static int ContarTitulares(List<Jugador> lista)
         {
             int contador = 0;
@@ -169,12 +189,21 @@ namespace Entidades
 
             return contador;
         }
-
+        /// <summary>
+        /// Método que retorna una representación en cadena del objeto.
+        /// </summary>
+        /// <returns>Cadena que representa al objeto.</returns>
         public override string ToString()
         {
             return this.Mostrar();
         }
 
+        /// <summary>
+        /// Sobrecarga del operador de adición que agrega un jugador al equipo.
+        /// </summary>
+        /// <param name="equipo">Equipo al que se agrega el jugador.</param>
+        /// <param name="jugador">Jugador a agregar.</param>
+        /// <returns>Equipo actualizado.</returns>
         public static Equipo operator +(Equipo equipo, Jugador jugador)
         {
             if (equipo.jugadores.IndexOf(jugador) == -1)
@@ -189,6 +218,12 @@ namespace Entidades
             return equipo;
         }
 
+        /// <summary>
+        /// Sobrecarga del operador de sustracción que elimina un jugador del equipo.
+        /// </summary>
+        /// <param name="equipo">Equipo del que se elimina el jugador.</param>
+        /// <param name="jugador">Jugador a eliminar.</param>
+        /// <returns>Equipo actualizado.</returns>
         public static Equipo operator -(Equipo equipo, Jugador jugador)
         {
             if (equipo.jugadores.IndexOf(jugador) != -1)

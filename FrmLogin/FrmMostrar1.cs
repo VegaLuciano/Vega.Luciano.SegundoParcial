@@ -89,7 +89,7 @@ namespace Forms
                                 break;
                         };
                     }
-                    catch(Exception ex) 
+                    catch (Exception ex)
                     {
                         MessageBox.Show(ex.Message);
                     }
@@ -148,14 +148,14 @@ namespace Forms
             this.ActualizarDataGridView();
         }
 
-        private bool PreguntarEliminar() 
+        private bool PreguntarEliminar()
         {
             bool retorno = false;
             DialogResult resultado = MessageBox.Show("¿Está seguro de que desea eliminar este equipo?", "Eliminar Equipo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (resultado == DialogResult.Yes)
             {
-                retorno = true;             
+                retorno = true;
             }
             return retorno;
         }
@@ -216,7 +216,7 @@ namespace Forms
             {
                 MessageBox.Show(this.equipoSeleccionado.PresentarFormacion());
             }
-            catch(Exception ex) 
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
