@@ -48,7 +48,6 @@ namespace FrmLogin
             try
             {
                 int indexUser = Usuario.FindUser(usuarioAux, this.usuariosRegistrados);
-                MessageBox.Show(usuarioAux.ToString());
                 this.usuario = this.usuariosRegistrados[indexUser];
                 FrmMenuPrincipal frmMenuPrincipal = new FrmMenuPrincipal(this.usuariosRegistrados, this.usuario, this.pathUsuariosRegistrados, this.usuario.Perfil);
                 frmMenuPrincipal.ShowDialog();
@@ -62,7 +61,6 @@ namespace FrmLogin
             catch (ExcepcionUsuarioInexistente ex)
             {
                 this.lblError.Text = $"{ex.mensaje}";
-                MessageBox.Show(usuarioAux.ToString());
             }
             catch (Exception ex)
             {

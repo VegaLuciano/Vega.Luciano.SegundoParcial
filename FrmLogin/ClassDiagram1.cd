@@ -1,16 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
   <Class Name="Entidades.Equipo">
-    <Position X="4" Y="0.5" Width="3" />
+    <Position X="3.75" Y="0.5" Width="3.25" />
     <TypeIdentifier />
   </Class>
   <Class Name="Entidades.Voley">
-    <Position X="7.25" Y="0.5" Width="3" />
+    <Position X="7.25" Y="0.5" Width="4" />
     <TypeIdentifier />
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Entidades.Futbol">
-    <Position X="7.25" Y="4.25" Width="3" />
+    <Position X="7.25" Y="4.25" Width="4.25" />
     <TypeIdentifier />
     <Lollipop Position="0.2" />
   </Class>
@@ -20,7 +20,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Entidades.Usuario">
-    <Position X="10.5" Y="0.5" Width="2.75" />
+    <Position X="12.25" Y="0.5" Width="3.75" />
     <NestedTypes>
       <Class Name="Entidades.Usuario.UsuarioDelegate" Collapsed="true">
         <TypeIdentifier />

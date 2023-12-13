@@ -78,11 +78,9 @@ namespace Forms
                             int filas = db.AgregarDato(EquipoFutbol);
                             if (filas == 1)
                             {
-                                MessageBox.Show("Se cargó todo exitosamente!");
                                 this.tabla.ListaFutbol.Add(EquipoFutbol);
                                 EquipoFutbol.SetearIdEquipoJugadores();
                                 bool retorno = db.agregarJugadores(EquipoFutbol.Jugadores);
-                                MessageBox.Show(retorno.ToString());
                                 if (retorno)
                                 {
                                     MessageBox.Show("Se cargó todo exitosamente!");
@@ -93,7 +91,6 @@ namespace Forms
                                 MessageBox.Show("Todo mal");
                             }
 
-                            MessageBox.Show(filas.ToString());
                         }
 
                     }

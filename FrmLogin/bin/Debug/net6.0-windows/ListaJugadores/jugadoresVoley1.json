@@ -1,0 +1,93 @@
+[
+  {
+      "nombre": "Martín",
+      "apellido": "Gómez",
+      "idEquipo": 1,
+      "genero": "Masculino",
+      "dni": 111222333,
+      "edad": 22,
+      "division": "Mayores",
+      "altura": 1.85,
+      "esTitular": false,
+      "deporte": "Voley",
+      "posicion": "No tiene"
+  },
+  {
+      "nombre": "Lucía",
+      "apellido": "Martínez",
+      "idEquipo": 1,
+      "genero": "Femenino",
+      "dni": 444555666,
+      "edad": 23,
+      "division": "Mayores",
+      "altura": 1.70,
+      "esTitular": false,
+      "deporte": "Voley",
+      "posicion": "No tiene"
+  },
+  {
+      "nombre": "Juan",
+      "apellido": "Rodríguez",
+      "idEquipo": 1,
+      "genero": "Masculino",
+      "dni": 777888999,
+      "edad": 24,
+      "division": "Mayores",
+      "altura": 1.78,
+      "esTitular": false,
+      "deporte": "Voley",
+      "posicion": "No tiene"
+  },
+  {
+      "nombre": "Ana",
+      "apellido": "Hernández",
+      "idEquipo": 1,
+      "genero": "Femenino",
+      "dni": 123456789,
+      "edad": 25,
+      "division": "Mayores",
+      "altura": 1.68,
+      "esTitular": false,
+      "deporte": "Voley",
+      "posicion": "No tiene"
+  },
+  {
+      "nombre": "Sebastián",
+      "apellido": "Fernández",
+      "idEquipo": 1,
+      "genero": "Masculino",
+      "dni": 987654321,
+      "edad": 22,
+      "division": "Mayores",
+      "altura": 1.80,
+      "esTitular": false,
+      "deporte": "Voley",
+      "posicion": "No tiene"
+  },
+  {
+      "nombre": "Carolina",
+      "apellido": "García",
+      "idEquipo": 1,
+      "genero": "Femenino",
+      "dni": 654321987,
+      "edad": 23,
+      "division": "Mayores",
+      "altura": 1.75,
+      "esTitular": false,
+      "deporte": "Voley",
+      "posicion": "No tiene"
+  },
+  {
+      "nombre": "José",
+      "apellido": "López",
+      "idEquipo": 1,
+      "genero": "Masculino",
+      "dni": 987123456,
+      "edad": 24,
+      "division": "Mayores",
+      "altura": 1.88,
+      "esTitular": false,
+      "deporte": "Voley",
+      "posicion": "No tiene"
+  }
+]

@@ -100,7 +100,6 @@ namespace Forms
                                 this.tabla.ListaVoley.Add(EquipoVoley);
                                 EquipoVoley.SetearIdEquipoJugadores();
                                 bool retorno = db.agregarJugadores(EquipoVoley.Jugadores);
-                                MessageBox.Show(retorno.ToString());
                                 if (retorno)
                                 {
                                     MessageBox.Show("Se cargó todo exitosamente!");
@@ -112,7 +111,6 @@ namespace Forms
                                 MessageBox.Show("Todo mal");
                             }
 
-                            MessageBox.Show(filas.ToString());
                            
                         }
                     }

@@ -24,7 +24,7 @@ namespace TestUsuario
             Assert.IsNotNull(retorno);
             Assert.AreNotEqual(-1, retorno);
             Assert.AreEqual(mail, usuario.Mail);
-            Assert.AreEqual(contraseña, usuario.Contraseña);
+            Assert.AreEqual(contraseña, usuario.Clave);
 
         }
 

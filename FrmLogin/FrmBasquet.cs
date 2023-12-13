@@ -91,11 +91,13 @@ namespace Forms
                             int filas = db.AgregarDato(EquipoBasquet);
 
                             if (filas == 1)
-                            {
-                                MessageBox.Show("Se cargó todo exitosamente!");
+                            {                               
                                 this.tabla.ListaBasquet.Add(EquipoBasquet);
                                 EquipoBasquet.SetearIdEquipoJugadores();
-                                db.agregarJugadores(EquipoBasquet.Jugadores);
+                                if (db.agregarJugadores(EquipoBasquet.Jugadores)) 
+                                {
+                                    MessageBox.Show("Se cargó todo exitosamente!");
+                                }
                             }
                             else
                             {

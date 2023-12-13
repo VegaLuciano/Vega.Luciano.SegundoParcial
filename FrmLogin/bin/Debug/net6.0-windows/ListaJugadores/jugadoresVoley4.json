@@ -1,0 +1,93 @@
+[
+    {
+        "nombre": "Matías",
+        "apellido": "García",
+        "idEquipo": 2,
+        "genero": "Masculino",
+        "dni": 111222333,
+        "edad": 15,
+        "division": "Sub16",
+        "altura": 1.68,
+        "esTitular": false,
+        "deporte": "Voley",
+        "posicion": "No tiene"
+    },
+    {
+        "nombre": "Camila",
+        "apellido": "Fernández",
+        "idEquipo": 2,
+        "genero": "Femenino",
+        "dni": 444555666,
+        "edad": 14,
+        "division": "Sub16",
+        "altura": 1.61,
+        "esTitular": false,
+        "deporte": "Voley",
+        "posicion": "No tiene"
+    },
+    {
+        "nombre": "Lucas",
+        "apellido": "Martínez",
+        "idEquipo": 2,
+        "genero": "Masculino",
+        "dni": 777888999,
+        "edad": 15,
+        "division": "Sub16",
+        "altura": 1.70,
+        "esTitular": false,
+        "deporte": "Voley",
+        "posicion": "No tiene"
+    },
+    {
+        "nombre": "Valentina",
+        "apellido": "López",
+        "idEquipo": 2,
+        "genero": "Femenino",
+        "dni": 123456789,
+        "edad": 14,
+        "division": "Sub16",
+        "altura": 1.63,
+        "esTitular": false,
+        "deporte": "Voley",
+        "posicion": "No tiene"
+    },
+    {
+        "nombre": "Sebastián",
+        "apellido": "Gómez",
+        "idEquipo": 2,
+        "genero": "Masculino",
+        "dni": 987654321,
+        "edad": 15,
+        "division": "Sub16",
+        "altura": 1.65,
+        "esTitular": false,
+        "deporte": "Voley",
+        "posicion": "No tiene"
+    },
+    {
+        "nombre": "Julieta",
+        "apellido": "Hernández",
+        "idEquipo": 2,
+        "genero": "Femenino",
+        "dni": 654321987,
+        "edad": 14,
+        "division": "Sub16",
+        "altura": 1.55,
+        "esTitular": false,
+        "deporte": "Voley",
+        "posicion": "No tiene"
+    },
+    {
+        "nombre": "Agustín",
+        "apellido": "Pérez",
+        "idEquipo": 2,
+        "genero": "Masculino",
+        "dni": 987123456,
+        "edad": 15,
+        "division": "Sub16",
+        "altura": 1.67,
+        "esTitular": false,
+        "deporte": "Voley",
+        "posicion": "No tiene"
+    }
+]

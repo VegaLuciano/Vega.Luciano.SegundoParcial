@@ -1,0 +1,93 @@
+[
+    {
+        "nombre": "Sofía",
+        "apellido": "Rodríguez",
+        "idEquipo": 1,
+        "genero": "Femenino",
+        "dni": 123456789,
+        "edad": 20,
+        "division": "Mayores",
+        "altura": 1.85,
+        "esTitular": false,
+        "deporte": "Basquet",
+        "posicion": "No tiene"
+    },
+    {
+        "nombre": "Alejandro",
+        "apellido": "González",
+        "idEquipo": 1,
+        "genero": "Masculino",
+        "dni": 987654321,
+        "edad": 19,
+        "division": "Mayores",
+        "altura": 1.75,
+        "esTitular": false,
+        "deporte": "Basquet",
+        "posicion": "No tiene"
+    },
+    {
+        "nombre": "Valentina",
+        "apellido": "López",
+        "idEquipo": 1,
+        "genero": "Femenino",
+        "dni": 456789123,
+        "edad": 20,
+        "division": "Mayores",
+        "altura": 1.88,
+        "esTitular": false,
+        "deporte": "Basquet",
+        "posicion": "No tiene"
+    },
+    {
+        "nombre": "Juan",
+        "apellido": "Torres",
+        "idEquipo": 1,
+        "genero": "Masculino",
+        "dni": 321654987,
+        "edad": 19,
+        "division": "Mayores",
+        "altura": 1.70,
+        "esTitular": false,
+        "deporte": "Basquet",
+        "posicion": "No tiene"
+    },
+    {
+        "nombre": "Camila",
+        "apellido": "Martínez",
+        "idEquipo": 1,
+        "genero": "Femenino",
+        "dni": 789123456,
+        "edad": 20,
+        "division": "Mayores",
+        "altura": 1.80,
+        "esTitular": false,
+        "deporte": "Basquet",
+        "posicion": "No tiene"
+    },
+    {
+        "nombre": "Mateo",
+        "apellido": "Hernández",
+        "idEquipo": 1,
+        "genero": "Masculino",
+        "dni": 654987321,
+        "edad": 19,
+        "division": "Mayores",
+        "altura": 1.68,
+        "esTitular": false,
+        "deporte": "Basquet",
+        "posicion": "No tiene"
+    },
+    {
+        "nombre": "Isabella",
+        "apellido": "Gómez",
+        "idEquipo": 1,
+        "genero": "Femenino",
+        "dni": 123987456,
+        "edad": 20,
+        "division": "Mayores",
+        "altura": 1.82,
+        "esTitular": false,
+        "deporte": "Basquet",
+        "posicion": "No tiene"
+    }
+]

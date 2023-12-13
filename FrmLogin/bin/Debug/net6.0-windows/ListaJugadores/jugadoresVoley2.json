@@ -1,0 +1,93 @@
+[
+    {
+        "nombre": "Lucas",
+        "apellido": "Díaz",
+        "idEquipo": 1,
+        "genero": "Masculino",
+        "dni": 111222333,
+        "edad": 20,
+        "division": "Sub21",
+        "altura": 1.82,
+        "esTitular": false,
+        "deporte": "Voley",
+        "posicion": "No tiene"
+    },
+    {
+        "nombre": "Alejandra",
+        "apellido": "Sánchez",
+        "idEquipo": 1,
+        "genero": "Femenino",
+        "dni": 444555666,
+        "edad": 19,
+        "division": "Sub21",
+        "altura": 1.75,
+        "esTitular": false,
+        "deporte": "Voley",
+        "posicion": "No tiene"
+    },
+    {
+        "nombre": "Maximiliano",
+        "apellido": "Pérez",
+        "idEquipo": 1,
+        "genero": "Masculino",
+        "dni": 777888999,
+        "edad": 21,
+        "division": "Sub21",
+        "altura": 1.88,
+        "esTitular": false,
+        "deporte": "Voley",
+        "posicion": "No tiene"
+    },
+    {
+        "nombre": "Camila",
+        "apellido": "Gómez",
+        "idEquipo": 1,
+        "genero": "Femenino",
+        "dni": 123456789,
+        "edad": 20,
+        "division": "Sub21",
+        "altura": 1.70,
+        "esTitular": false,
+        "deporte": "Voley",
+        "posicion": "No tiene"
+    },
+    {
+        "nombre": "Gabriel",
+        "apellido": "Fernández",
+        "idEquipo": 1,
+        "genero": "Masculino",
+        "dni": 987654321,
+        "edad": 19,
+        "division": "Sub21",
+        "altura": 1.80,
+        "esTitular": false,
+        "deporte": "Voley",
+        "posicion": "No tiene"
+    },
+    {
+        "nombre": "Valentina",
+        "apellido": "Hernández",
+        "idEquipo": 1,
+        "genero": "Femenino",
+        "dni": 654321987,
+        "edad": 21,
+        "division": "Sub21",
+        "altura": 1.68,
+        "esTitular": false,
+        "deporte": "Voley",
+        "posicion": "No tiene"
+    },
+    {
+        "nombre": "Martina",
+        "apellido": "López",
+        "idEquipo": 1,
+        "genero": "Femenino",
+        "dni": 987123456,
+        "edad": 20,
+        "division": "Sub21",
+        "altura": 1.75,
+        "esTitular": false,
+        "deporte": "Voley",
+        "posicion": "No tiene"
+    }
+]
