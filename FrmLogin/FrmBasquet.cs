@@ -104,7 +104,6 @@ namespace Forms
                                 MessageBox.Show("Todo mal");
                             }
 
-                            MessageBox.Show(filas.ToString());
                         }
                     }
                     else
