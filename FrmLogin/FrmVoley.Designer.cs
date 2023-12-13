@@ -43,7 +43,6 @@
             // 
             txtNombre.BorderStyle = BorderStyle.FixedSingle;
             txtNombre.Location = new Point(259, 110);
-            txtNombre.Text = "Protas";
             // 
             // lblNombre
             // 
@@ -78,7 +77,6 @@
             // 
             txtNombreEntrenador.BorderStyle = BorderStyle.FixedSingle;
             txtNombreEntrenador.Location = new Point(462, 110);
-            txtNombreEntrenador.Text = "Jose";
             // 
             // lblErrorNombreEntrenador
             // 
@@ -106,7 +104,6 @@
             // npdCantTitulares
             // 
             npdCantTitulares.Location = new Point(61, 92);
-            npdCantTitulares.Value = new decimal(new int[] { 6, 0, 0, 0 });
             // 
             // npdCantSuplentes
             // 
@@ -168,7 +165,6 @@
             txtSedeEquipo.Name = "txtSedeEquipo";
             txtSedeEquipo.Size = new Size(169, 23);
             txtSedeEquipo.TabIndex = 22;
-            txtSedeEquipo.Text = "Quilmes";
             // 
             // lblSede
             // 

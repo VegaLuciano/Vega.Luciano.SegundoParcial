@@ -79,7 +79,7 @@ namespace Forms
                             if (indice >= 0)
                             {
                                 // Reemplaza el objeto en la misma posición.                                                         
-                                if (db.ModificarEquipo(EquipoVoley)) 
+                                if (db.ModificarEquipo(EquipoVoley))
                                 {
                                     this.tabla.ListaVoley[indice] = EquipoVoley;
                                     MessageBox.Show("Se cargó todo exitosamente!");
@@ -93,10 +93,10 @@ namespace Forms
                         }
                         else
                         {
-                            
+
                             int filas = db.AgregarDato(EquipoVoley);
-                            if (filas==1)
-                            {                             
+                            if (filas == 1)
+                            {
                                 this.tabla.ListaVoley.Add(EquipoVoley);
                                 EquipoVoley.SetearIdEquipoJugadores();
                                 bool retorno = db.agregarJugadores(EquipoVoley.Jugadores);
@@ -106,12 +106,12 @@ namespace Forms
                                 }
 
                             }
-                            else 
+                            else
                             {
                                 MessageBox.Show("Todo mal");
                             }
 
-                           
+
                         }
                     }
                     else
