@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO.Pipes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,12 +23,13 @@ namespace Forms
         public Usuario usuario;
         private DateTime fecha;
         private string pathUsuarios;
+        private string perfilUsuario;
         private string pathUsuariosRegistrados;
         private Form? formularioAcutal = null;
         public Tabla tabla;
         private Reloj reloj;
 
-        public FrmMenuPrincipal(List<Usuario> listaUsuarios, Usuario usuario, string pathUsuariosRegistrados)
+        public FrmMenuPrincipal(List<Usuario> listaUsuarios, Usuario usuario, string pathUsuariosRegistrados, string perfilUsuario)
         {
             InitializeComponent();
             this.reloj = new Reloj();
@@ -37,6 +39,7 @@ namespace Forms
             this.usuario.usuarioAnotado += Usuario_usuarioAnotado;
             this.fecha = DateTime.Now;
             this.pathUsuarios = "usuarios.log";
+            this.perfilUsuario = perfilUsuario;
             this.lblUsuario.Text = this.usuario.Nombre;
             this.btnFutbol.Enabled = false;
             this.btnFutbol.Visible = false;
@@ -68,8 +71,13 @@ namespace Forms
             FrmCRUD1.ClearErrorLabels(this.Controls);
             usuario.guardarUsuario(this.usuario, this.pathUsuarios, this.fecha);
             reloj.SegundoCambiado += this.Reloj_corriendo;
+            this.lblPerfil.Text = this.perfilUsuario;
             FrmMenuPrincipal.CambiarColoresControles(this.Controls, this, false);
             _ = reloj.IniciarRelojAsync(CancellationToken.None);
+            if (perfilUsuario == "vendedor")
+            {
+                this.btnAgregar.Enabled = false;
+            }
         }
 
         private void Reloj_corriendo(object sender, RelojEventArgs e)
@@ -157,19 +165,19 @@ namespace Forms
 
         private void btnMostrarVoley_Click(object sender, EventArgs e)
         {
-            FrmMostrar1 frmMostrar = new FrmMostrar1(this.tabla, EDeporte.Voley);
+            FrmMostrar1 frmMostrar = new FrmMostrar1(this.tabla, EDeporte.Voley, this.perfilUsuario);
             AbrirFormularioHijo(frmMostrar);
         }
 
         private void btnMostrarFutbol_Click(object sender, EventArgs e)
         {
-            FrmMostrar1 frmMostrar = new FrmMostrar1(this.tabla, EDeporte.Futbol);
+            FrmMostrar1 frmMostrar = new FrmMostrar1(this.tabla, EDeporte.Futbol, this.perfilUsuario);
             AbrirFormularioHijo(frmMostrar);
         }
 
         private void btnMostrarBasquet_Click(object sender, EventArgs e)
         {
-            FrmMostrar1 frmMostrar = new FrmMostrar1(this.tabla, EDeporte.Basquet);
+            FrmMostrar1 frmMostrar = new FrmMostrar1(this.tabla, EDeporte.Basquet, this.perfilUsuario);
             AbrirFormularioHijo(frmMostrar);
         }
 
@@ -253,7 +261,7 @@ namespace Forms
             }
 
             return path;
-        
+
         }
 
         private void btnVerLog_Click(object sender, EventArgs e)
@@ -291,6 +299,6 @@ namespace Forms
                 MessageBox.Show($"Error: {ex.Message}");
             }
         }
-        
+
     }
 }

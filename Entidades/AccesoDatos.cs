@@ -541,11 +541,50 @@ namespace Entidades
                 this.comando.CommandType = CommandType.Text;
                 this.comando.Parameters.AddWithValue("@dni", jugador.Dni);
 
-                this.comando.CommandText = "DELETE FROM Jugadores WHERE dni = @dni";
+                this.comando.CommandText = "DELETE FROM Jugador WHERE dni = @dni";
                 this.comando.Connection = this.coneccion;
 
                 int filasAfectadas = this.comando.ExecuteNonQuery();
                 if (filasAfectadas == 1)
+                {
+                    this.ActualizarListaJugadores();
+                    retorno = true;
+                }
+                else if (filasAfectadas == 0)
+                {
+                    // No se encontró ninguna fila para eliminar
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejar la excepción si es necesario
+            }
+            finally
+            {
+                if (this.coneccion.State == ConnectionState.Open)
+                {
+                    this.coneccion.Close();
+                }
+            }
+
+            return retorno;
+        }
+        public bool EliminarJugadores(Equipo equipo)
+        {
+            bool retorno = false;
+
+            try
+            {
+                this.coneccion.Open();
+                this.comando = new SqlCommand();
+                this.comando.CommandType = CommandType.Text;
+                this.comando.Parameters.AddWithValue("@idEquipo", equipo.Id);
+
+                this.comando.CommandText = "DELETE FROM Jugador WHERE idEquipo = @idEquipo";
+                this.comando.Connection = this.coneccion;
+
+                int filasAfectadas = this.comando.ExecuteNonQuery();
+                if (filasAfectadas == equipo.Jugadores.Count)
                 {
                     this.ActualizarListaJugadores();
                     retorno = true;

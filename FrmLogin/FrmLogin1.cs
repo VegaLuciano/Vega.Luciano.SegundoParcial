@@ -33,7 +33,6 @@ namespace FrmLogin
             if (listAux != null)
             {
                 this.usuariosRegistrados = listAux;
-                MessageBox.Show(usuariosRegistrados.Count.ToString());
             }
             else
             {
@@ -51,7 +50,7 @@ namespace FrmLogin
                 int indexUser = Usuario.FindUser(usuarioAux, this.usuariosRegistrados);
                 MessageBox.Show(usuarioAux.ToString());
                 this.usuario = this.usuariosRegistrados[indexUser];
-                FrmMenuPrincipal frmMenuPrincipal = new FrmMenuPrincipal(this.usuariosRegistrados, this.usuario, this.pathUsuariosRegistrados);
+                FrmMenuPrincipal frmMenuPrincipal = new FrmMenuPrincipal(this.usuariosRegistrados, this.usuario, this.pathUsuariosRegistrados, this.usuario.Perfil);
                 frmMenuPrincipal.ShowDialog();
                 this.Visible = false;
 

@@ -41,6 +41,7 @@
             button1 = new Button();
             lblErrorPath = new Label();
             btnVerLog = new Button();
+            lblPerfil = new Label();
             SuspendLayout();
             // 
             // btnAgregar
@@ -62,7 +63,7 @@
             lblUsuario.AutoSize = true;
             lblUsuario.BackColor = Color.DarkSlateBlue;
             lblUsuario.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            lblUsuario.Location = new Point(52, 33);
+            lblUsuario.Location = new Point(43, 9);
             lblUsuario.Name = "lblUsuario";
             lblUsuario.Size = new Size(59, 20);
             lblUsuario.TabIndex = 1;
@@ -214,12 +215,24 @@
             btnVerLog.UseVisualStyleBackColor = false;
             btnVerLog.Click += btnVerLog_Click;
             // 
+            // lblPerfil
+            // 
+            lblPerfil.AutoSize = true;
+            lblPerfil.BackColor = Color.DarkSlateBlue;
+            lblPerfil.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            lblPerfil.Location = new Point(44, 42);
+            lblPerfil.Name = "lblPerfil";
+            lblPerfil.Size = new Size(42, 20);
+            lblPerfil.TabIndex = 10;
+            lblPerfil.Text = "Perfil";
+            // 
             // FrmMenuPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DarkSlateBlue;
             ClientSize = new Size(1080, 513);
+            Controls.Add(lblPerfil);
             Controls.Add(btnVerLog);
             Controls.Add(lblErrorPath);
             Controls.Add(button1);
@@ -256,5 +269,6 @@
         private Button button1;
         private Label lblErrorPath;
         private Button btnVerLog;
+        private Label lblPerfil;
     }
 }

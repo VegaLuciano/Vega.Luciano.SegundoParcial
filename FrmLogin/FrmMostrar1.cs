@@ -18,6 +18,7 @@ namespace Forms
         private Tabla tabla;
         private EDeporte deporteSeleccionado;
         private Equipo equipoSeleccionado;
+        private string perfilUsuario;
 
         public FrmMostrar1()
         {
@@ -25,9 +26,10 @@ namespace Forms
             this.tabla = new Tabla();
         }
 
-        public FrmMostrar1(Tabla tabla, EDeporte deporte) : this()
+        public FrmMostrar1(Tabla tabla, EDeporte deporte, string perfil) : this()
         {
             this.tabla = tabla;
+            this.perfilUsuario = perfil;
             this.deporteSeleccionado = deporte;
         }
 
@@ -50,6 +52,17 @@ namespace Forms
                     ActualizarDataGridView();
                     break;
             };
+
+            switch (this.perfilUsuario)
+            {
+                case "supervisor":
+                    this.btnEliminar.Enabled = false;
+                    break;
+                case "vendedor":
+                    this.btnEliminar.Enabled = false;
+                    this.btnModificar.Enabled = false;
+                    break;
+            }
         }
 
         private void btnJugadores_Click(object sender, EventArgs e)
@@ -139,6 +152,11 @@ namespace Forms
                         break;
                 }
 
+                if (!db.EliminarJugadores(this.equipoSeleccionado))
+                {
+                    confirmacion = false;
+                }
+
                 if (confirmacion)
                 {
                     MessageBox.Show("Equipo eliminado exitosamente.", "Eliminación Exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -225,10 +243,34 @@ namespace Forms
 
         private void btnAgregarJugador_Click(object sender, EventArgs e)
         {
-            FrmJugador frmJugador = new FrmJugador(this.equipoSeleccionado);
-            frmJugador.ShowDialog();
+            try
+            {
+                switch (this.deporteSeleccionado)
+                {
+                    case EDeporte.Futbol:
+                        Futbol futbolAux = (Futbol)this.equipoSeleccionado;
+                        futbolAux.DeterminarPosiciones();
+                        this.equipoSeleccionado = futbolAux;
+                        break;
+                    case EDeporte.Voley:
+                        Voley VoleylAux = (Voley)this.equipoSeleccionado;
+                        VoleylAux.DeterminarPosiciones();
+                        this.equipoSeleccionado = VoleylAux;
+                        break;
+                    case EDeporte.Basquet:
+                        Basquet BasquetAux = (Basquet)this.equipoSeleccionado;
+                        BasquetAux.DeterminarPosiciones();
+                        this.equipoSeleccionado = BasquetAux;
+                        break;
+                };
 
-
+                MessageBox.Show("Posiciones establecidas");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            this.ActualizarDataGridView();
         }
     }
 
